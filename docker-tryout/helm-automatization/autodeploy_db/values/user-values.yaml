@@ -1,0 +1,15 @@
+namespace: user1-namespace
+replicaCount: 1
+
+image:
+  repository: milvus-standalone
+  tag: 1.0
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 19530
+
+pvc:
+  storage: 10Gi
+

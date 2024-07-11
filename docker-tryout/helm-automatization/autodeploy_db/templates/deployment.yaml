@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-milvus-db-deployment
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: milvus
+      tier: db
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: milvus
+        tier: db
+    spec:
+      containers:
+        - image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          name: milvus
+          ports:
+            - containerPort: {{ .Values.service.port }}
+              name: milvus
+          volumeMounts:
+            - name: milvus-persistent-storage
+              mountPath: var/lib/milvus
+      volumes:
+        - name: milvus-persistent-storage
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-milvus-db-claim
+
+
