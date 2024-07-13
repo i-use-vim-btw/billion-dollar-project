@@ -2,66 +2,62 @@ package main
 
 import (
 	"fmt"
-	"os"
-
 	"helm.sh/helm/v3/pkg/action"
 	"helm.sh/helm/v3/pkg/chart/loader"
 	"helm.sh/helm/v3/pkg/cli"
-	"helm.sh/helm/v3/pkg/cli/values"
-	"helm.sh/helm/v3/pkg/getter"
 	"helm.sh/helm/v3/pkg/release"
+	"log"
+	"os"
 )
 
-func installHelmChart(namespace, releaseName, chartPath string, valuesFile string) (*release.Release, error) {
+func helmInstall(chartPath, releaseName, namespace string, values map[string]interface{}) (*release.Release, error) {
+	// Initialize Helm settings
+	settings := cli.New()
+
+	// Initialize Helm action configuration
 	actionConfig := new(action.Configuration)
-	if err := actionConfig.Init(cli.New().RESTClientGetter(), namespace, os.Getenv("HELM_DRIVER"), func(format string, v ...interface{}) {
-		fmt.Printf(format, v...)
-	}); err != nil {
-		return nil, err
+	if err := actionConfig.Init(settings.RESTClientGetter(), settings.Namespace(), os.Getenv("HELM_DRIVER"), log.Printf); err != nil {
+		return nil, fmt.Errorf("failed to initialize Helm action configuration: %w", err)
 	}
 
-	install := action.NewInstall(actionConfig)
-	install.Namespace = namespace
-	install.ReleaseName = releaseName
+	// Initialize Helm install client
+	client := action.NewInstall(actionConfig)
+	client.ReleaseName = releaseName
+	client.Namespace = namespace
+	client.CreateNamespace = false
 
-	valueOpts := &values.Options{
-		ValueFiles: []string{valuesFile},
-	}
-
-	p := getter.All(cli.New())
-	vals, err := valueOpts.MergeValues(p)
+	// Load the chart
+	chart, err := loader.Load(chartPath)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to load chart: %w", err)
 	}
 
-	cp, err := install.ChartPathOptions.LocateChart(chartPath, cli.New())
+	// Install the chart
+	release, err := client.Run(chart, values)
 	if err != nil {
-		return nil, err
-	}
-
-	chartRequested, err := loader.Load(cp)
-	if err != nil {
-		return nil, err
-	}
-
-	release, err := install.Run(chartRequested, vals)
-	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to install chart: %w", err)
 	}
 
 	return release, nil
 }
 
 func main() {
-	namespace := "u1"
-	releaseName := "u1-rel"
 	chartPath := "../user_manager_chart"
-	valuesFile := "../user_manager_chart/values.yaml"
-	rel, err := installHelmChart(namespace, releaseName, chartPath, valuesFile)
-	if err != nil {
-		fmt.Printf("Failed to install Helm chart: %v\n", err)
-		os.Exit(1)
+	releaseName := "u1-rel"
+	namespace := "u1-ns"
+	storage := "1Gi"
+	port := 30000
+	values := map[string]interface{}{
+		"Namespace":   namespace,
+		"releaseName": releaseName,
+		"Storage":     storage,
+		"Port":        port,
 	}
 
-	fmt.Printf("Helm chart installed successfully: %s\n", rel.Name)
+	release, err := helmInstall(chartPath, releaseName, namespace, values)
+	if err != nil {
+		log.Fatalf("Error installing chart: %v", err)
+	}
+
+	fmt.Printf("Chart installed successfully: %s\n", release.Name)
 }

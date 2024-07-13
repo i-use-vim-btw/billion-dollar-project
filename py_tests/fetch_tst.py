@@ -3,7 +3,7 @@ import json
 
 # 1. Set up a Milvus client
 client = MilvusClient(
-    uri="http://127.0.0.1:38329"
+    uri="http://127.0.0.1:34779"
 )
 
 collection_name = "quick_setup"
