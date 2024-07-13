@@ -1,0 +1,4 @@
+apiVersion: v2
+name: user_manager_chart
+version: 0.1.0
+

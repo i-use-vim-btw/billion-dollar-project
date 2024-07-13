@@ -1,6 +1,0 @@
-apiVersion: v2
-name: autodeploy_db
-description: initial attempt to have variable values in deployment & automatic deployment
-
-version: 0.1.0
-

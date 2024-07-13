@@ -1,0 +1,4 @@
+Namespace: default
+releaseName: default
+Port: 30000
+Storage: 1Gi

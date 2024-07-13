@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: milvus-db-claim-{{ .Release.Name }}
+  namespace: {{ .Values.Namespace }}
+  labels:
+    app: milvus
+    release: {{ .Values.Namespace }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.Storage }}
