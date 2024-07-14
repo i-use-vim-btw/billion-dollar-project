@@ -1,4 +1,4 @@
-import requests, time
+import requests
 
 class GandiClient:
     def __init__(self, uri, api_key="default") -> None:
@@ -27,11 +27,37 @@ class GandiClient:
             print("Error in creating collection")
     
     
-    def insert(self, collection_name="default", data=[]):
+    # Not finished, do not use
+    def create_index(self, collection_name="default", field_name="vector", params={"nlist": 16384, "index_type": "IVF_FLAT"}, id="localhost:19530"):
+        data = {
+            "collectionName": collection_name,
+            "indexParams": [{
+                "fieldName": field_name,
+                "params": params
+                }],
+            "id": id
+        }
+        
+        res = requests.post(
+            'http://' + self.__URI + "/gandi/indexes/create",
+            headers=self.header,
+            json=data
+        )
+        
+        res = res.json()
+        
+        print(res)
+        
+        if res["code"] == 200:
+            print("Index succesfully created")
+        else:
+            print("Error in creating index")
+    
+    def insert(self, collection_name="default", data=[], id="localhost:19530"):
         in_data = {
             'data': data,
             'collectionName': collection_name,
-            "id": "localhost:19530"
+            "id": id
         }
         
         res = requests.post(
@@ -50,12 +76,11 @@ class GandiClient:
             print("Insert failed")
     
     
-        
-    def get(self, collection_name="default", ids=[]):
+    def get(self, collection_name="default", ids=[], id="localhost:19530"):
         data = {
             "collectionName": collection_name,
             'id': ids,
-            "host": "localhost:19530"
+            "host": id
         }
         
         
@@ -74,11 +99,11 @@ class GandiClient:
         else:
             print("Get failed")
 
-    def upsert(self, collection_name="default", data=[]):
+    def upsert(self, collection_name="default", data=[], id="localhost:19530"):
         up_data = {
             'data': data,
             'collectionName': collection_name,
-            "id": "localhost:19530"
+            "id": id
         }
         
         res = requests.post(
@@ -96,13 +121,13 @@ class GandiClient:
         else:
             print("Upsert failed")
             
-    def delete(self, collection_name="default", database_name="default", partition_name="default", filter=""):
+    def delete(self, collection_name="default", database_name="default", partition_name="_default", filter="", id="localhost:19530"):
         delete_data = {
             'collectionName': collection_name,
             'databaseName': database_name,
             'partitionName': partition_name,
             'filter': filter,
-            "id": "localhost:19530"
+            "id": id
         }
         
         res = requests.post(
@@ -121,18 +146,14 @@ class GandiClient:
             print("Delete failed")
         
 
-
-
-
       
 client = GandiClient("localhost:8080")
 
 
-collName = "test38"
+collName = "test60"
 
-client.get(collection_name=collName, ids=[4, 5])
-"""
 client.create_collection(collection_name=collName, dim=5)
+
 
 client.insert(collection_name=collName, data=[
     {"id": i, "vector": [i/10]*5} for i in range(1, 6)
@@ -143,9 +164,9 @@ client.get(collection_name=collName, ids=[i for i in range(1, 3)])
 
 
 client.upsert(collection_name=collName, data=[
-    {"id": 1, "vector": [6/10]*5},
-    {"id": 2, "vector": [7/10]*5}
+    {"id": 6, "vector": [6/10]*5},
+    {"id": 7, "vector": [7/10]*5}
 ])
 
-client.delete(collection_name=collName, filter="id in [1, 2]")
-"""
+
+client.delete(collection_name=collName, filter="id in [1,2]")
