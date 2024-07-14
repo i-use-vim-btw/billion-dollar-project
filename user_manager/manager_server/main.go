@@ -2,11 +2,13 @@ package main
 
 import (
 	"fmt"
+	"github.com/gin-gonic/gin"
 	"helm.sh/helm/v3/pkg/action"
 	"helm.sh/helm/v3/pkg/chart/loader"
 	"helm.sh/helm/v3/pkg/cli"
 	"helm.sh/helm/v3/pkg/release"
 	"log"
+	"net/http"
 	"os"
 )
 
@@ -42,22 +44,28 @@ func helmInstall(chartPath, releaseName, namespace string, values map[string]int
 }
 
 func main() {
-	chartPath := "../user_manager_chart"
-	releaseName := "u1-rel"
-	namespace := "u1-ns"
-	storage := "1Gi"
-	port := 30000
-	values := map[string]interface{}{
-		"Namespace":   namespace,
-		"releaseName": releaseName,
-		"Storage":     storage,
-		"Port":        port,
-	}
+	r := gin.Default()
 
-	release, err := helmInstall(chartPath, releaseName, namespace, values)
-	if err != nil {
-		log.Fatalf("Error installing chart: %v", err)
-	}
+	r.POST("/install", func(c *gin.Context) {
+		var req struct {
+			ReleaseName string                 `json:"release_name"`
+			Namespace   string                 `json:"namespace"`
+			Values      map[string]interface{} `json:"values"`
+		}
 
-	fmt.Printf("Chart installed successfully: %s\n", release.Name)
+		if err := c.ShouldBindJSON(&req); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+
+		release, err := helmInstall("../user_manager_chart/", req.ReleaseName, req.Namespace, req.Values)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+
+		c.JSON(http.StatusOK, release)
+	})
+
+	r.Run(":8080") // Listen and serve on port 8080
 }

@@ -4,8 +4,9 @@ class GandiClient:
     def __init__(self, uri, api_key="default") -> None:
         self.__URI = uri
         self.header = {'Content-Type': 'application/json', 'Api_key': api_key}
-    
-    def create_collection(self, collection_name = "default", dim=128, id="localhost:19530") -> None:
+
+    def create_collection(self, collection_name="default", dim=128, id="localhost:34779") -> None:
+
         data = {
             "collectionName": collection_name,
             "dimension": dim,
@@ -16,11 +17,11 @@ class GandiClient:
             headers=self.header,
             json=data
         )
-        
+
         res = res.json()
-        
+
         print(res)
-        
+
         if res["code"] == 200:
             print("Collection succesfully created")
         else:
@@ -59,17 +60,17 @@ class GandiClient:
             'collectionName': collection_name,
             "id": id
         }
-        
+
         res = requests.post(
             'http://' + self.__URI + '/gandi/entities/insert',
             headers=self.header,
             json=in_data
         )
-        
+
         res = res.json()
-        
+
         print(res)
-        
+
         if res["code"] == 200:
             print("Insert successful")
         else:
@@ -82,18 +83,17 @@ class GandiClient:
             'id': ids,
             "host": id
         }
-        
-        
+
         res = requests.post(
             'http://' + self.__URI + '/gandi/entities/get',
             headers=self.header,
             json=data
         )
-        
+
         res = res.json()
-        
+
         print(res)
-        
+
         if res["code"] == 200:
             print(res["data"])
         else:
@@ -105,17 +105,17 @@ class GandiClient:
             'collectionName': collection_name,
             "id": id
         }
-        
+
         res = requests.post(
             'http://' + self.__URI + '/gandi/entities/upsert',
             headers=self.header,
             json=up_data
         )
-        
+
         res = res.json()
-        
+
         print(res)
-        
+
         if res["code"] == 200:
             print("Upsert successful")
         else:
@@ -129,17 +129,17 @@ class GandiClient:
             'filter': filter,
             "id": id
         }
-        
+
         res = requests.post(
             'http://' + self.__URI + '/gandi/entities/delete',
             headers=self.header,
             json=delete_data
         )
-        
+
         res = res.json()
-        
+
         print(res)
-        
+
         if res["code"] == 200:
             print("Delete successful")
         else:
