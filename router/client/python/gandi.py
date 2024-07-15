@@ -59,7 +59,7 @@ class GandiClient:
         in_data = {"data": data, "collectionName": collection_name, "id": id}
 
         res = requests.post(
-            "http://" + self.__URI + "/gandi/entities/insert",
+            "http://" + self.__URI + "/gandi/vectors/insert",
             headers=self.header,
             json=in_data,
         )
@@ -77,7 +77,7 @@ class GandiClient:
         data = {"collectionName": collection_name, "id": ids, "host": id}
 
         res = requests.post(
-            "http://" + self.__URI + "/gandi/entities/get",
+            "http://" + self.__URI + "/gandi/vectors/get",
             headers=self.header,
             json=data,
         )
@@ -95,7 +95,7 @@ class GandiClient:
         up_data = {"data": data, "collectionName": collection_name, "id": id}
 
         res = requests.post(
-            "http://" + self.__URI + "/gandi/entities/upsert",
+            "http://" + self.__URI + "/gandi/vectors/upsert",
             headers=self.header,
             json=up_data,
         )
@@ -126,7 +126,7 @@ class GandiClient:
         }
 
         res = requests.post(
-            "http://" + self.__URI + "/gandi/entities/delete",
+            "http://" + self.__URI + "/gandi/vectors/delete",
             headers=self.header,
             json=delete_data,
         )
