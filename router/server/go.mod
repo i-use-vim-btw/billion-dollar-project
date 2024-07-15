@@ -1,4 +1,4 @@
-module gandi/main
+module billion-dollar-project/router/server
 
 go 1.22.5
 
