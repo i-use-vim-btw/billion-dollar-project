@@ -1,13 +1,14 @@
 import requests
 
 
+# Don't forget timeout and error handling
 class GandiClient:
     def __init__(self, uri, api_key="default") -> None:
         self.__URI = uri
         self.header = {"Content-Type": "application/json", "Api_key": api_key}
 
     def create_collection(
-        self, collection_name="default", dim=128, id="localhost:34779"
+        self, collection_name="default", dim=128, id="localhost:19530"
     ) -> None:
 
         data = {"collectionName": collection_name, "dimension": dim, "id": id}
@@ -20,11 +21,6 @@ class GandiClient:
         res = res.json()
 
         print(res)
-
-        if res["code"] == 200:
-            print("Collection succesfully created")
-        else:
-            print("Error in creating collection")
 
     # Not finished, do not use
     def create_index(
@@ -50,11 +46,6 @@ class GandiClient:
 
         print(res)
 
-        if res["code"] == 200:
-            print("Index succesfully created")
-        else:
-            print("Error in creating index")
-
     def insert(self, collection_name="default", data=[], id="localhost:19530"):
         in_data = {"data": data, "collectionName": collection_name, "id": id}
 
@@ -67,11 +58,6 @@ class GandiClient:
         res = res.json()
 
         print(res)
-
-        if res["code"] == 200:
-            print("Insert successful")
-        else:
-            print("Insert failed")
 
     def get(self, collection_name="default", ids=[], id="localhost:19530"):
         data = {"collectionName": collection_name, "id": ids, "host": id}
@@ -86,11 +72,6 @@ class GandiClient:
 
         print(res)
 
-        if res["code"] == 200:
-            print(res["data"])
-        else:
-            print("Get failed")
-
     def upsert(self, collection_name="default", data=[], id="localhost:19530"):
         up_data = {"data": data, "collectionName": collection_name, "id": id}
 
@@ -103,11 +84,6 @@ class GandiClient:
         res = res.json()
 
         print(res)
-
-        if res["code"] == 200:
-            print("Upsert successful")
-        else:
-            print("Upsert failed")
 
     def delete(
         self,
@@ -135,28 +111,39 @@ class GandiClient:
 
         print(res)
 
-        if res["code"] == 200:
-            print("Delete successful")
-        else:
-            print("Delete failed")
+    def get_stats(self, collection_name="default", id="localhost:19530"):
+        data = {"collectionName": collection_name, "id": id}
+
+        res = requests.post(
+            "http://" + self.__URI + "/gandi/collections/get_load_state",
+            headers=self.header,
+            json=data,
+        )
+
+        res = res.json()
+
+        print(res)
 
 
 client = GandiClient("localhost:8080")
 
 
-collName = "test60"
+collName = "test68"
+
+client.get_stats(collection_name=collName)
 
 client.create_collection(collection_name=collName, dim=5)
 
 
 client.insert(
     collection_name=collName,
-    data=[{"id": i, "vector": [i / 10] * 5} for i in range(1, 6)],
+    data=[{"id": i, "vector": [i / 10] * 5} for i in range(1, 250)],
 )
 
 
-client.get(collection_name=collName, ids=[i for i in range(1, 3)])
+client.get(collection_name=collName, ids=[i for i in range(150, 153)])
 
+client.get_stats(collection_name=collName)
 
 client.upsert(
     collection_name=collName,
