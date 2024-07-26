@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: milvus-db-deployment-{{ .Release.Name }}
+  name: mdd-{{ .Release.Name }}
   namespace: {{ .Values.Namespace }}
   labels:
     app: milvus
@@ -32,12 +32,12 @@ spec:
         name: milvus
         ports:
         - containerPort: 19530
-          name: milvus-{{ .Release.Name }}
+          name: {{ .Release.Name }}
         volumeMounts:
-        - name: milvus-persistent-storage-{{ .Release.Name }}
+        - name: mps-{{ .Release.Name }}
           mountPath: var/lib/milvus-{{ .Release.Name }}
       volumes:
-      - name: milvus-persistent-storage-{{ .Release.Name }}
+      - name: mps-{{ .Release.Name }}
         persistentVolumeClaim:
-          claimName: milvus-db-claim-{{ .Release.Name }}
+          claimName: mdc-{{ .Release.Name }}
 

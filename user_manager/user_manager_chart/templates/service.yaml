@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: milvus-db-service-{{ .Release.Name }}
+  name: mdsvc-{{ .Release.Name }}
   namespace: {{ .Values.Namespace}}
   labels:
     app: milvus
@@ -13,7 +13,7 @@ metadata:
     meta.helm.sh/release-namespace: {{ .Release.Namespace | quote }}
 spec:
   ports:
-    - port: {{ .Values.Port }}
+    - port:  19530
       targetPort: 19530
   selector:
     app: milvus
