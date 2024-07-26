@@ -23,10 +23,10 @@ func CreateCollection(c *gin.Context) {
 
 	// Do something with api key and id
 	// api_key := newData["api_key"].(string)
-	id := newData["id"]
+	id := newData["host"]
 
 	delete(newData, "api_key")
-	delete(newData, "id")
+	delete(newData, "host")
 
 	sendData, err := json.Marshal(newData)
 
@@ -81,10 +81,10 @@ func DescribeCollection(c *gin.Context) {
 
 	// Do something with api key and id
 	// api_key := newData["api_key"].(string)
-	id := newData["id"]
+	id := newData["host"]
 
 	delete(newData, "api_key")
-	delete(newData, "id")
+	delete(newData, "host")
 
 	sendData, err := json.Marshal(newData)
 
@@ -139,10 +139,10 @@ func DropCollection(c *gin.Context) {
 
 	// Do something with api key and id
 	// api_key := newData["api_key"].(string)
-	id := newData["id"]
+	id := newData["host"]
 
 	delete(newData, "api_key")
-	delete(newData, "id")
+	delete(newData, "host")
 
 	sendData, err := json.Marshal(newData)
 
@@ -197,10 +197,10 @@ func GetLoadState(c *gin.Context) {
 
 	// Do something with api key and id
 	// api_key := newData["api_key"].(string)
-	id := newData["id"]
+	id := newData["host"]
 
 	delete(newData, "api_key")
-	delete(newData, "id")
+	delete(newData, "host")
 
 	sendData, err := json.Marshal(newData)
 
@@ -255,10 +255,10 @@ func GetStats(c *gin.Context) {
 
 	// Do something with api key and id
 	// api_key := newData["api_key"].(string)
-	id := newData["id"]
+	id := newData["host"]
 
 	delete(newData, "api_key")
-	delete(newData, "id")
+	delete(newData, "host")
 
 	sendData, err := json.Marshal(newData)
 
@@ -313,10 +313,10 @@ func HasCollection(c *gin.Context) {
 
 	// Do something with api key and id
 	// api_key := newData["api_key"].(string)
-	id := newData["id"]
+	id := newData["host"]
 
 	delete(newData, "api_key")
-	delete(newData, "id")
+	delete(newData, "host")
 
 	sendData, err := json.Marshal(newData)
 
@@ -371,10 +371,10 @@ func ListCollections(c *gin.Context) {
 
 	// Do something with api key and id
 	// api_key := newData["api_key"].(string)
-	id := newData["id"]
+	id := newData["host"]
 
 	delete(newData, "api_key")
-	delete(newData, "id")
+	delete(newData, "host")
 
 	sendData, err := json.Marshal(newData)
 
@@ -429,10 +429,10 @@ func LoadCollection(c *gin.Context) {
 
 	// Do something with api key and id
 	// api_key := newData["api_key"].(string)
-	id := newData["id"]
+	id := newData["host"]
 
 	delete(newData, "api_key")
-	delete(newData, "id")
+	delete(newData, "host")
 
 	sendData, err := json.Marshal(newData)
 
@@ -487,10 +487,10 @@ func ReleaseCollection(c *gin.Context) {
 
 	// Do something with api key and id
 	// api_key := newData["api_key"].(string)
-	id := newData["id"]
+	id := newData["host"]
 
 	delete(newData, "api_key")
-	delete(newData, "id")
+	delete(newData, "host")
 
 	sendData, err := json.Marshal(newData)
 
@@ -545,10 +545,10 @@ func RenameCollection(c *gin.Context) {
 
 	// Do something with api key and id
 	// api_key := newData["api_key"].(string)
-	id := newData["id"]
+	id := newData["host"]
 
 	delete(newData, "api_key")
-	delete(newData, "id")
+	delete(newData, "host")
 
 	sendData, err := json.Marshal(newData)
 

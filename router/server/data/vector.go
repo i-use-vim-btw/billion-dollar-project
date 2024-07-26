@@ -21,9 +21,9 @@ func GetWithID(c *gin.Context) {
 		return
 	}
 
-	// Do something with api key and id
+	// Do something with api key and host
 	// api_key := newData["api_key"].(string)
-	id := newData["host"]
+	host := newData["host"]
 
 	delete(newData, "api_key")
 	delete(newData, "host")
@@ -37,7 +37,7 @@ func GetWithID(c *gin.Context) {
 		return
 	}
 
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/entities/get", id), "application/json", bytes.NewReader(sendData))
+	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/entities/get", host), "application/json", bytes.NewReader(sendData))
 
 	if err != nil {
 		c.JSON(resp.StatusCode, gin.H{
@@ -55,11 +55,12 @@ func GetWithID(c *gin.Context) {
 		return
 	}
 
-	var result map[string]any
+	var result map[string]interface{}
 	err = json.Unmarshal(buf, &result)
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
+			"code":    http.StatusNotAcceptable,
+			"message": err.Error(),
 		})
 		return
 	}
@@ -79,12 +80,12 @@ func InsertVectors(c *gin.Context) {
 		return
 	}
 
-	// Do something with api key and id
+	// Do something with api key and host
 	// api_key := newData["api_key"].(string)
-	id := newData["id"]
+	host := newData["host"]
 
 	delete(newData, "api_key")
-	delete(newData, "id")
+	delete(newData, "host")
 
 	sendData, err := json.Marshal(newData)
 
@@ -95,8 +96,8 @@ func InsertVectors(c *gin.Context) {
 		return
 	}
 
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/entities/insert", id), "application/json", bytes.NewReader(sendData))
-
+	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/entities/insert", host), "application/json", bytes.NewReader(sendData))
+	fmt.Println(resp.StatusCode)
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, gin.H{
 			"code": http.StatusNotAcceptable,
@@ -113,7 +114,7 @@ func InsertVectors(c *gin.Context) {
 		return
 	}
 
-	var result map[string]any
+	var result map[string]interface{}
 	err = json.Unmarshal(buf, &result)
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, gin.H{
@@ -137,12 +138,12 @@ func DeleteVectors(c *gin.Context) {
 		return
 	}
 
-	// Do something with api key and id
+	// Do something with api key and host
 	// api_key := newData["api_key"].(string)
-	id := newData["id"]
+	host := newData["host"]
 
 	delete(newData, "api_key")
-	delete(newData, "id")
+	delete(newData, "host")
 
 	sendData, err := json.Marshal(newData)
 
@@ -153,7 +154,7 @@ func DeleteVectors(c *gin.Context) {
 		return
 	}
 
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/entities/delete", id), "application/json", bytes.NewReader(sendData))
+	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/entities/delete", host), "application/json", bytes.NewReader(sendData))
 
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, gin.H{
@@ -171,7 +172,7 @@ func DeleteVectors(c *gin.Context) {
 		return
 	}
 
-	var result map[string]any
+	var result map[string]interface{}
 	err = json.Unmarshal(buf, &result)
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, gin.H{
@@ -195,12 +196,12 @@ func UpsertVectors(c *gin.Context) {
 		return
 	}
 
-	// Do something with api key and id
+	// Do something with api key and host
 	// api_key := newData["api_key"].(string)
-	id := newData["id"]
+	host := newData["host"]
 
 	delete(newData, "api_key")
-	delete(newData, "id")
+	delete(newData, "host")
 
 	sendData, err := json.Marshal(newData)
 
@@ -211,7 +212,7 @@ func UpsertVectors(c *gin.Context) {
 		return
 	}
 
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/entities/upsert", id), "application/json", bytes.NewReader(sendData))
+	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/entities/upsert", host), "application/json", bytes.NewReader(sendData))
 
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, gin.H{
@@ -229,7 +230,7 @@ func UpsertVectors(c *gin.Context) {
 		return
 	}
 
-	var result map[string]any
+	var result map[string]interface{}
 	err = json.Unmarshal(buf, &result)
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, gin.H{
@@ -253,12 +254,12 @@ func Query(c *gin.Context) {
 		return
 	}
 
-	// Do something with api key and id
+	// Do something with api key and host
 	// api_key := newData["api_key"].(string)
-	id := newData["id"]
+	host := newData["host"]
 
 	delete(newData, "api_key")
-	delete(newData, "id")
+	delete(newData, "host")
 
 	sendData, err := json.Marshal(newData)
 
@@ -269,7 +270,7 @@ func Query(c *gin.Context) {
 		return
 	}
 
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/entities/query", id), "application/json", bytes.NewReader(sendData))
+	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/entities/query", host), "application/json", bytes.NewReader(sendData))
 
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, gin.H{
@@ -311,12 +312,12 @@ func Search(c *gin.Context) {
 		return
 	}
 
-	// Do something with api key and id
+	// Do something with api key and host
 	// api_key := newData["api_key"].(string)
-	id := newData["id"]
+	host := newData["host"]
 
 	delete(newData, "api_key")
-	delete(newData, "id")
+	delete(newData, "host")
 
 	sendData, err := json.Marshal(newData)
 
@@ -327,7 +328,7 @@ func Search(c *gin.Context) {
 		return
 	}
 
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/entities/search", id), "application/json", bytes.NewReader(sendData))
+	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/entities/search", host), "application/json", bytes.NewReader(sendData))
 
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, gin.H{

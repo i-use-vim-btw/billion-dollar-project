@@ -8,7 +8,7 @@ class GandiClient:
         self.header = {"Content-Type": "application/json", "Api_key": api_key}
 
     def create_collection(
-        self, collection_name="default", dim=128, id="localhost:19530"
+        self, collection_name="default", dim=128, id="localhost:8080"
     ) -> None:
 
         data = {"collectionName": collection_name, "dimension": dim, "id": id}

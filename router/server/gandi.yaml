@@ -1,0 +1,698 @@
+// Default values for optional fields
+// All requests start with create
+//
+
+openapi: 3.0.0
+info:
+  title: Gandi API
+  description: API for Gandi Cloud vector database service
+  version: 1.0.0
+servers:
+  - url: https://api.gandi.io/v1
+    description: Production server
+paths:
+  /collections/create:
+    post:
+      summary: Create a new collection
+      description: This operation creates a collection in a specified cluster.
+      requestBody:
+        description: Collection object that needs to be added
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionRequest'
+      responses:
+        '201':
+          description: Collection created successfully.
+        '400':
+          description: Bad Request
+  /collections/describe:
+    post:
+      summary: Describe a collection
+      description: Returns the details of a collection.
+      requestBody:
+        description: Collection object that needs to be described
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - collectionName
+              properties:
+                dbName:
+                  type: string
+                collectionName:
+                  type: string
+      responses:
+        '200':
+          description: Collection schema returned successfully.
+        '400':
+          description: Bad Request
+  /collections/drop:
+    post:
+      summary: Drop a collection
+      description: This operation drops the current collection and all data within the collection.
+      requestBody:
+        description: Collection object that needs to be deleted
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - collectionName
+              properties:
+                dbName:
+                  type: string
+                collectionName:
+                  type: string
+      responses:
+        '200':
+          description: Collection dropped successfully.
+        '400':
+          description: Bad Request
+  /collections/get_load_state:
+    post:
+      summary: Get the load state of a collection
+      description: Returns the load state of a specific collection.
+      requestBody:
+        description: Collection object that needs to be checked
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - collectionName
+              type: object
+              properties:
+                dbName:
+                  type: string
+                collectionName:
+                  type: string
+                partitionNames:
+                  type: string
+      responses:
+        '200':
+          description: Load state returned successfully.
+        '400':
+          description: Bad Request
+  /collections/get_stats:
+    post:
+      summary: Get the stats of a collection
+      description: This operation gets the number of entities in a collection.
+      requestBody:
+        description: Collection object that needs to be checked
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - collectionName
+              type: object
+              properties:
+                dbName:
+                  type: string
+                collectionName:
+                  type: string
+      responses:
+        '200':
+          description: Stats returned successfully.
+        '400':
+          description: Bad Request
+  /collections/has:
+    post:
+      summary: Check if a collection exists
+      description: Checks if a collection exists in the database.
+      requestBody:
+        description: Collection object that needs to be checked
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - collectionName
+              type: object
+              properties:
+                dbName:
+                  type: string
+                collectionName:
+                  type: string
+      responses:
+        '200':
+          description: Collection exists.
+        '400':
+          description: Bad Request
+  /collections/list:
+    post:
+      summary: List all collections
+      description: Returns a list of all collections in the specified database.
+      requestBody:
+        description: Database object that needs to be listed
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - dbName
+              type: object
+              properties:
+                dbName:
+                  type: string
+      responses:
+        '200':
+          description: Collections listed successfully.
+        '400':
+          description: Bad Request
+  /collections/load:
+    post:
+      summary: Load a collection
+      description: Loads a collection into memory.
+      requestBody:
+        description: Collection object that needs to be loaded
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - collectionName
+              type: object
+              properties:
+                dbName:
+                  type: string
+                collectionName:
+                  type: string
+      responses:
+        '200':
+          description: Collection loaded successfully.
+        '400':
+          description: Bad Request
+  /collections/release:
+    post:
+      summary: Release a collection
+      description: Releases a collection from memory.
+      requestBody:
+        description: Collection object that needs to be released
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - collectionName
+              type: object
+              properties:
+                dbName:
+                  type: string
+                collectionName:
+                  type: string
+      responses:
+        '200':
+          description: Collection released successfully.
+        '400':
+          description: Bad Request
+  /collections/rename:
+    post:
+      summary: Rename a collection
+      description: This operation renames an existing collection and optionally moves the collection to a new database.
+      requestBody:
+        description: Collection object that needs to be renamed
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - collectionName
+                - newCollectionName
+              type: object
+              properties:
+                dbName:
+                  type: string
+                collectionName:
+                  type: string
+                newCollectionName:
+                  type: string
+      responses:
+        '200':
+          description: Collection renamed successfully.
+        '400':
+          description: Bad Request
+  /indexes/create:
+    post:
+      summary: Create a new index
+      description: This creates a named index for a target field, which can either be a vector field or a scalar field.
+      requestBody:
+        description: Index object that needs to be added
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IndexRequest'
+      responses:
+        '201':
+          description: Index created successfully.
+        '400':
+          description: Bad Request
+  /indexes/describe:
+    post:
+      summary: Describe an index
+      description: Returns the details of an index.
+      requestBody:
+        description: Index object that needs to be described
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - collectionName
+                - indexName
+              type: object
+              properties:
+                dbName:
+                  type: string
+                collectionName:
+                  type: string
+                indexName:
+                  type: string
+      responses:
+        '200':
+          description: Index schema returned successfully.
+        '400':
+          description: Bad Request
+  /indexes/drop:
+    post:
+      summary: Drop an index
+      description: This operation drops index from a specified collection.
+      requestBody:
+        description: Index object that needs to be deleted
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - collectionName
+                - indexName
+              type: object
+              properties:
+                dbName:
+                  type: string
+                collectionName:
+                  type: string
+                indexName:
+                  type: string
+      responses:
+        '200':
+          description: Index dropped successfully.
+        '400':
+          description: Bad Request
+  /indexes/list:
+    post:
+      summary: List all indexes
+      description: Returns a list of all indexes in the specified collection.
+      requestBody:
+        description: Collection object that needs to be listed
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - collectionName
+              type: object
+              properties:
+                dbName:
+                  type: string
+                collectionName:
+                  type: string
+      responses:
+        '200':
+          description: Indexes listed successfully.
+        '400':
+          description: Bad Request
+  /vectors/delete:
+    post:
+      summary: Delete vectors
+      description: This operation deletes entities by their IDs or with a boolean expression.
+      requestBody:
+        description: Vectors object that needs to be deleted
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - collectionName
+                - filter
+              type: object
+              properties:
+                dbName:
+                  type: string
+                collectionName:
+                  type: string
+                filter:
+                  type: string
+                partitionName:
+                  type: string
+      responses:
+        '200':
+          description: Vectors deleted successfully.
+        '400':
+          description: Bad Request
+  /vectors/get:
+    post:
+      summary: Get vectors
+      description: This operation gets vectors by their IDs.
+      requestBody:
+        description: Vectors object that needs to be retrieved
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - collectionName
+              type: object
+              properties:
+                dbName:
+                  type: string
+                collectionName:
+                  type: string
+                id:
+                  oneOf:
+                    - type: string
+                    - type: array
+                      items:
+                        type: string
+                    - type: integer
+                    - type: array
+                      items:
+                        type: integer
+                partitionNames:
+                  type: array
+                  items:
+                    type: string
+                outputFields:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Vectors retrieved successfully.
+        '400':
+          description: Bad Request
+  /vectors/insert:
+    post:
+      summary: Insert vectors
+      description: This operation inserts vectors into a specified collection.
+      requestBody:
+        description: Vectors object that needs to be inserted
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - collectionName
+              type: object
+              properties:
+                dbName:
+                  type: string
+                collectionName:
+                  type: string
+                partitionName:
+                  type: string
+                data:
+                  type: object
+                  additionalProperties:
+                    anyOf:
+                      - type: string
+                      - type: integer
+                      - type: number
+                      - type: boolean
+                      - type: array
+                        items:
+                          type: string
+                      - type: array
+                        items:
+                          type: integer
+                      - type: array
+                        items:
+                          type: number
+                      - type: array
+                        items:
+                          type: boolean
+      responses:
+        '201':
+          description: Vectors inserted successfully.
+        '400':
+          description: Bad Request
+  /vectors/query:
+    post:
+      summary: Query vectors
+      description: This operation queries vectors in a specified collection.
+      requestBody:
+        description: Vectors object that needs to be queried
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - collectionName
+                - filter
+              type: object
+              properties:
+                dbName:
+                  type: string
+                collectionName:
+                  type: string
+                partitionNames:
+                  type: array
+                  items:
+                    type: string
+                filter:
+                  type: string
+                outputFields:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Vectors queried successfully.
+        '400':
+          description: Bad Request
+  /vectors/search:
+    post:
+      summary: Search vectors
+      description: This operation searches vectors in a specified collection.
+      requestBody:
+        description: Vectors object that needs to be searched
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - collectionName
+              type: object
+              properties:
+                dbName:
+                  type: string
+                collectionName:
+                  type: string
+                partitionNames:
+                  type: array
+                  items:
+                    type: string
+                outputFields:
+                  type: array
+                  items:
+                    type: string
+                anssField:
+                  type: string
+                limit:
+                  type: integer
+                offset:
+                  type: integer
+                filter:
+                  type: string
+                groupingField:
+                  type: string
+                searchParams:
+                  type: object
+                  properties:
+                    metricType:
+                      type: string
+                    params:
+                      type: object
+                      properties:
+                        radius:
+                          type: integer
+                        range_filter:
+                          type: integer
+      responses:
+        '200':
+          description: Vectors searched successfully.
+        '400':
+          description: Bad Request
+  /vectors/upsert:
+    post:
+      summary: Upsert vectors
+      description: This operation upserts vectors into a specified collection.
+      requestBody:
+        description: Vectors object that needs to be upserted
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - collectionName
+              type: object
+              properties:
+                dbName:
+                  type: string
+                collectionName:
+                  type: string
+                partitionName:
+                  type: string
+                data:
+                  type: object
+                  additionalProperties:
+                    anyOf:
+                      - type: string
+                      - type: integer
+                      - type: number
+                      - type: boolean
+                      - type: array
+                        items:
+                          type: string
+                      - type: array
+                        items:
+                          type: integer
+                      - type: array
+                        items:
+                          type: number
+                      - type: array
+                        items:
+                          type: boolean
+      responses:
+        '201':
+          description: Vectors upserted successfully.
+        '400':
+          description: Bad Request
+components:
+  schemas:
+    IndexRequest:
+      required:
+        - collectionName
+      type: object
+      properties:
+        dbName:
+          type: string
+        collectionName:
+          type: string
+        indexParams:
+          type: array
+          items:
+            type: object
+            properties:
+              metricType:
+                type: string
+              fieldName:
+                type: string
+              indexName:
+                type: string
+              params:
+                type: object
+                properties:
+                  index_type:
+                    type: string
+                  M:
+                    type: integer
+                  efConstruction:
+                    type: integer
+                  nlist:
+                    type: integer
+    CollectionRequest:
+      required:
+        - collectionName
+      type: object
+      properties:
+        dbName:
+          type: string
+        collectionName:
+          type: string
+        dimension:
+          type: integer
+        metricType:
+          type: string
+        idType:
+          type: string
+        autoID:
+          type: string
+        primaryFieldName:
+          type: string
+        vectorFieldName:
+          type: string
+        schema:
+          type: object
+          properties:
+            autoID:
+              type: string
+            enableDynamicField:
+              type: string
+            fields:
+              type: array
+              items:
+                type: object
+                properties:
+                  fieldName:
+                    type: string
+                  dataType:
+                    type: string
+                  elementDataType:
+                    type: string
+                  isPrimary:
+                    type: boolean
+                  isPartitionKey:
+                    type: boolean
+                  elementTypeParams:
+                    type: object
+                    properties:
+                      max_length:
+                        type: integer
+                      dim:
+                        type: integer
+                      max_capacity:
+                        type: integer
+        indexParams:
+          type: array
+          items:
+            type: object
+            properties:
+              metricType:
+                type: string
+              fieldName:
+                type: string
+              indexName:
+                type: string
+              params:
+                type: object
+                properties:
+                  index_type:
+                    type: string
+                  M:
+                    type: integer
+                  efConstruction:
+                    type: integer
+                  nlist:
+                    type: integer
+        params:
+          type: object
+          properties:
+            max_length:
+              type: integer
+            enableDynamicField:
+              type: boolean
+            shardsNum:
+              type: integer
+            consistencyLevel:
+              type: integer
+            partitionsNum:
+              type: integer
+            ttlSeconds:
+              type: integer

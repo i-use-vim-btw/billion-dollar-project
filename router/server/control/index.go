@@ -23,10 +23,10 @@ func CreateIndex(c *gin.Context) {
 
 	// Do something with api key and id
 	// api_key := newData["api_key"].(string)
-	id := newData["id"]
+	id := newData["host"]
 
 	delete(newData, "api_key")
-	delete(newData, "id")
+	delete(newData, "host")
 
 	sendData, err := json.Marshal(newData)
 
@@ -81,10 +81,10 @@ func DescribeIndex(c *gin.Context) {
 
 	// Do something with api key and id
 	// api_key := newData["api_key"].(string)
-	id := newData["id"]
+	id := newData["host"]
 
 	delete(newData, "api_key")
-	delete(newData, "id")
+	delete(newData, "host")
 
 	sendData, err := json.Marshal(newData)
 
@@ -139,10 +139,10 @@ func DropIndex(c *gin.Context) {
 
 	// Do something with api key and id
 	// api_key := newData["api_key"].(string)
-	id := newData["id"]
+	id := newData["host"]
 
 	delete(newData, "api_key")
-	delete(newData, "id")
+	delete(newData, "host")
 
 	sendData, err := json.Marshal(newData)
 
@@ -197,10 +197,10 @@ func ListIndexes(c *gin.Context) {
 
 	// Do something with api key and id
 	// api_key := newData["api_key"].(string)
-	id := newData["id"]
+	id := newData["host"]
 
 	delete(newData, "api_key")
-	delete(newData, "id")
+	delete(newData, "host")
 
 	sendData, err := json.Marshal(newData)
 
