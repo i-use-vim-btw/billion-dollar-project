@@ -4,7 +4,7 @@ from gandi import GandiClient as gc
 client = gc("localhost:8080")
 collectionName = "my_collection1"
 
-client.create_collection(collectionName, dim=5, id="http://127.0.0.1:34779")
+client.create_collection(collectionName, dim=5, id="http://127.0.0.1:44179")
 
 client.insert(collectionName, data=[{"id": 0, "vector": [0.3580376395471989, -0.6023495712049978, 0.18414012509913835, -
                                                          0.26286205330961354, 0.9029438446296592]},
