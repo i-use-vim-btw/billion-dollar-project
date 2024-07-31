@@ -1,4 +1,4 @@
-# CreateCollectionsDropRequest
+# CollectionDropRequest
 
 **Properties**
 

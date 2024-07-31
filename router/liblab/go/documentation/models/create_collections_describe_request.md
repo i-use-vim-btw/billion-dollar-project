@@ -1,4 +1,4 @@
-# CreateCollectionsDescribeRequest
+# CollectionDescribeRequest
 
 **Properties**
 

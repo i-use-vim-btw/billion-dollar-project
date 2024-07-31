@@ -1,4 +1,4 @@
-# CreateIndexesListRequest
+# IndexListRequest
 
 **Properties**
 

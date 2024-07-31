@@ -90,26 +90,26 @@ The SDK includes several models that represent the data structures used in API r
 
 | Name                                                                                                      | Description |
 | :-------------------------------------------------------------------------------------------------------- | :---------- |
-| [CollectionRequest](documentation/models/collection_request.md)                                           |             |
-| [CreateCollectionsDescribeRequest](documentation/models/create_collections_describe_request.md)           |             |
-| [CreateCollectionsDropRequest](documentation/models/create_collections_drop_request.md)                   |             |
-| [CreateCollectionsGetLoadStateRequest](documentation/models/create_collections_get_load_state_request.md) |             |
-| [CreateCollectionsGetStatsRequest](documentation/models/create_collections_get_stats_request.md)          |             |
-| [CreateCollectionsHasRequest](documentation/models/create_collections_has_request.md)                     |             |
-| [CreateCollectionsListRequest](documentation/models/create_collections_list_request.md)                   |             |
-| [CreateCollectionsLoadRequest](documentation/models/create_collections_load_request.md)                   |             |
-| [CreateCollectionsReleaseRequest](documentation/models/create_collections_release_request.md)             |             |
-| [CreateCollectionsRenameRequest](documentation/models/create_collections_rename_request.md)               |             |
+| [Collection](documentation/models/collection.md)                                           |             |
+| [CollectionDescribeRequest](documentation/models/collection_describe_request.md)           |             |
+| [CollectionDropRequest](documentation/models/collections_drop_request.md)                   |             |
+| [CollectionGetLoadStateRequest](documentation/models/collections_get_load_state_request.md) |             |
+| [CollectionGetStatsRequest](documentation/models/collections_get_stats_request.md)          |             |
+| [CollectionHasRequest](documentation/models/collections_has_request.md)                     |             |
+| [CollectionListRequest](documentation/models/collections_list_request.md)                   |             |
+| [CollectionLoadRequest](documentation/models/collections_load_request.md)                   |             |
+| [CollectionReleaseRequest](documentation/models/collections_release_request.md)             |             |
+| [CollectionRenameRequest](documentation/models/collections_rename_request.md)               |             |
 | [IndexRequest](documentation/models/index_request.md)                                                     |             |
-| [CreateIndexesDescribeRequest](documentation/models/create_indexes_describe_request.md)                   |             |
-| [CreateIndexesDropRequest](documentation/models/create_indexes_drop_request.md)                           |             |
-| [CreateIndexesListRequest](documentation/models/create_indexes_list_request.md)                           |             |
-| [CreateVectorsDeleteRequest](documentation/models/create_vectors_delete_request.md)                       |             |
-| [CreateVectorsGetRequest](documentation/models/create_vectors_get_request.md)                             |             |
-| [CreateVectorsInsertRequest](documentation/models/create_vectors_insert_request.md)                       |             |
-| [CreateVectorsQueryRequest](documentation/models/create_vectors_query_request.md)                         |             |
-| [CreateVectorsSearchRequest](documentation/models/create_vectors_search_request.md)                       |             |
-| [CreateVectorsUpsertRequest](documentation/models/create_vectors_upsert_request.md)                       |             |
+| [IndexDescribeRequest](documentation/models/indexes_describe_request.md)                   |             |
+| [IndexDropRequest](documentation/models/indexes_drop_request.md)                           |             |
+| [IndexListRequest](documentation/models/indexes_list_request.md)                           |             |
+| [VectorsDeleteRequest](documentation/models/vectors_delete_request.md)                       |             |
+| [VectorsGetRequest](documentation/models/vectors_get_request.md)                             |             |
+| [VectorsInsertRequest](documentation/models/vectors_insert_request.md)                       |             |
+| [VectorsQueryRequest](documentation/models/vectors_query_request.md)                         |             |
+| [VectorsSearchRequest](documentation/models/vectors_search_request.md)                       |             |
+| [VectorsUpsertRequest](documentation/models/vectors_upsert_request.md)                       |             |
 
 </details>
 

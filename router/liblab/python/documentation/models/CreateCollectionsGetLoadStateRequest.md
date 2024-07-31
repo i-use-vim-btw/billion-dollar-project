@@ -1,4 +1,4 @@
-# CreateCollectionsGetLoadStateRequest
+# CollectionGetLoadStateRequest
 
 **Properties**
 

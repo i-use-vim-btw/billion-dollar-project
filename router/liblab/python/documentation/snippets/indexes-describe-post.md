@@ -1,19 +1,19 @@
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CreateIndexesDescribeRequest
+from gandi.models import IndexDescribeRequest
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CreateIndexesDescribeRequest(
+request_body = IndexDescribeRequest(
     db_name="dbName",
     collection_name="collectionName",
     index_name="indexName"
 )
 
-result = sdk.indexes.create_indexes_describe(request_body=request_body)
+result = sdk.indexes.describe(request_body=request_body)
 
 print(result)
 

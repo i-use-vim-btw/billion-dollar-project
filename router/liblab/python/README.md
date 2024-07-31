@@ -95,14 +95,14 @@ Below is a comprehensive example demonstrating how to authenticate and call a si
 
 ```py
 from gandi import Gandi, Environment
-from gandi.models import CollectionRequest
+from gandi.models import Collection
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CollectionRequest(
+request_body = Collection(
     db_name="dbName",
     collection_name="collectionName",
     dimension=8,
@@ -152,7 +152,7 @@ request_body = CollectionRequest(
     }
 )
 
-result = sdk.collections.create_collections_create(request_body=request_body)
+result = sdk.collections.create(request_body=request_body)
 
 print(result)
 
@@ -182,38 +182,38 @@ The SDK includes several models that represent the data structures used in API r
 
 | Name                                                                                                 | Description |
 | :--------------------------------------------------------------------------------------------------- | :---------- |
-| [CollectionRequest](documentation/models/CollectionRequest.md)                                       |             |
-| [CreateCollectionsDescribeRequest](documentation/models/CreateCollectionsDescribeRequest.md)         |             |
-| [CreateCollectionsDropRequest](documentation/models/CreateCollectionsDropRequest.md)                 |             |
-| [CreateCollectionsGetLoadStateRequest](documentation/models/CreateCollectionsGetLoadStateRequest.md) |             |
-| [CreateCollectionsGetStatsRequest](documentation/models/CreateCollectionsGetStatsRequest.md)         |             |
-| [CreateCollectionsHasRequest](documentation/models/CreateCollectionsHasRequest.md)                   |             |
-| [CreateCollectionsListRequest](documentation/models/CreateCollectionsListRequest.md)                 |             |
-| [CreateCollectionsLoadRequest](documentation/models/CreateCollectionsLoadRequest.md)                 |             |
-| [CreateCollectionsReleaseRequest](documentation/models/CreateCollectionsReleaseRequest.md)           |             |
-| [CreateCollectionsRenameRequest](documentation/models/CreateCollectionsRenameRequest.md)             |             |
+| [Collection](documentation/models/Collection.md)                                       |             |
+| [CollectionDescribeRequest](documentation/models/CollectionDescribeRequest.md)         |             |
+| [CollectionDropRequest](documentation/models/CollectionDropRequest.md)                 |             |
+| [CollectionGetLoadStateRequest](documentation/models/CollectionGetLoadStateRequest.md) |             |
+| [CollectionGetStatsRequest](documentation/models/CollectionGetStatsRequest.md)         |             |
+| [CollectionHasRequest](documentation/models/CollectionHasRequest.md)                   |             |
+| [CollectionListRequest](documentation/models/CollectionListRequest.md)                 |             |
+| [CollectionLoadRequest](documentation/models/CollectionLoadRequest.md)                 |             |
+| [CollectionReleaseRequest](documentation/models/CollectionReleaseRequest.md)           |             |
+| [CollectionRenameRequest](documentation/models/CollectionRenameRequest.md)             |             |
 | [IndexRequest](documentation/models/IndexRequest.md)                                                 |             |
-| [CreateIndexesDescribeRequest](documentation/models/CreateIndexesDescribeRequest.md)                 |             |
-| [CreateIndexesDropRequest](documentation/models/CreateIndexesDropRequest.md)                         |             |
-| [CreateIndexesListRequest](documentation/models/CreateIndexesListRequest.md)                         |             |
-| [CreateVectorsDeleteRequest](documentation/models/CreateVectorsDeleteRequest.md)                     |             |
-| [CreateVectorsGetRequest](documentation/models/CreateVectorsGetRequest.md)                           |             |
-| [CreateVectorsInsertRequest](documentation/models/CreateVectorsInsertRequest.md)                     |             |
-| [CreateVectorsQueryRequest](documentation/models/CreateVectorsQueryRequest.md)                       |             |
-| [CreateVectorsSearchRequest](documentation/models/CreateVectorsSearchRequest.md)                     |             |
-| [CreateVectorsUpsertRequest](documentation/models/CreateVectorsUpsertRequest.md)                     |             |
+| [IndexDescribeRequest](documentation/models/IndexDescribeRequest.md)                 |             |
+| [IndexDropRequest](documentation/models/IndexDropRequest.md)                         |             |
+| [IndexListRequest](documentation/models/IndexListRequest.md)                         |             |
+| [VectorsDeleteRequest](documentation/models/VectorsDeleteRequest.md)                     |             |
+| [VectorsGetRequest](documentation/models/VectorsGetRequest.md)                           |             |
+| [VectorsInsertRequest](documentation/models/VectorsInsertRequest.md)                     |             |
+| [VectorsQueryRequest](documentation/models/VectorsQueryRequest.md)                       |             |
+| [VectorsSearchRequest](documentation/models/VectorsSearchRequest.md)                     |             |
+| [VectorsUpsertRequest](documentation/models/VectorsUpsertRequest.md)                     |             |
 | [Schema](documentation/models/Schema.md)                                                             |             |
-| [CollectionRequestIndexParams](documentation/models/CollectionRequestIndexParams.md)                 |             |
-| [CollectionRequestParams](documentation/models/CollectionRequestParams.md)                           |             |
+| [CollectionIndexParams](documentation/models/CollectionIndexParams.md)                 |             |
+| [CollectionParams](documentation/models/CollectionParams.md)                           |             |
 | [Fields](documentation/models/Fields.md)                                                             |             |
 | [ElementTypeParams](documentation/models/ElementTypeParams.md)                                       |             |
-| [IndexParamsParams_1](documentation/models/IndexParamsParams1.md)                                    |             |
+| [IndexParamsParams_1](documentation/models/IndexParams.md)                                    |             |
 | [IndexRequestIndexParams](documentation/models/IndexRequestIndexParams.md)                           |             |
 | [IndexParamsParams_2](documentation/models/IndexParamsParams2.md)                                    |             |
-| [CreateVectorsInsertRequestData](documentation/models/CreateVectorsInsertRequestData.md)             |             |
+| [VectorsInsertRequestData](documentation/models/VectorsInsertRequestData.md)             |             |
 | [SearchParams](documentation/models/SearchParams.md)                                                 |             |
 | [SearchParamsParams](documentation/models/SearchParamsParams.md)                                     |             |
-| [CreateVectorsUpsertRequestData](documentation/models/CreateVectorsUpsertRequestData.md)             |             |
+| [VectorsUpsertRequestData](documentation/models/VectorsUpsertRequestData.md)             |             |
 
 </details>
 

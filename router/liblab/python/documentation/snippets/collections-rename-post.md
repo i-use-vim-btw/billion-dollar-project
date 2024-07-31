@@ -1,19 +1,19 @@
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CreateCollectionsRenameRequest
+from gandi.models import CollectionRenameRequest
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CreateCollectionsRenameRequest(
+request_body = CollectionRenameRequest(
     db_name="dbName",
     collection_name="collectionName",
     new_collection_name="newCollectionName"
 )
 
-result = sdk.collections.create_collections_rename(request_body=request_body)
+result = sdk.collections.rename(request_body=request_body)
 
 print(result)
 

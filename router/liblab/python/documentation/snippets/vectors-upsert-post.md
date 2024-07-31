@@ -1,20 +1,20 @@
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CreateVectorsUpsertRequest
+from gandi.models import VectorsUpsertRequest
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CreateVectorsUpsertRequest(
+request_body = VectorsUpsertRequest(
     db_name="dbName",
     collection_name="collectionName",
     partition_name="partitionName",
     data={}
 )
 
-result = sdk.vectors.create_vectors_upsert(request_body=request_body)
+result = sdk.vectors.upsert(request_body=request_body)
 
 print(result)
 

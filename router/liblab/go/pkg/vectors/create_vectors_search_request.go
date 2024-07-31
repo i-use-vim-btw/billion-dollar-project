@@ -2,7 +2,7 @@
 
 package vectors
 
-type CreateVectorsSearchRequest struct {
+type VectorsSearchRequest struct {
 	DbName         *string       `json:"dbName,omitempty"`
 	CollectionName *string       `json:"collectionName,omitempty" required:"true"`
 	PartitionNames []string      `json:"partitionNames,omitempty"`
@@ -15,110 +15,110 @@ type CreateVectorsSearchRequest struct {
 	SearchParams   *SearchParams `json:"searchParams,omitempty"`
 }
 
-func (c *CreateVectorsSearchRequest) SetDbName(dbName string) {
+func (c *VectorsSearchRequest) SetDbName(dbName string) {
 	c.DbName = &dbName
 }
 
-func (c *CreateVectorsSearchRequest) GetDbName() *string {
+func (c *VectorsSearchRequest) GetDbName() *string {
 	if c == nil {
 		return nil
 	}
 	return c.DbName
 }
 
-func (c *CreateVectorsSearchRequest) SetCollectionName(collectionName string) {
+func (c *VectorsSearchRequest) SetCollectionName(collectionName string) {
 	c.CollectionName = &collectionName
 }
 
-func (c *CreateVectorsSearchRequest) GetCollectionName() *string {
+func (c *VectorsSearchRequest) GetCollectionName() *string {
 	if c == nil {
 		return nil
 	}
 	return c.CollectionName
 }
 
-func (c *CreateVectorsSearchRequest) SetPartitionNames(partitionNames []string) {
+func (c *VectorsSearchRequest) SetPartitionNames(partitionNames []string) {
 	c.PartitionNames = partitionNames
 }
 
-func (c *CreateVectorsSearchRequest) GetPartitionNames() []string {
+func (c *VectorsSearchRequest) GetPartitionNames() []string {
 	if c == nil {
 		return nil
 	}
 	return c.PartitionNames
 }
 
-func (c *CreateVectorsSearchRequest) SetOutputFields(outputFields []string) {
+func (c *VectorsSearchRequest) SetOutputFields(outputFields []string) {
 	c.OutputFields = outputFields
 }
 
-func (c *CreateVectorsSearchRequest) GetOutputFields() []string {
+func (c *VectorsSearchRequest) GetOutputFields() []string {
 	if c == nil {
 		return nil
 	}
 	return c.OutputFields
 }
 
-func (c *CreateVectorsSearchRequest) SetAnssField(anssField string) {
+func (c *VectorsSearchRequest) SetAnssField(anssField string) {
 	c.AnssField = &anssField
 }
 
-func (c *CreateVectorsSearchRequest) GetAnssField() *string {
+func (c *VectorsSearchRequest) GetAnssField() *string {
 	if c == nil {
 		return nil
 	}
 	return c.AnssField
 }
 
-func (c *CreateVectorsSearchRequest) SetLimit(limit int64) {
+func (c *VectorsSearchRequest) SetLimit(limit int64) {
 	c.Limit = &limit
 }
 
-func (c *CreateVectorsSearchRequest) GetLimit() *int64 {
+func (c *VectorsSearchRequest) GetLimit() *int64 {
 	if c == nil {
 		return nil
 	}
 	return c.Limit
 }
 
-func (c *CreateVectorsSearchRequest) SetOffset(offset int64) {
+func (c *VectorsSearchRequest) SetOffset(offset int64) {
 	c.Offset = &offset
 }
 
-func (c *CreateVectorsSearchRequest) GetOffset() *int64 {
+func (c *VectorsSearchRequest) GetOffset() *int64 {
 	if c == nil {
 		return nil
 	}
 	return c.Offset
 }
 
-func (c *CreateVectorsSearchRequest) SetFilter(filter string) {
+func (c *VectorsSearchRequest) SetFilter(filter string) {
 	c.Filter = &filter
 }
 
-func (c *CreateVectorsSearchRequest) GetFilter() *string {
+func (c *VectorsSearchRequest) GetFilter() *string {
 	if c == nil {
 		return nil
 	}
 	return c.Filter
 }
 
-func (c *CreateVectorsSearchRequest) SetGroupingField(groupingField string) {
+func (c *VectorsSearchRequest) SetGroupingField(groupingField string) {
 	c.GroupingField = &groupingField
 }
 
-func (c *CreateVectorsSearchRequest) GetGroupingField() *string {
+func (c *VectorsSearchRequest) GetGroupingField() *string {
 	if c == nil {
 		return nil
 	}
 	return c.GroupingField
 }
 
-func (c *CreateVectorsSearchRequest) SetSearchParams(searchParams SearchParams) {
+func (c *VectorsSearchRequest) SetSearchParams(searchParams SearchParams) {
 	c.SearchParams = &searchParams
 }
 
-func (c *CreateVectorsSearchRequest) GetSearchParams() *SearchParams {
+func (c *VectorsSearchRequest) GetSearchParams() *SearchParams {
 	if c == nil {
 		return nil
 	}

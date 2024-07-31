@@ -4,28 +4,28 @@ from .utils.validator import Validator
 from .utils.base_service import BaseService
 from ..net.transport.serializer import Serializer
 from ..models.utils.cast_models import cast_models
-from ..models.create_vectors_upsert_request import CreateVectorsUpsertRequest
-from ..models.create_vectors_search_request import CreateVectorsSearchRequest
-from ..models.create_vectors_query_request import CreateVectorsQueryRequest
-from ..models.create_vectors_insert_request import CreateVectorsInsertRequest
-from ..models.create_vectors_get_request import CreateVectorsGetRequest
-from ..models.create_vectors_delete_request import CreateVectorsDeleteRequest
+from ..models.vectors_upsert_request import VectorsUpsertRequest
+from ..models.vectors_search_request import VectorsSearchRequest
+from ..models.vectors_query_request import VectorsQueryRequest
+from ..models.vectors_insert_request import VectorsInsertRequest
+from ..models.vectors_get_request import VectorsGetRequest
+from ..models.vectors_delete_request import VectorsDeleteRequest
 
 
 class VectorsService(BaseService):
 
     @cast_models
-    def create_vectors_delete(self, request_body: CreateVectorsDeleteRequest):
+    def delete(self, request_body: VectorsDeleteRequest):
         """This operation deletes entities by their IDs or with a boolean expression.
 
         :param request_body: The request body.
-        :type request_body: CreateVectorsDeleteRequest
+        :type request_body: VectorsDeleteRequest
         ...
         :raises RequestError: Raised when a request fails, with optional HTTP status code and details.
         ...
         """
 
-        Validator(CreateVectorsDeleteRequest).validate(request_body)
+        Validator(VectorsDeleteRequest).validate(request_body)
 
         serialized_request = (
             Serializer(f"{self.base_url}/vectors/delete", self.get_default_headers())
@@ -39,17 +39,17 @@ class VectorsService(BaseService):
         return response
 
     @cast_models
-    def create_vectors_get(self, request_body: CreateVectorsGetRequest):
+    def get(self, request_body: VectorsGetRequest):
         """This operation gets vectors by their IDs.
 
         :param request_body: The request body.
-        :type request_body: CreateVectorsGetRequest
+        :type request_body: VectorsGetRequest
         ...
         :raises RequestError: Raised when a request fails, with optional HTTP status code and details.
         ...
         """
 
-        Validator(CreateVectorsGetRequest).validate(request_body)
+        Validator(VectorsGetRequest).validate(request_body)
 
         serialized_request = (
             Serializer(f"{self.base_url}/vectors/get", self.get_default_headers())
@@ -63,17 +63,17 @@ class VectorsService(BaseService):
         return response
 
     @cast_models
-    def create_vectors_insert(self, request_body: CreateVectorsInsertRequest):
+    def insert(self, request_body: VectorsInsertRequest):
         """This operation inserts vectors into a specified collection.
 
         :param request_body: The request body.
-        :type request_body: CreateVectorsInsertRequest
+        :type request_body: VectorsInsertRequest
         ...
         :raises RequestError: Raised when a request fails, with optional HTTP status code and details.
         ...
         """
 
-        Validator(CreateVectorsInsertRequest).validate(request_body)
+        Validator(VectorsInsertRequest).validate(request_body)
 
         serialized_request = (
             Serializer(f"{self.base_url}/vectors/insert", self.get_default_headers())
@@ -87,17 +87,17 @@ class VectorsService(BaseService):
         return response
 
     @cast_models
-    def create_vectors_query(self, request_body: CreateVectorsQueryRequest):
+    def query(self, request_body: VectorsQueryRequest):
         """This operation queries vectors in a specified collection.
 
         :param request_body: The request body.
-        :type request_body: CreateVectorsQueryRequest
+        :type request_body: VectorsQueryRequest
         ...
         :raises RequestError: Raised when a request fails, with optional HTTP status code and details.
         ...
         """
 
-        Validator(CreateVectorsQueryRequest).validate(request_body)
+        Validator(VectorsQueryRequest).validate(request_body)
 
         serialized_request = (
             Serializer(f"{self.base_url}/vectors/query", self.get_default_headers())
@@ -111,17 +111,17 @@ class VectorsService(BaseService):
         return response
 
     @cast_models
-    def create_vectors_search(self, request_body: CreateVectorsSearchRequest):
+    def search(self, request_body: VectorsSearchRequest):
         """This operation searches vectors in a specified collection.
 
         :param request_body: The request body.
-        :type request_body: CreateVectorsSearchRequest
+        :type request_body: VectorsSearchRequest
         ...
         :raises RequestError: Raised when a request fails, with optional HTTP status code and details.
         ...
         """
 
-        Validator(CreateVectorsSearchRequest).validate(request_body)
+        Validator(VectorsSearchRequest).validate(request_body)
 
         serialized_request = (
             Serializer(f"{self.base_url}/vectors/search", self.get_default_headers())
@@ -135,17 +135,17 @@ class VectorsService(BaseService):
         return response
 
     @cast_models
-    def create_vectors_upsert(self, request_body: CreateVectorsUpsertRequest):
+    def upsert(self, request_body: VectorsUpsertRequest):
         """This operation upserts vectors into a specified collection.
 
         :param request_body: The request body.
-        :type request_body: CreateVectorsUpsertRequest
+        :type request_body: VectorsUpsertRequest
         ...
         :raises RequestError: Raised when a request fails, with optional HTTP status code and details.
         ...
         """
 
-        Validator(CreateVectorsUpsertRequest).validate(request_body)
+        Validator(VectorsUpsertRequest).validate(request_body)
 
         serialized_request = (
             Serializer(f"{self.base_url}/vectors/upsert", self.get_default_headers())

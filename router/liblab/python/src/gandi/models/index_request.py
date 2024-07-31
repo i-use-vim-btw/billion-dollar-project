@@ -79,7 +79,7 @@ class IndexRequestIndexParams(BaseModel):
 class IndexRequest(BaseModel):
     """IndexRequest
 
-    :param db_name: db_name, defaults to None
+    :param db_name: db_name, defaults to "default"
     :type db_name: str, optional
     :param collection_name: collection_name
     :type collection_name: str
@@ -90,7 +90,7 @@ class IndexRequest(BaseModel):
     def __init__(
         self,
         collection_name: str,
-        db_name: str = None,
+        db_name: str = "default",
         index_params: List[IndexRequestIndexParams] = None,
     ):
         if db_name is not None:

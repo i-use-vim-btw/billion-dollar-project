@@ -11,11 +11,11 @@ config := gandiconfig.NewConfig()
 client := gandi.NewGandi(config)
 
 
-request := vectors.CreateVectorsQueryRequest{}
+request := vectors.VectorsQueryRequest{}
 request.SetCollectionName("CollectionName")
 request.SetFilter("Filter")
 
-response, err := client.Vectors.CreateVectorsQuery(context.Background(), request)
+response, err := client.Vectors.VectorsQuery(context.Background(), request)
 if err != nil {
   panic(err)
 }

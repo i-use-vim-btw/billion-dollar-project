@@ -11,11 +11,11 @@ config := gandiconfig.NewConfig()
 client := gandi.NewGandi(config)
 
 
-request := indexes.CreateIndexesDescribeRequest{}
+request := indexes.IndexDescribeRequest{}
 request.SetCollectionName("CollectionName")
 request.SetIndexName("IndexName")
 
-response, err := client.Indexes.CreateIndexesDescribe(context.Background(), request)
+response, err := client.Indexes.IndexDescribe(context.Background(), request)
 if err != nil {
   panic(err)
 }

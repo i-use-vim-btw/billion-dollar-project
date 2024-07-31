@@ -4,12 +4,12 @@ A list of all methods in the `IndexesService` service. Click on the method name 
 
 | Methods                                             | Description                                                                                          |
 | :-------------------------------------------------- | :--------------------------------------------------------------------------------------------------- |
-| [create_indexes_create](#create_indexes_create)     | This creates a named index for a target field, which can either be a vector field or a scalar field. |
-| [create_indexes_describe](#create_indexes_describe) | Returns the details of an index.                                                                     |
-| [create_indexes_drop](#create_indexes_drop)         | This operation drops index from a specified collection.                                              |
-| [create_indexes_list](#create_indexes_list)         | Returns a list of all indexes in the specified collection.                                           |
+| [create](#create)     | This creates a named index for a target field, which can either be a vector field or a scalar field. |
+| [describe](#describe) | Returns the details of an index.                                                                     |
+| [drop](#drop)         | This operation drops index from a specified collection.                                              |
+| [list](#list)         | Returns a list of all indexes in the specified collection.                                           |
 
-## create_indexes_create
+## create
 
 This creates a named index for a target field, which can either be a vector field or a scalar field.
 
@@ -51,12 +51,12 @@ request_body = IndexRequest(
     ]
 )
 
-result = sdk.indexes.create_indexes_create(request_body=request_body)
+result = sdk.indexes.create(request_body=request_body)
 
 print(result)
 ```
 
-## create_indexes_describe
+## describe
 
 Returns the details of an index.
 
@@ -67,31 +67,31 @@ Returns the details of an index.
 
 | Name         | Type                                                                      | Required | Description       |
 | :----------- | :------------------------------------------------------------------------ | :------- | :---------------- |
-| request_body | [CreateIndexesDescribeRequest](../models/CreateIndexesDescribeRequest.md) | ✅       | The request body. |
+| request_body | [IndexDescribeRequest](../models/IndexDescribeRequest.md) | ✅       | The request body. |
 
 **Example Usage Code Snippet**
 
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CreateIndexesDescribeRequest
+from gandi.models import IndexDescribeRequest
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CreateIndexesDescribeRequest(
+request_body = IndexDescribeRequest(
     db_name="dbName",
     collection_name="collectionName",
     index_name="indexName"
 )
 
-result = sdk.indexes.create_indexes_describe(request_body=request_body)
+result = sdk.indexes.describe(request_body=request_body)
 
 print(result)
 ```
 
-## create_indexes_drop
+## drop
 
 This operation drops index from a specified collection.
 
@@ -102,31 +102,31 @@ This operation drops index from a specified collection.
 
 | Name         | Type                                                              | Required | Description       |
 | :----------- | :---------------------------------------------------------------- | :------- | :---------------- |
-| request_body | [CreateIndexesDropRequest](../models/CreateIndexesDropRequest.md) | ✅       | The request body. |
+| request_body | [IndexDropRequest](../models/IndexDropRequest.md) | ✅       | The request body. |
 
 **Example Usage Code Snippet**
 
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CreateIndexesDropRequest
+from gandi.models import IndexDropRequest
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CreateIndexesDropRequest(
+request_body = IndexDropRequest(
     db_name="dbName",
     collection_name="collectionName",
     index_name="indexName"
 )
 
-result = sdk.indexes.create_indexes_drop(request_body=request_body)
+result = sdk.indexes.drop(request_body=request_body)
 
 print(result)
 ```
 
-## create_indexes_list
+## list
 
 Returns a list of all indexes in the specified collection.
 
@@ -137,25 +137,25 @@ Returns a list of all indexes in the specified collection.
 
 | Name         | Type                                                              | Required | Description       |
 | :----------- | :---------------------------------------------------------------- | :------- | :---------------- |
-| request_body | [CreateIndexesListRequest](../models/CreateIndexesListRequest.md) | ✅       | The request body. |
+| request_body | [IndexListRequest](../models/IndexListRequest.md) | ✅       | The request body. |
 
 **Example Usage Code Snippet**
 
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CreateIndexesListRequest
+from gandi.models import IndexListRequest
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CreateIndexesListRequest(
+request_body = IndexListRequest(
     db_name="dbName",
     collection_name="collectionName"
 )
 
-result = sdk.indexes.create_indexes_list(request_body=request_body)
+result = sdk.indexes.list(request_body=request_body)
 
 print(result)
 ```

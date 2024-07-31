@@ -4,12 +4,12 @@ A list of all methods in the `IndexesService` service. Click on the method name 
 
 | Methods                                         | Description                                                                                          |
 | :---------------------------------------------- | :--------------------------------------------------------------------------------------------------- |
-| [CreateIndexesCreate](#createindexescreate)     | This creates a named index for a target field, which can either be a vector field or a scalar field. |
-| [CreateIndexesDescribe](#createindexesdescribe) | Returns the details of an index.                                                                     |
-| [CreateIndexesDrop](#createindexesdrop)         | This operation drops index from a specified collection.                                              |
-| [CreateIndexesList](#createindexeslist)         | Returns a list of all indexes in the specified collection.                                           |
+| [IndexCreate](#createindexescreate)     | This creates a named index for a target field, which can either be a vector field or a scalar field. |
+| [IndexDescribe](#createindexesdescribe) | Returns the details of an index.                                                                     |
+| [IndexDrop](#createindexesdrop)         | This operation drops index from a specified collection.                                              |
+| [IndexList](#createindexeslist)         | Returns a list of all indexes in the specified collection.                                           |
 
-## CreateIndexesCreate
+## IndexCreate
 
 This creates a named index for a target field, which can either be a vector field or a scalar field.
 
@@ -45,7 +45,7 @@ client := gandi.NewGandi(config)
 request := indexes.IndexRequest{}
 request.SetCollectionName("CollectionName")
 
-response, err := client.Indexes.CreateIndexesCreate(context.Background(), request)
+response, err := client.Indexes.IndexCreate(context.Background(), request)
 if err != nil {
   panic(err)
 }
@@ -53,7 +53,7 @@ if err != nil {
 fmt.Print(response)
 ```
 
-## CreateIndexesDescribe
+## IndexDescribe
 
 Returns the details of an index.
 
@@ -65,7 +65,7 @@ Returns the details of an index.
 | Name                         | Type                         | Required | Description                             |
 | :--------------------------- | :--------------------------- | :------- | :-------------------------------------- |
 | ctx                          | Context                      | ✅       | Default go language context             |
-| createIndexesDescribeRequest | CreateIndexesDescribeRequest | ✅       | Index object that needs to be described |
+| createIndexesDescribeRequest | IndexDescribeRequest | ✅       | Index object that needs to be described |
 
 **Return Type**
 
@@ -86,11 +86,11 @@ config := gandiconfig.NewConfig()
 client := gandi.NewGandi(config)
 
 
-request := indexes.CreateIndexesDescribeRequest{}
+request := indexes.IndexDescribeRequest{}
 request.SetCollectionName("CollectionName")
 request.SetIndexName("IndexName")
 
-response, err := client.Indexes.CreateIndexesDescribe(context.Background(), request)
+response, err := client.Indexes.IndexDescribe(context.Background(), request)
 if err != nil {
   panic(err)
 }
@@ -98,7 +98,7 @@ if err != nil {
 fmt.Print(response)
 ```
 
-## CreateIndexesDrop
+## IndexDrop
 
 This operation drops index from a specified collection.
 
@@ -110,7 +110,7 @@ This operation drops index from a specified collection.
 | Name                     | Type                     | Required | Description                           |
 | :----------------------- | :----------------------- | :------- | :------------------------------------ |
 | ctx                      | Context                  | ✅       | Default go language context           |
-| createIndexesDropRequest | CreateIndexesDropRequest | ✅       | Index object that needs to be deleted |
+| createIndexesDropRequest | IndexDropRequest | ✅       | Index object that needs to be deleted |
 
 **Return Type**
 
@@ -131,11 +131,11 @@ config := gandiconfig.NewConfig()
 client := gandi.NewGandi(config)
 
 
-request := indexes.CreateIndexesDropRequest{}
+request := indexes.IndexDropRequest{}
 request.SetCollectionName("CollectionName")
 request.SetIndexName("IndexName")
 
-response, err := client.Indexes.CreateIndexesDrop(context.Background(), request)
+response, err := client.Indexes.IndexDrop(context.Background(), request)
 if err != nil {
   panic(err)
 }
@@ -143,7 +143,7 @@ if err != nil {
 fmt.Print(response)
 ```
 
-## CreateIndexesList
+## IndexList
 
 Returns a list of all indexes in the specified collection.
 
@@ -155,7 +155,7 @@ Returns a list of all indexes in the specified collection.
 | Name                     | Type                     | Required | Description                               |
 | :----------------------- | :----------------------- | :------- | :---------------------------------------- |
 | ctx                      | Context                  | ✅       | Default go language context               |
-| createIndexesListRequest | CreateIndexesListRequest | ✅       | Collection object that needs to be listed |
+| createIndexesListRequest | IndexListRequest | ✅       | Collection object that needs to be listed |
 
 **Return Type**
 
@@ -176,10 +176,10 @@ config := gandiconfig.NewConfig()
 client := gandi.NewGandi(config)
 
 
-request := indexes.CreateIndexesListRequest{}
+request := indexes.IndexListRequest{}
 request.SetCollectionName("CollectionName")
 
-response, err := client.Indexes.CreateIndexesList(context.Background(), request)
+response, err := client.Indexes.IndexList(context.Background(), request)
 if err != nil {
   panic(err)
 }

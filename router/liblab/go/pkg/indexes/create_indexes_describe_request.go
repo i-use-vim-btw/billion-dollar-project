@@ -2,39 +2,39 @@
 
 package indexes
 
-type CreateIndexesDescribeRequest struct {
+type IndexDescribeRequest struct {
 	DbName         *string `json:"dbName,omitempty"`
 	CollectionName *string `json:"collectionName,omitempty" required:"true"`
 	IndexName      *string `json:"indexName,omitempty" required:"true"`
 }
 
-func (c *CreateIndexesDescribeRequest) SetDbName(dbName string) {
+func (c *IndexDescribeRequest) SetDbName(dbName string) {
 	c.DbName = &dbName
 }
 
-func (c *CreateIndexesDescribeRequest) GetDbName() *string {
+func (c *IndexDescribeRequest) GetDbName() *string {
 	if c == nil {
 		return nil
 	}
 	return c.DbName
 }
 
-func (c *CreateIndexesDescribeRequest) SetCollectionName(collectionName string) {
+func (c *IndexDescribeRequest) SetCollectionName(collectionName string) {
 	c.CollectionName = &collectionName
 }
 
-func (c *CreateIndexesDescribeRequest) GetCollectionName() *string {
+func (c *IndexDescribeRequest) GetCollectionName() *string {
 	if c == nil {
 		return nil
 	}
 	return c.CollectionName
 }
 
-func (c *CreateIndexesDescribeRequest) SetIndexName(indexName string) {
+func (c *IndexDescribeRequest) SetIndexName(indexName string) {
 	c.IndexName = &indexName
 }
 
-func (c *CreateIndexesDescribeRequest) GetIndexName() *string {
+func (c *IndexDescribeRequest) GetIndexName() *string {
 	if c == nil {
 		return nil
 	}

@@ -20,7 +20,7 @@ func CreateCollection(c *gin.Context) {
 		})
 		return
 	}
-
+	fmt.Println(newData)
 	// Do something with api key and id
 	// api_key := newData["api_key"].(string)
 	id := newData["host"]

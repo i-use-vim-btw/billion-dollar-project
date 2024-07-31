@@ -8,35 +8,33 @@ from .base import BaseModel
     {
         "db_name": "dbName",
         "collection_name": "collectionName",
-        "partition_name": "partitionName",
+        "partition_names": "partitionNames",
     }
 )
-class CreateVectorsDeleteRequest(BaseModel):
-    """CreateVectorsDeleteRequest
+class CollectionGetLoadStateRequest(BaseModel):
+    """CollectionGetLoadStateRequest
 
-    :param db_name: db_name, defaults to None
+    :param db_name: db_name, defaults to "default"
     :type db_name: str, optional
     :param collection_name: collection_name
     :type collection_name: str
-    :param filter: filter
-    :type filter: str
-    :param partition_name: partition_name, defaults to None
-    :type partition_name: str, optional
+    :param partition_names: partition_names, defaults to None
+    :type partition_names: str, optional
+    :param host: host, defaults to None
+    :type host: str
     """
 
     def __init__(
         self,
         collection_name: str,
-        filter: str,
         host: str,
-        db_name: str = None,
-        partition_name: str = None,
+        db_name: str = "default",
+        partition_names: str = None,
     ):
         if db_name is not None:
             self.db_name = db_name
         self.collection_name = collection_name
-        self.filter = filter
-        if partition_name is not None:
-            self.partition_name = partition_name
+        if partition_names is not None:
+            self.partition_names = partition_names
         if host is not None:
             self.host = host

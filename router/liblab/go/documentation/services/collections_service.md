@@ -4,18 +4,18 @@ A list of all methods in the `CollectionsService` service. Click on the method n
 
 | Methods                                                         | Description                                                                                          |
 | :-------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------- |
-| [CreateCollectionsCreate](#createcollectionscreate)             | This operation creates a collection in a specified cluster.                                          |
-| [CreateCollectionsDescribe](#createcollectionsdescribe)         | Returns the details of a collection.                                                                 |
-| [CreateCollectionsDrop](#createcollectionsdrop)                 | This operation drops the current collection and all data within the collection.                      |
-| [CreateCollectionsGetLoadState](#createcollectionsgetloadstate) | Returns the load state of a specific collection.                                                     |
-| [CreateCollectionsGetStats](#createcollectionsgetstats)         | This operation gets the number of entities in a collection.                                          |
-| [CreateCollectionsHas](#createcollectionshas)                   | Checks if a collection exists in the database.                                                       |
-| [CreateCollectionsList](#createcollectionslist)                 | Returns a list of all collections in the specified database.                                         |
-| [CreateCollectionsLoad](#createcollectionsload)                 | Loads a collection into memory.                                                                      |
-| [CreateCollectionsRelease](#createcollectionsrelease)           | Releases a collection from memory.                                                                   |
-| [CreateCollectionsRename](#createcollectionsrename)             | This operation renames an existing collection and optionally moves the collection to a new database. |
+| [CollectionCreate](#createcollectionscreate)             | This operation creates a collection in a specified cluster.                                          |
+| [CollectionDescribe](#createcollectionsdescribe)         | Returns the details of a collection.                                                                 |
+| [CollectionDrop](#createcollectionsdrop)                 | This operation drops the current collection and all data within the collection.                      |
+| [CollectionGetLoadState](#createcollectionsgetloadstate) | Returns the load state of a specific collection.                                                     |
+| [CollectionGetStats](#createcollectionsgetstats)         | This operation gets the number of entities in a collection.                                          |
+| [CollectionHas](#createcollectionshas)                   | Checks if a collection exists in the database.                                                       |
+| [CollectionList](#createcollectionslist)                 | Returns a list of all collections in the specified database.                                         |
+| [CollectionLoad](#createcollectionsload)                 | Loads a collection into memory.                                                                      |
+| [CollectionRelease](#createcollectionsrelease)           | Releases a collection from memory.                                                                   |
+| [CollectionRename](#createcollectionsrename)             | This operation renames an existing collection and optionally moves the collection to a new database. |
 
-## CreateCollectionsCreate
+## CollectionCreate
 
 This operation creates a collection in a specified cluster.
 
@@ -27,7 +27,7 @@ This operation creates a collection in a specified cluster.
 | Name              | Type              | Required | Description                              |
 | :---------------- | :---------------- | :------- | :--------------------------------------- |
 | ctx               | Context           | ✅       | Default go language context              |
-| collectionRequest | CollectionRequest | ✅       | Collection object that needs to be added |
+| Collection | Collection | ✅       | Collection object that needs to be added |
 
 **Return Type**
 
@@ -48,10 +48,10 @@ config := gandiconfig.NewConfig()
 client := gandi.NewGandi(config)
 
 
-request := collections.CollectionRequest{}
+request := collections.Collection{}
 request.SetCollectionName("CollectionName")
 
-response, err := client.Collections.CreateCollectionsCreate(context.Background(), request)
+response, err := client.Collections.CollectionCreate(context.Background(), request)
 if err != nil {
   panic(err)
 }
@@ -59,7 +59,7 @@ if err != nil {
 fmt.Print(response)
 ```
 
-## CreateCollectionsDescribe
+## CollectionDescribe
 
 Returns the details of a collection.
 
@@ -71,7 +71,7 @@ Returns the details of a collection.
 | Name                             | Type                             | Required | Description                                  |
 | :------------------------------- | :------------------------------- | :------- | :------------------------------------------- |
 | ctx                              | Context                          | ✅       | Default go language context                  |
-| createCollectionsDescribeRequest | CreateCollectionsDescribeRequest | ✅       | Collection object that needs to be described |
+| createCollectionsDescribeRequest | CollectionDescribeRequest | ✅       | Collection object that needs to be described |
 
 **Return Type**
 
@@ -92,10 +92,10 @@ config := gandiconfig.NewConfig()
 client := gandi.NewGandi(config)
 
 
-request := collections.CreateCollectionsDescribeRequest{}
+request := collections.CollectionDescribeRequest{}
 request.SetCollectionName("CollectionName")
 
-response, err := client.Collections.CreateCollectionsDescribe(context.Background(), request)
+response, err := client.Collections.CollectionDescribe(context.Background(), request)
 if err != nil {
   panic(err)
 }
@@ -103,7 +103,7 @@ if err != nil {
 fmt.Print(response)
 ```
 
-## CreateCollectionsDrop
+## CollectionDrop
 
 This operation drops the current collection and all data within the collection.
 
@@ -115,7 +115,7 @@ This operation drops the current collection and all data within the collection.
 | Name                         | Type                         | Required | Description                                |
 | :--------------------------- | :--------------------------- | :------- | :----------------------------------------- |
 | ctx                          | Context                      | ✅       | Default go language context                |
-| createCollectionsDropRequest | CreateCollectionsDropRequest | ✅       | Collection object that needs to be deleted |
+| createCollectionsDropRequest | CollectionDropRequest | ✅       | Collection object that needs to be deleted |
 
 **Return Type**
 
@@ -136,10 +136,10 @@ config := gandiconfig.NewConfig()
 client := gandi.NewGandi(config)
 
 
-request := collections.CreateCollectionsDropRequest{}
+request := collections.CollectionDropRequest{}
 request.SetCollectionName("CollectionName")
 
-response, err := client.Collections.CreateCollectionsDrop(context.Background(), request)
+response, err := client.Collections.CollectionDrop(context.Background(), request)
 if err != nil {
   panic(err)
 }
@@ -147,7 +147,7 @@ if err != nil {
 fmt.Print(response)
 ```
 
-## CreateCollectionsGetLoadState
+## CollectionGetLoadState
 
 Returns the load state of a specific collection.
 
@@ -159,7 +159,7 @@ Returns the load state of a specific collection.
 | Name                                 | Type                                 | Required | Description                                |
 | :----------------------------------- | :----------------------------------- | :------- | :----------------------------------------- |
 | ctx                                  | Context                              | ✅       | Default go language context                |
-| createCollectionsGetLoadStateRequest | CreateCollectionsGetLoadStateRequest | ✅       | Collection object that needs to be checked |
+| createCollectionsGetLoadStateRequest | CollectionGetLoadStateRequest | ✅       | Collection object that needs to be checked |
 
 **Return Type**
 
@@ -180,10 +180,10 @@ config := gandiconfig.NewConfig()
 client := gandi.NewGandi(config)
 
 
-request := collections.CreateCollectionsGetLoadStateRequest{}
+request := collections.CollectionGetLoadStateRequest{}
 request.SetCollectionName("CollectionName")
 
-response, err := client.Collections.CreateCollectionsGetLoadState(context.Background(), request)
+response, err := client.Collections.CollectionGetLoadState(context.Background(), request)
 if err != nil {
   panic(err)
 }
@@ -191,7 +191,7 @@ if err != nil {
 fmt.Print(response)
 ```
 
-## CreateCollectionsGetStats
+## CollectionGetStats
 
 This operation gets the number of entities in a collection.
 
@@ -203,7 +203,7 @@ This operation gets the number of entities in a collection.
 | Name                             | Type                             | Required | Description                                |
 | :------------------------------- | :------------------------------- | :------- | :----------------------------------------- |
 | ctx                              | Context                          | ✅       | Default go language context                |
-| createCollectionsGetStatsRequest | CreateCollectionsGetStatsRequest | ✅       | Collection object that needs to be checked |
+| createCollectionsGetStatsRequest | CollectionGetStatsRequest | ✅       | Collection object that needs to be checked |
 
 **Return Type**
 
@@ -224,10 +224,10 @@ config := gandiconfig.NewConfig()
 client := gandi.NewGandi(config)
 
 
-request := collections.CreateCollectionsGetStatsRequest{}
+request := collections.CollectionGetStatsRequest{}
 request.SetCollectionName("CollectionName")
 
-response, err := client.Collections.CreateCollectionsGetStats(context.Background(), request)
+response, err := client.Collections.CollectionGetStats(context.Background(), request)
 if err != nil {
   panic(err)
 }
@@ -235,7 +235,7 @@ if err != nil {
 fmt.Print(response)
 ```
 
-## CreateCollectionsHas
+## CollectionHas
 
 Checks if a collection exists in the database.
 
@@ -247,7 +247,7 @@ Checks if a collection exists in the database.
 | Name                        | Type                        | Required | Description                                |
 | :-------------------------- | :-------------------------- | :------- | :----------------------------------------- |
 | ctx                         | Context                     | ✅       | Default go language context                |
-| createCollectionsHasRequest | CreateCollectionsHasRequest | ✅       | Collection object that needs to be checked |
+| createCollectionsHasRequest | CollectionHasRequest | ✅       | Collection object that needs to be checked |
 
 **Return Type**
 
@@ -268,10 +268,10 @@ config := gandiconfig.NewConfig()
 client := gandi.NewGandi(config)
 
 
-request := collections.CreateCollectionsHasRequest{}
+request := collections.CollectionHasRequest{}
 request.SetCollectionName("CollectionName")
 
-response, err := client.Collections.CreateCollectionsHas(context.Background(), request)
+response, err := client.Collections.CollectionHas(context.Background(), request)
 if err != nil {
   panic(err)
 }
@@ -279,7 +279,7 @@ if err != nil {
 fmt.Print(response)
 ```
 
-## CreateCollectionsList
+## CollectionList
 
 Returns a list of all collections in the specified database.
 
@@ -291,7 +291,7 @@ Returns a list of all collections in the specified database.
 | Name                         | Type                         | Required | Description                             |
 | :--------------------------- | :--------------------------- | :------- | :-------------------------------------- |
 | ctx                          | Context                      | ✅       | Default go language context             |
-| createCollectionsListRequest | CreateCollectionsListRequest | ✅       | Database object that needs to be listed |
+| createCollectionsListRequest | CollectionListRequest | ✅       | Database object that needs to be listed |
 
 **Return Type**
 
@@ -312,10 +312,10 @@ config := gandiconfig.NewConfig()
 client := gandi.NewGandi(config)
 
 
-request := collections.CreateCollectionsListRequest{}
+request := collections.CollectionListRequest{}
 request.SetDbName("DbName")
 
-response, err := client.Collections.CreateCollectionsList(context.Background(), request)
+response, err := client.Collections.CollectionList(context.Background(), request)
 if err != nil {
   panic(err)
 }
@@ -323,7 +323,7 @@ if err != nil {
 fmt.Print(response)
 ```
 
-## CreateCollectionsLoad
+## CollectionLoad
 
 Loads a collection into memory.
 
@@ -335,7 +335,7 @@ Loads a collection into memory.
 | Name                         | Type                         | Required | Description                               |
 | :--------------------------- | :--------------------------- | :------- | :---------------------------------------- |
 | ctx                          | Context                      | ✅       | Default go language context               |
-| createCollectionsLoadRequest | CreateCollectionsLoadRequest | ✅       | Collection object that needs to be loaded |
+| createCollectionsLoadRequest | CollectionLoadRequest | ✅       | Collection object that needs to be loaded |
 
 **Return Type**
 
@@ -356,10 +356,10 @@ config := gandiconfig.NewConfig()
 client := gandi.NewGandi(config)
 
 
-request := collections.CreateCollectionsLoadRequest{}
+request := collections.CollectionLoadRequest{}
 request.SetCollectionName("CollectionName")
 
-response, err := client.Collections.CreateCollectionsLoad(context.Background(), request)
+response, err := client.Collections.CollectionLoad(context.Background(), request)
 if err != nil {
   panic(err)
 }
@@ -367,7 +367,7 @@ if err != nil {
 fmt.Print(response)
 ```
 
-## CreateCollectionsRelease
+## CollectionRelease
 
 Releases a collection from memory.
 
@@ -379,7 +379,7 @@ Releases a collection from memory.
 | Name                            | Type                            | Required | Description                                 |
 | :------------------------------ | :------------------------------ | :------- | :------------------------------------------ |
 | ctx                             | Context                         | ✅       | Default go language context                 |
-| createCollectionsReleaseRequest | CreateCollectionsReleaseRequest | ✅       | Collection object that needs to be released |
+| createCollectionsReleaseRequest | CollectionReleaseRequest | ✅       | Collection object that needs to be released |
 
 **Return Type**
 
@@ -400,10 +400,10 @@ config := gandiconfig.NewConfig()
 client := gandi.NewGandi(config)
 
 
-request := collections.CreateCollectionsReleaseRequest{}
+request := collections.CollectionReleaseRequest{}
 request.SetCollectionName("CollectionName")
 
-response, err := client.Collections.CreateCollectionsRelease(context.Background(), request)
+response, err := client.Collections.CollectionRelease(context.Background(), request)
 if err != nil {
   panic(err)
 }
@@ -411,7 +411,7 @@ if err != nil {
 fmt.Print(response)
 ```
 
-## CreateCollectionsRename
+## CollectionRename
 
 This operation renames an existing collection and optionally moves the collection to a new database.
 
@@ -423,7 +423,7 @@ This operation renames an existing collection and optionally moves the collectio
 | Name                           | Type                           | Required | Description                                |
 | :----------------------------- | :----------------------------- | :------- | :----------------------------------------- |
 | ctx                            | Context                        | ✅       | Default go language context                |
-| createCollectionsRenameRequest | CreateCollectionsRenameRequest | ✅       | Collection object that needs to be renamed |
+| createCollectionsRenameRequest | CollectionRenameRequest | ✅       | Collection object that needs to be renamed |
 
 **Return Type**
 
@@ -444,11 +444,11 @@ config := gandiconfig.NewConfig()
 client := gandi.NewGandi(config)
 
 
-request := collections.CreateCollectionsRenameRequest{}
+request := collections.CollectionRenameRequest{}
 request.SetCollectionName("CollectionName")
 request.SetNewCollectionName("NewCollectionName")
 
-response, err := client.Collections.CreateCollectionsRename(context.Background(), request)
+response, err := client.Collections.CollectionRename(context.Background(), request)
 if err != nil {
   panic(err)
 }

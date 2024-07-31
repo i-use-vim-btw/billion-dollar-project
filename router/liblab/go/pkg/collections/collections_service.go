@@ -4,6 +4,7 @@ package collections
 
 import (
 	"context"
+
 	restClient "github.com/swagger-api/swagger-petstore/internal/clients/rest"
 	"github.com/swagger-api/swagger-petstore/internal/clients/rest/httptransport"
 	"github.com/swagger-api/swagger-petstore/internal/configmanager"
@@ -36,14 +37,14 @@ func (api *CollectionsService) SetAccessToken(accessToken string) {
 }
 
 // This operation creates a collection in a specified cluster.
-func (api *CollectionsService) CreateCollectionsCreate(ctx context.Context, collectionRequest CollectionRequest) (*shared.GandiResponse[any], *shared.GandiError) {
+func (api *CollectionsService) CollectionCreate(ctx context.Context, Collection Collection) (*shared.GandiResponse[any], *shared.GandiError) {
 	config := *api.getConfig()
 
 	client := restClient.NewRestClient[any](config)
 
 	request := httptransport.NewRequest(ctx, "POST", "/collections/create", config)
 
-	request.Body = collectionRequest
+	request.Body = Collection
 
 	resp, err := client.Call(request)
 	if err != nil {
@@ -54,7 +55,7 @@ func (api *CollectionsService) CreateCollectionsCreate(ctx context.Context, coll
 }
 
 // Returns the details of a collection.
-func (api *CollectionsService) CreateCollectionsDescribe(ctx context.Context, createCollectionsDescribeRequest CreateCollectionsDescribeRequest) (*shared.GandiResponse[any], *shared.GandiError) {
+func (api *CollectionsService) CollectionDescribe(ctx context.Context, createCollectionsDescribeRequest CollectionDescribeRequest) (*shared.GandiResponse[any], *shared.GandiError) {
 	config := *api.getConfig()
 
 	client := restClient.NewRestClient[any](config)
@@ -72,7 +73,7 @@ func (api *CollectionsService) CreateCollectionsDescribe(ctx context.Context, cr
 }
 
 // This operation drops the current collection and all data within the collection.
-func (api *CollectionsService) CreateCollectionsDrop(ctx context.Context, createCollectionsDropRequest CreateCollectionsDropRequest) (*shared.GandiResponse[any], *shared.GandiError) {
+func (api *CollectionsService) CollectionDrop(ctx context.Context, createCollectionsDropRequest CollectionDropRequest) (*shared.GandiResponse[any], *shared.GandiError) {
 	config := *api.getConfig()
 
 	client := restClient.NewRestClient[any](config)
@@ -90,7 +91,7 @@ func (api *CollectionsService) CreateCollectionsDrop(ctx context.Context, create
 }
 
 // Returns the load state of a specific collection.
-func (api *CollectionsService) CreateCollectionsGetLoadState(ctx context.Context, createCollectionsGetLoadStateRequest CreateCollectionsGetLoadStateRequest) (*shared.GandiResponse[any], *shared.GandiError) {
+func (api *CollectionsService) CollectionGetLoadState(ctx context.Context, createCollectionsGetLoadStateRequest CollectionGetLoadStateRequest) (*shared.GandiResponse[any], *shared.GandiError) {
 	config := *api.getConfig()
 
 	client := restClient.NewRestClient[any](config)
@@ -108,7 +109,7 @@ func (api *CollectionsService) CreateCollectionsGetLoadState(ctx context.Context
 }
 
 // This operation gets the number of entities in a collection.
-func (api *CollectionsService) CreateCollectionsGetStats(ctx context.Context, createCollectionsGetStatsRequest CreateCollectionsGetStatsRequest) (*shared.GandiResponse[any], *shared.GandiError) {
+func (api *CollectionsService) CollectionGetStats(ctx context.Context, createCollectionsGetStatsRequest CollectionGetStatsRequest) (*shared.GandiResponse[any], *shared.GandiError) {
 	config := *api.getConfig()
 
 	client := restClient.NewRestClient[any](config)
@@ -126,7 +127,7 @@ func (api *CollectionsService) CreateCollectionsGetStats(ctx context.Context, cr
 }
 
 // Checks if a collection exists in the database.
-func (api *CollectionsService) CreateCollectionsHas(ctx context.Context, createCollectionsHasRequest CreateCollectionsHasRequest) (*shared.GandiResponse[any], *shared.GandiError) {
+func (api *CollectionsService) CollectionHas(ctx context.Context, createCollectionsHasRequest CollectionHasRequest) (*shared.GandiResponse[any], *shared.GandiError) {
 	config := *api.getConfig()
 
 	client := restClient.NewRestClient[any](config)
@@ -144,7 +145,7 @@ func (api *CollectionsService) CreateCollectionsHas(ctx context.Context, createC
 }
 
 // Returns a list of all collections in the specified database.
-func (api *CollectionsService) CreateCollectionsList(ctx context.Context, createCollectionsListRequest CreateCollectionsListRequest) (*shared.GandiResponse[any], *shared.GandiError) {
+func (api *CollectionsService) CollectionList(ctx context.Context, createCollectionsListRequest CollectionListRequest) (*shared.GandiResponse[any], *shared.GandiError) {
 	config := *api.getConfig()
 
 	client := restClient.NewRestClient[any](config)
@@ -162,7 +163,7 @@ func (api *CollectionsService) CreateCollectionsList(ctx context.Context, create
 }
 
 // Loads a collection into memory.
-func (api *CollectionsService) CreateCollectionsLoad(ctx context.Context, createCollectionsLoadRequest CreateCollectionsLoadRequest) (*shared.GandiResponse[any], *shared.GandiError) {
+func (api *CollectionsService) CollectionLoad(ctx context.Context, createCollectionsLoadRequest CollectionLoadRequest) (*shared.GandiResponse[any], *shared.GandiError) {
 	config := *api.getConfig()
 
 	client := restClient.NewRestClient[any](config)
@@ -180,7 +181,7 @@ func (api *CollectionsService) CreateCollectionsLoad(ctx context.Context, create
 }
 
 // Releases a collection from memory.
-func (api *CollectionsService) CreateCollectionsRelease(ctx context.Context, createCollectionsReleaseRequest CreateCollectionsReleaseRequest) (*shared.GandiResponse[any], *shared.GandiError) {
+func (api *CollectionsService) CollectionRelease(ctx context.Context, createCollectionsReleaseRequest CollectionReleaseRequest) (*shared.GandiResponse[any], *shared.GandiError) {
 	config := *api.getConfig()
 
 	client := restClient.NewRestClient[any](config)
@@ -198,7 +199,7 @@ func (api *CollectionsService) CreateCollectionsRelease(ctx context.Context, cre
 }
 
 // This operation renames an existing collection and optionally moves the collection to a new database.
-func (api *CollectionsService) CreateCollectionsRename(ctx context.Context, createCollectionsRenameRequest CreateCollectionsRenameRequest) (*shared.GandiResponse[any], *shared.GandiError) {
+func (api *CollectionsService) CollectionRename(ctx context.Context, createCollectionsRenameRequest CollectionRenameRequest) (*shared.GandiResponse[any], *shared.GandiError) {
 	config := *api.getConfig()
 
 	client := restClient.NewRestClient[any](config)

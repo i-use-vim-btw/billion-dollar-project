@@ -1,4 +1,4 @@
-# CreateCollectionsHasRequest
+# CollectionHasRequest
 
 **Properties**
 

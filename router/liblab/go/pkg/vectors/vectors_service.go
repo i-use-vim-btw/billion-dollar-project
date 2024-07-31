@@ -4,6 +4,7 @@ package vectors
 
 import (
 	"context"
+
 	restClient "github.com/swagger-api/swagger-petstore/internal/clients/rest"
 	"github.com/swagger-api/swagger-petstore/internal/clients/rest/httptransport"
 	"github.com/swagger-api/swagger-petstore/internal/configmanager"
@@ -36,7 +37,7 @@ func (api *VectorsService) SetAccessToken(accessToken string) {
 }
 
 // This operation deletes entities by their IDs or with a boolean expression.
-func (api *VectorsService) CreateVectorsDelete(ctx context.Context, createVectorsDeleteRequest CreateVectorsDeleteRequest) (*shared.GandiResponse[any], *shared.GandiError) {
+func (api *VectorsService) VectorsDelete(ctx context.Context, createVectorsDeleteRequest VectorsDeleteRequest) (*shared.GandiResponse[any], *shared.GandiError) {
 	config := *api.getConfig()
 
 	client := restClient.NewRestClient[any](config)
@@ -54,7 +55,7 @@ func (api *VectorsService) CreateVectorsDelete(ctx context.Context, createVector
 }
 
 // This operation gets vectors by their IDs.
-func (api *VectorsService) CreateVectorsGet(ctx context.Context, createVectorsGetRequest CreateVectorsGetRequest) (*shared.GandiResponse[any], *shared.GandiError) {
+func (api *VectorsService) VectorsGet(ctx context.Context, createVectorsGetRequest VectorsGetRequest) (*shared.GandiResponse[any], *shared.GandiError) {
 	config := *api.getConfig()
 
 	client := restClient.NewRestClient[any](config)
@@ -72,7 +73,7 @@ func (api *VectorsService) CreateVectorsGet(ctx context.Context, createVectorsGe
 }
 
 // This operation inserts vectors into a specified collection.
-func (api *VectorsService) CreateVectorsInsert(ctx context.Context, createVectorsInsertRequest CreateVectorsInsertRequest) (*shared.GandiResponse[any], *shared.GandiError) {
+func (api *VectorsService) VectorsInsert(ctx context.Context, createVectorsInsertRequest VectorsInsertRequest) (*shared.GandiResponse[any], *shared.GandiError) {
 	config := *api.getConfig()
 
 	client := restClient.NewRestClient[any](config)
@@ -90,7 +91,7 @@ func (api *VectorsService) CreateVectorsInsert(ctx context.Context, createVector
 }
 
 // This operation queries vectors in a specified collection.
-func (api *VectorsService) CreateVectorsQuery(ctx context.Context, createVectorsQueryRequest CreateVectorsQueryRequest) (*shared.GandiResponse[any], *shared.GandiError) {
+func (api *VectorsService) VectorsQuery(ctx context.Context, createVectorsQueryRequest VectorsQueryRequest) (*shared.GandiResponse[any], *shared.GandiError) {
 	config := *api.getConfig()
 
 	client := restClient.NewRestClient[any](config)
@@ -108,7 +109,7 @@ func (api *VectorsService) CreateVectorsQuery(ctx context.Context, createVectors
 }
 
 // This operation searches vectors in a specified collection.
-func (api *VectorsService) CreateVectorsSearch(ctx context.Context, createVectorsSearchRequest CreateVectorsSearchRequest) (*shared.GandiResponse[any], *shared.GandiError) {
+func (api *VectorsService) VectorsSearch(ctx context.Context, createVectorsSearchRequest VectorsSearchRequest) (*shared.GandiResponse[any], *shared.GandiError) {
 	config := *api.getConfig()
 
 	client := restClient.NewRestClient[any](config)
@@ -126,7 +127,7 @@ func (api *VectorsService) CreateVectorsSearch(ctx context.Context, createVector
 }
 
 // This operation upserts vectors into a specified collection.
-func (api *VectorsService) CreateVectorsUpsert(ctx context.Context, createVectorsUpsertRequest CreateVectorsUpsertRequest) (*shared.GandiResponse[any], *shared.GandiError) {
+func (api *VectorsService) VectorsUpsert(ctx context.Context, createVectorsUpsertRequest VectorsUpsertRequest) (*shared.GandiResponse[any], *shared.GandiError) {
 	config := *api.getConfig()
 
 	client := restClient.NewRestClient[any](config)

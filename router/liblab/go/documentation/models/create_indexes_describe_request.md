@@ -1,4 +1,4 @@
-# CreateIndexesDescribeRequest
+# IndexDescribeRequest
 
 **Properties**
 

@@ -1,20 +1,20 @@
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CreateVectorsInsertRequest
+from gandi.models import VectorsInsertRequest
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CreateVectorsInsertRequest(
+request_body = VectorsInsertRequest(
     db_name="dbName",
     collection_name="collectionName",
     partition_name="partitionName",
     data={}
 )
 
-result = sdk.vectors.create_vectors_insert(request_body=request_body)
+result = sdk.vectors.insert(request_body=request_body)
 
 print(result)
 

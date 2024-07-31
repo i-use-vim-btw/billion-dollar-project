@@ -5,15 +5,15 @@ from .utils.base_service import BaseService
 from ..net.transport.serializer import Serializer
 from ..models.utils.cast_models import cast_models
 from ..models.index_request import IndexRequest
-from ..models.create_indexes_list_request import CreateIndexesListRequest
-from ..models.create_indexes_drop_request import CreateIndexesDropRequest
-from ..models.create_indexes_describe_request import CreateIndexesDescribeRequest
+from ..models.indexes_list_request import IndexListRequest
+from ..models.indexes_drop_request import IndexDropRequest
+from ..models.indexes_describe_request import IndexDescribeRequest
 
 
 class IndexesService(BaseService):
 
     @cast_models
-    def create_indexes_create(self, request_body: IndexRequest):
+    def create(self, request_body: IndexRequest):
         """This creates a named index for a target field, which can either be a vector field or a scalar field.
 
         :param request_body: The request body.
@@ -37,17 +37,17 @@ class IndexesService(BaseService):
         return response
 
     @cast_models
-    def create_indexes_describe(self, request_body: CreateIndexesDescribeRequest):
+    def describe(self, request_body: IndexDescribeRequest):
         """Returns the details of an index.
 
         :param request_body: The request body.
-        :type request_body: CreateIndexesDescribeRequest
+        :type request_body: IndexDescribeRequest
         ...
         :raises RequestError: Raised when a request fails, with optional HTTP status code and details.
         ...
         """
 
-        Validator(CreateIndexesDescribeRequest).validate(request_body)
+        Validator(IndexDescribeRequest).validate(request_body)
 
         serialized_request = (
             Serializer(f"{self.base_url}/indexes/describe", self.get_default_headers())
@@ -61,17 +61,17 @@ class IndexesService(BaseService):
         return response
 
     @cast_models
-    def create_indexes_drop(self, request_body: CreateIndexesDropRequest):
+    def drop(self, request_body: IndexDropRequest):
         """This operation drops index from a specified collection.
 
         :param request_body: The request body.
-        :type request_body: CreateIndexesDropRequest
+        :type request_body: IndexDropRequest
         ...
         :raises RequestError: Raised when a request fails, with optional HTTP status code and details.
         ...
         """
 
-        Validator(CreateIndexesDropRequest).validate(request_body)
+        Validator(IndexDropRequest).validate(request_body)
 
         serialized_request = (
             Serializer(f"{self.base_url}/indexes/drop", self.get_default_headers())
@@ -85,17 +85,17 @@ class IndexesService(BaseService):
         return response
 
     @cast_models
-    def create_indexes_list(self, request_body: CreateIndexesListRequest):
+    def list(self, request_body: IndexListRequest):
         """Returns a list of all indexes in the specified collection.
 
         :param request_body: The request body.
-        :type request_body: CreateIndexesListRequest
+        :type request_body: IndexListRequest
         ...
         :raises RequestError: Raised when a request fails, with optional HTTP status code and details.
         ...
         """
 
-        Validator(CreateIndexesListRequest).validate(request_body)
+        Validator(IndexListRequest).validate(request_body)
 
         serialized_request = (
             Serializer(f"{self.base_url}/indexes/list", self.get_default_headers())

@@ -4,6 +4,7 @@ package indexes
 
 import (
 	"context"
+
 	restClient "github.com/swagger-api/swagger-petstore/internal/clients/rest"
 	"github.com/swagger-api/swagger-petstore/internal/clients/rest/httptransport"
 	"github.com/swagger-api/swagger-petstore/internal/configmanager"
@@ -36,7 +37,7 @@ func (api *IndexesService) SetAccessToken(accessToken string) {
 }
 
 // This creates a named index for a target field, which can either be a vector field or a scalar field.
-func (api *IndexesService) CreateIndexesCreate(ctx context.Context, indexRequest IndexRequest) (*shared.GandiResponse[any], *shared.GandiError) {
+func (api *IndexesService) IndexCreate(ctx context.Context, indexRequest IndexRequest) (*shared.GandiResponse[any], *shared.GandiError) {
 	config := *api.getConfig()
 
 	client := restClient.NewRestClient[any](config)
@@ -54,7 +55,7 @@ func (api *IndexesService) CreateIndexesCreate(ctx context.Context, indexRequest
 }
 
 // Returns the details of an index.
-func (api *IndexesService) CreateIndexesDescribe(ctx context.Context, createIndexesDescribeRequest CreateIndexesDescribeRequest) (*shared.GandiResponse[any], *shared.GandiError) {
+func (api *IndexesService) IndexDescribe(ctx context.Context, createIndexesDescribeRequest IndexDescribeRequest) (*shared.GandiResponse[any], *shared.GandiError) {
 	config := *api.getConfig()
 
 	client := restClient.NewRestClient[any](config)
@@ -72,7 +73,7 @@ func (api *IndexesService) CreateIndexesDescribe(ctx context.Context, createInde
 }
 
 // This operation drops index from a specified collection.
-func (api *IndexesService) CreateIndexesDrop(ctx context.Context, createIndexesDropRequest CreateIndexesDropRequest) (*shared.GandiResponse[any], *shared.GandiError) {
+func (api *IndexesService) IndexDrop(ctx context.Context, createIndexesDropRequest IndexDropRequest) (*shared.GandiResponse[any], *shared.GandiError) {
 	config := *api.getConfig()
 
 	client := restClient.NewRestClient[any](config)
@@ -90,7 +91,7 @@ func (api *IndexesService) CreateIndexesDrop(ctx context.Context, createIndexesD
 }
 
 // Returns a list of all indexes in the specified collection.
-func (api *IndexesService) CreateIndexesList(ctx context.Context, createIndexesListRequest CreateIndexesListRequest) (*shared.GandiResponse[any], *shared.GandiError) {
+func (api *IndexesService) IndexList(ctx context.Context, createIndexesListRequest IndexListRequest) (*shared.GandiResponse[any], *shared.GandiError) {
 	config := *api.getConfig()
 
 	client := restClient.NewRestClient[any](config)

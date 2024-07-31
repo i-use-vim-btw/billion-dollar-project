@@ -21,7 +21,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CollectionRequest'
+              $ref: '#/components/schemas/Collection'
       responses:
         '201':
           description: Collection created successfully.
@@ -607,7 +607,7 @@ components:
                     type: integer
                   nlist:
                     type: integer
-    CollectionRequest:
+    Collection:
       required:
         - collectionName
       type: object

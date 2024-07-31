@@ -2,135 +2,135 @@
 
 package collections
 
-type CollectionRequest struct {
-	DbName           *string                        `json:"dbName,omitempty"`
-	CollectionName   *string                        `json:"collectionName,omitempty" required:"true"`
-	Dimension        *int64                         `json:"dimension,omitempty"`
-	MetricType       *string                        `json:"metricType,omitempty"`
-	IdType           *string                        `json:"idType,omitempty"`
-	AutoId           *string                        `json:"autoID,omitempty"`
-	PrimaryFieldName *string                        `json:"primaryFieldName,omitempty"`
-	VectorFieldName  *string                        `json:"vectorFieldName,omitempty"`
-	Schema           *Schema                        `json:"schema,omitempty"`
-	IndexParams      []CollectionRequestIndexParams `json:"indexParams,omitempty"`
-	Params           *CollectionRequestParams       `json:"params,omitempty"`
+type Collection struct {
+	DbName           *string                 `json:"dbName,omitempty"`
+	CollectionName   *string                 `json:"collectionName,omitempty" required:"true"`
+	Dimension        *int64                  `json:"dimension,omitempty"`
+	MetricType       *string                 `json:"metricType,omitempty"`
+	IdType           *string                 `json:"idType,omitempty"`
+	AutoId           *string                 `json:"autoID,omitempty"`
+	PrimaryFieldName *string                 `json:"primaryFieldName,omitempty"`
+	VectorFieldName  *string                 `json:"vectorFieldName,omitempty"`
+	Schema           *Schema                 `json:"schema,omitempty"`
+	IndexParams      []CollectionIndexParams `json:"indexParams,omitempty"`
+	Params           *CollectionParams       `json:"params,omitempty"`
 }
 
-func (c *CollectionRequest) SetDbName(dbName string) {
+func (c *Collection) SetDbName(dbName string) {
 	c.DbName = &dbName
 }
 
-func (c *CollectionRequest) GetDbName() *string {
+func (c *Collection) GetDbName() *string {
 	if c == nil {
 		return nil
 	}
 	return c.DbName
 }
 
-func (c *CollectionRequest) SetCollectionName(collectionName string) {
+func (c *Collection) SetCollectionName(collectionName string) {
 	c.CollectionName = &collectionName
 }
 
-func (c *CollectionRequest) GetCollectionName() *string {
+func (c *Collection) GetCollectionName() *string {
 	if c == nil {
 		return nil
 	}
 	return c.CollectionName
 }
 
-func (c *CollectionRequest) SetDimension(dimension int64) {
+func (c *Collection) SetDimension(dimension int64) {
 	c.Dimension = &dimension
 }
 
-func (c *CollectionRequest) GetDimension() *int64 {
+func (c *Collection) GetDimension() *int64 {
 	if c == nil {
 		return nil
 	}
 	return c.Dimension
 }
 
-func (c *CollectionRequest) SetMetricType(metricType string) {
+func (c *Collection) SetMetricType(metricType string) {
 	c.MetricType = &metricType
 }
 
-func (c *CollectionRequest) GetMetricType() *string {
+func (c *Collection) GetMetricType() *string {
 	if c == nil {
 		return nil
 	}
 	return c.MetricType
 }
 
-func (c *CollectionRequest) SetIdType(idType string) {
+func (c *Collection) SetIdType(idType string) {
 	c.IdType = &idType
 }
 
-func (c *CollectionRequest) GetIdType() *string {
+func (c *Collection) GetIdType() *string {
 	if c == nil {
 		return nil
 	}
 	return c.IdType
 }
 
-func (c *CollectionRequest) SetAutoId(autoId string) {
+func (c *Collection) SetAutoId(autoId string) {
 	c.AutoId = &autoId
 }
 
-func (c *CollectionRequest) GetAutoId() *string {
+func (c *Collection) GetAutoId() *string {
 	if c == nil {
 		return nil
 	}
 	return c.AutoId
 }
 
-func (c *CollectionRequest) SetPrimaryFieldName(primaryFieldName string) {
+func (c *Collection) SetPrimaryFieldName(primaryFieldName string) {
 	c.PrimaryFieldName = &primaryFieldName
 }
 
-func (c *CollectionRequest) GetPrimaryFieldName() *string {
+func (c *Collection) GetPrimaryFieldName() *string {
 	if c == nil {
 		return nil
 	}
 	return c.PrimaryFieldName
 }
 
-func (c *CollectionRequest) SetVectorFieldName(vectorFieldName string) {
+func (c *Collection) SetVectorFieldName(vectorFieldName string) {
 	c.VectorFieldName = &vectorFieldName
 }
 
-func (c *CollectionRequest) GetVectorFieldName() *string {
+func (c *Collection) GetVectorFieldName() *string {
 	if c == nil {
 		return nil
 	}
 	return c.VectorFieldName
 }
 
-func (c *CollectionRequest) SetSchema(schema Schema) {
+func (c *Collection) SetSchema(schema Schema) {
 	c.Schema = &schema
 }
 
-func (c *CollectionRequest) GetSchema() *Schema {
+func (c *Collection) GetSchema() *Schema {
 	if c == nil {
 		return nil
 	}
 	return c.Schema
 }
 
-func (c *CollectionRequest) SetIndexParams(indexParams []CollectionRequestIndexParams) {
+func (c *Collection) SetIndexParams(indexParams []CollectionIndexParams) {
 	c.IndexParams = indexParams
 }
 
-func (c *CollectionRequest) GetIndexParams() []CollectionRequestIndexParams {
+func (c *Collection) GetIndexParams() []CollectionIndexParams {
 	if c == nil {
 		return nil
 	}
 	return c.IndexParams
 }
 
-func (c *CollectionRequest) SetParams(params CollectionRequestParams) {
+func (c *Collection) SetParams(params CollectionParams) {
 	c.Params = &params
 }
 
-func (c *CollectionRequest) GetParams() *CollectionRequestParams {
+func (c *Collection) GetParams() *CollectionParams {
 	if c == nil {
 		return nil
 	}
@@ -290,109 +290,109 @@ func (e *ElementTypeParams) GetMaxCapacity() *int64 {
 	return e.MaxCapacity
 }
 
-type CollectionRequestIndexParams struct {
-	MetricType *string             `json:"metricType,omitempty"`
-	FieldName  *string             `json:"fieldName,omitempty"`
-	IndexName  *string             `json:"indexName,omitempty"`
-	Params     *IndexParamsParams1 `json:"params,omitempty"`
+type CollectionIndexParams struct {
+	MetricType *string      `json:"metricType,omitempty"`
+	FieldName  *string      `json:"fieldName,omitempty"`
+	IndexName  *string      `json:"indexName,omitempty"`
+	Params     *IndexParams `json:"params,omitempty"`
 }
 
-func (c *CollectionRequestIndexParams) SetMetricType(metricType string) {
+func (c *CollectionIndexParams) SetMetricType(metricType string) {
 	c.MetricType = &metricType
 }
 
-func (c *CollectionRequestIndexParams) GetMetricType() *string {
+func (c *CollectionIndexParams) GetMetricType() *string {
 	if c == nil {
 		return nil
 	}
 	return c.MetricType
 }
 
-func (c *CollectionRequestIndexParams) SetFieldName(fieldName string) {
+func (c *CollectionIndexParams) SetFieldName(fieldName string) {
 	c.FieldName = &fieldName
 }
 
-func (c *CollectionRequestIndexParams) GetFieldName() *string {
+func (c *CollectionIndexParams) GetFieldName() *string {
 	if c == nil {
 		return nil
 	}
 	return c.FieldName
 }
 
-func (c *CollectionRequestIndexParams) SetIndexName(indexName string) {
+func (c *CollectionIndexParams) SetIndexName(indexName string) {
 	c.IndexName = &indexName
 }
 
-func (c *CollectionRequestIndexParams) GetIndexName() *string {
+func (c *CollectionIndexParams) GetIndexName() *string {
 	if c == nil {
 		return nil
 	}
 	return c.IndexName
 }
 
-func (c *CollectionRequestIndexParams) SetParams(params IndexParamsParams1) {
+func (c *CollectionIndexParams) SetParams(params IndexParams) {
 	c.Params = &params
 }
 
-func (c *CollectionRequestIndexParams) GetParams() *IndexParamsParams1 {
+func (c *CollectionIndexParams) GetParams() *IndexParams {
 	if c == nil {
 		return nil
 	}
 	return c.Params
 }
 
-type IndexParamsParams1 struct {
+type IndexParams struct {
 	IndexType      *string `json:"index_type,omitempty"`
 	M              *int64  `json:"M,omitempty"`
 	EfConstruction *int64  `json:"efConstruction,omitempty"`
 	Nlist          *int64  `json:"nlist,omitempty"`
 }
 
-func (i *IndexParamsParams1) SetIndexType(indexType string) {
+func (i *IndexParams) SetIndexType(indexType string) {
 	i.IndexType = &indexType
 }
 
-func (i *IndexParamsParams1) GetIndexType() *string {
+func (i *IndexParams) GetIndexType() *string {
 	if i == nil {
 		return nil
 	}
 	return i.IndexType
 }
 
-func (i *IndexParamsParams1) SetM(m int64) {
+func (i *IndexParams) SetM(m int64) {
 	i.M = &m
 }
 
-func (i *IndexParamsParams1) GetM() *int64 {
+func (i *IndexParams) GetM() *int64 {
 	if i == nil {
 		return nil
 	}
 	return i.M
 }
 
-func (i *IndexParamsParams1) SetEfConstruction(efConstruction int64) {
+func (i *IndexParams) SetEfConstruction(efConstruction int64) {
 	i.EfConstruction = &efConstruction
 }
 
-func (i *IndexParamsParams1) GetEfConstruction() *int64 {
+func (i *IndexParams) GetEfConstruction() *int64 {
 	if i == nil {
 		return nil
 	}
 	return i.EfConstruction
 }
 
-func (i *IndexParamsParams1) SetNlist(nlist int64) {
+func (i *IndexParams) SetNlist(nlist int64) {
 	i.Nlist = &nlist
 }
 
-func (i *IndexParamsParams1) GetNlist() *int64 {
+func (i *IndexParams) GetNlist() *int64 {
 	if i == nil {
 		return nil
 	}
 	return i.Nlist
 }
 
-type CollectionRequestParams struct {
+type CollectionParams struct {
 	MaxLength          *int64 `json:"max_length,omitempty"`
 	EnableDynamicField *bool  `json:"enableDynamicField,omitempty"`
 	ShardsNum          *int64 `json:"shardsNum,omitempty"`
@@ -401,66 +401,66 @@ type CollectionRequestParams struct {
 	TtlSeconds         *int64 `json:"ttlSeconds,omitempty"`
 }
 
-func (c *CollectionRequestParams) SetMaxLength(maxLength int64) {
+func (c *CollectionParams) SetMaxLength(maxLength int64) {
 	c.MaxLength = &maxLength
 }
 
-func (c *CollectionRequestParams) GetMaxLength() *int64 {
+func (c *CollectionParams) GetMaxLength() *int64 {
 	if c == nil {
 		return nil
 	}
 	return c.MaxLength
 }
 
-func (c *CollectionRequestParams) SetEnableDynamicField(enableDynamicField bool) {
+func (c *CollectionParams) SetEnableDynamicField(enableDynamicField bool) {
 	c.EnableDynamicField = &enableDynamicField
 }
 
-func (c *CollectionRequestParams) GetEnableDynamicField() *bool {
+func (c *CollectionParams) GetEnableDynamicField() *bool {
 	if c == nil {
 		return nil
 	}
 	return c.EnableDynamicField
 }
 
-func (c *CollectionRequestParams) SetShardsNum(shardsNum int64) {
+func (c *CollectionParams) SetShardsNum(shardsNum int64) {
 	c.ShardsNum = &shardsNum
 }
 
-func (c *CollectionRequestParams) GetShardsNum() *int64 {
+func (c *CollectionParams) GetShardsNum() *int64 {
 	if c == nil {
 		return nil
 	}
 	return c.ShardsNum
 }
 
-func (c *CollectionRequestParams) SetConsistencyLevel(consistencyLevel int64) {
+func (c *CollectionParams) SetConsistencyLevel(consistencyLevel int64) {
 	c.ConsistencyLevel = &consistencyLevel
 }
 
-func (c *CollectionRequestParams) GetConsistencyLevel() *int64 {
+func (c *CollectionParams) GetConsistencyLevel() *int64 {
 	if c == nil {
 		return nil
 	}
 	return c.ConsistencyLevel
 }
 
-func (c *CollectionRequestParams) SetPartitionsNum(partitionsNum int64) {
+func (c *CollectionParams) SetPartitionsNum(partitionsNum int64) {
 	c.PartitionsNum = &partitionsNum
 }
 
-func (c *CollectionRequestParams) GetPartitionsNum() *int64 {
+func (c *CollectionParams) GetPartitionsNum() *int64 {
 	if c == nil {
 		return nil
 	}
 	return c.PartitionsNum
 }
 
-func (c *CollectionRequestParams) SetTtlSeconds(ttlSeconds int64) {
+func (c *CollectionParams) SetTtlSeconds(ttlSeconds int64) {
 	c.TtlSeconds = &ttlSeconds
 }
 
-func (c *CollectionRequestParams) GetTtlSeconds() *int64 {
+func (c *CollectionParams) GetTtlSeconds() *int64 {
 	if c == nil {
 		return nil
 	}

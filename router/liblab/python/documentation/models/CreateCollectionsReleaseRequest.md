@@ -1,4 +1,4 @@
-# CreateCollectionsReleaseRequest
+# CollectionReleaseRequest
 
 **Properties**
 

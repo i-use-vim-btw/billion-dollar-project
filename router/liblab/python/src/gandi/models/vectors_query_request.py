@@ -13,10 +13,10 @@ from .base import BaseModel
         "output_fields": "outputFields",
     }
 )
-class CreateVectorsQueryRequest(BaseModel):
-    """CreateVectorsQueryRequest
+class VectorsQueryRequest(BaseModel):
+    """VectorsQueryRequest
 
-    :param db_name: db_name, defaults to None
+    :param db_name: db_name, defaults to "default"
     :type db_name: str, optional
     :param collection_name: collection_name
     :type collection_name: str
@@ -32,7 +32,7 @@ class CreateVectorsQueryRequest(BaseModel):
         self,
         collection_name: str,
         filter: str,
-        db_name: str = None,
+        db_name: str = "default",
         partition_names: List[str] = None,
         output_fields: List[str] = None,
     ):

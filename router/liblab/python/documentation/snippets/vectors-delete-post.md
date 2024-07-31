@@ -1,20 +1,20 @@
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CreateVectorsDeleteRequest
+from gandi.models import VectorsDeleteRequest
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CreateVectorsDeleteRequest(
+request_body = VectorsDeleteRequest(
     db_name="dbName",
     collection_name="collectionName",
     filter="filter",
     partition_name="partitionName"
 )
 
-result = sdk.vectors.create_vectors_delete(request_body=request_body)
+result = sdk.vectors.delete(request_body=request_body)
 
 print(result)
 

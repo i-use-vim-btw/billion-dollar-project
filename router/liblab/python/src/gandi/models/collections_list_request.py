@@ -5,12 +5,14 @@ from .base import BaseModel
 
 
 @JsonMap({"db_name": "dbName"})
-class CreateCollectionsListRequest(BaseModel):
-    """CreateCollectionsListRequest
+class CollectionListRequest(BaseModel):
+    """CollectionListRequest
 
     :param db_name: db_name
     :type db_name: str
+    :type host: str
     """
 
-    def __init__(self, db_name: str):
+    def __init__(self, db_name: str, host: str):
         self.db_name = db_name
+        self.host = host

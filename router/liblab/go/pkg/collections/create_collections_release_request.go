@@ -2,27 +2,27 @@
 
 package collections
 
-type CreateCollectionsReleaseRequest struct {
+type CollectionReleaseRequest struct {
 	DbName         *string `json:"dbName,omitempty"`
 	CollectionName *string `json:"collectionName,omitempty" required:"true"`
 }
 
-func (c *CreateCollectionsReleaseRequest) SetDbName(dbName string) {
+func (c *CollectionReleaseRequest) SetDbName(dbName string) {
 	c.DbName = &dbName
 }
 
-func (c *CreateCollectionsReleaseRequest) GetDbName() *string {
+func (c *CollectionReleaseRequest) GetDbName() *string {
 	if c == nil {
 		return nil
 	}
 	return c.DbName
 }
 
-func (c *CreateCollectionsReleaseRequest) SetCollectionName(collectionName string) {
+func (c *CollectionReleaseRequest) SetCollectionName(collectionName string) {
 	c.CollectionName = &collectionName
 }
 
-func (c *CreateCollectionsReleaseRequest) GetCollectionName() *string {
+func (c *CollectionReleaseRequest) GetCollectionName() *string {
 	if c == nil {
 		return nil
 	}

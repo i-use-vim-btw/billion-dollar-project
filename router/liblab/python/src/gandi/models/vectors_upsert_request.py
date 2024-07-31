@@ -7,7 +7,7 @@ from .base import BaseModel
 from .base import OneOfBaseModel
 
 
-class CreateVectorsInsertRequestDataGuard(OneOfBaseModel):
+class VectorsUpsertRequestDataGuard(OneOfBaseModel):
     class_list = {
         "str": str,
         "int": int,
@@ -20,7 +20,7 @@ class CreateVectorsInsertRequestDataGuard(OneOfBaseModel):
     }
 
 
-CreateVectorsInsertRequestData = Union[
+VectorsUpsertRequestData = Union[
     str, int, float, bool, List[str], List[int], List[float], List[bool]
 ]
 
@@ -32,10 +32,10 @@ CreateVectorsInsertRequestData = Union[
         "partition_name": "partitionName",
     }
 )
-class CreateVectorsInsertRequest(BaseModel):
-    """CreateVectorsInsertRequest
+class VectorsUpsertRequest(BaseModel):
+    """VectorsUpsertRequest
 
-    :param db_name: db_name, defaults to None
+    :param db_name: db_name, defaults to "default"
     :type db_name: str, optional
     :param collection_name: collection_name
     :type collection_name: str
@@ -48,10 +48,9 @@ class CreateVectorsInsertRequest(BaseModel):
     def __init__(
         self,
         collection_name: str,
-        db_name: str = None,
+        db_name: str = "default",
         partition_name: str = None,
-        data: List[dict] = None,
-        host: str = None,
+        data: dict = None,
     ):
         if db_name is not None:
             self.db_name = db_name
@@ -60,5 +59,3 @@ class CreateVectorsInsertRequest(BaseModel):
             self.partition_name = partition_name
         if data is not None:
             self.data = data
-        if host is not None:
-            self.host = host

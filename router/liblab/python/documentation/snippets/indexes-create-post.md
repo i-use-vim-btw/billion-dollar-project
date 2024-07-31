@@ -25,7 +25,7 @@ request_body = IndexRequest(
     ]
 )
 
-result = sdk.indexes.create_indexes_create(request_body=request_body)
+result = sdk.indexes.create(request_body=request_body)
 
 print(result)
 

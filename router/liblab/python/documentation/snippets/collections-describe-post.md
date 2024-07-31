@@ -1,18 +1,18 @@
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CreateCollectionsDescribeRequest
+from gandi.models import CollectionDescribeRequest
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CreateCollectionsDescribeRequest(
+request_body = CollectionDescribeRequest(
     db_name="dbName",
     collection_name="collectionName"
 )
 
-result = sdk.collections.create_collections_describe(request_body=request_body)
+result = sdk.collections.describe(request_body=request_body)
 
 print(result)
 

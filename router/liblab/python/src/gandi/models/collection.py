@@ -107,8 +107,8 @@ class Schema(BaseModel):
 
 
 @JsonMap({"m": "M", "ef_construction": "efConstruction"})
-class IndexParamsParams1(BaseModel):
-    """IndexParamsParams1
+class IndexParams(BaseModel):
+    """IndexParams
 
     :param index_type: index_type, defaults to None
     :type index_type: str, optional
@@ -140,25 +140,25 @@ class IndexParamsParams1(BaseModel):
 @JsonMap(
     {"metric_type": "metricType", "field_name": "fieldName", "index_name": "indexName"}
 )
-class CollectionRequestIndexParams(BaseModel):
-    """CollectionRequestIndexParams
+class CollectionIndexParams(BaseModel):
+    """CollectionIndexParams
 
-    :param metric_type: metric_type, defaults to None
+    :param metric_type: metric_type, defaults to "COSINE"
     :type metric_type: str, optional
     :param field_name: field_name, defaults to None
     :type field_name: str, optional
     :param index_name: index_name, defaults to None
     :type index_name: str, optional
     :param params: params, defaults to None
-    :type params: IndexParamsParams1, optional
+    :type params: IndexParams, optional
     """
 
     def __init__(
         self,
-        metric_type: str = None,
+        metric_type: str = "COSINE",
         field_name: str = None,
         index_name: str = None,
-        params: IndexParamsParams1 = None,
+        params: IndexParams = None,
     ):
         if metric_type is not None:
             self.metric_type = metric_type
@@ -167,7 +167,7 @@ class CollectionRequestIndexParams(BaseModel):
         if index_name is not None:
             self.index_name = index_name
         if params is not None:
-            self.params = self._define_object(params, IndexParamsParams1)
+            self.params = self._define_object(params, IndexParams)
 
 
 @JsonMap(
@@ -179,8 +179,8 @@ class CollectionRequestIndexParams(BaseModel):
         "ttl_seconds": "ttlSeconds",
     }
 )
-class CollectionRequestParams(BaseModel):
-    """CollectionRequestParams
+class CollectionParams(BaseModel):
+    """CollectionParams
 
     :param max_length: max_length, defaults to None
     :type max_length: int, optional
@@ -231,16 +231,16 @@ class CollectionRequestParams(BaseModel):
         "index_params": "indexParams",
     }
 )
-class CollectionRequest(BaseModel):
-    """CollectionRequest
+class Collection(BaseModel):
+    """Collection
 
-    :param db_name: db_name, defaults to None
+    :param db_name: db_name, defaults to "default"
     :type db_name: str, optional
     :param collection_name: collection_name
     :type collection_name: str
-    :param dimension: dimension, defaults to None
+    :param dimension: dimension, defaults to 5
     :type dimension: int, optional
-    :param metric_type: metric_type, defaults to None
+    :param metric_type: metric_type, defaults to "COSINE"
     :type metric_type: str, optional
     :param id_type: id_type, defaults to None
     :type id_type: str, optional
@@ -253,25 +253,25 @@ class CollectionRequest(BaseModel):
     :param schema: schema, defaults to None
     :type schema: Schema, optional
     :param index_params: index_params, defaults to None
-    :type index_params: List[CollectionRequestIndexParams], optional
+    :type index_params: List[CollectionIndexParams], optional
     :param params: params, defaults to None
-    :type params: CollectionRequestParams, optional
+    :type params: CollectionParams, optional
     """
 
     def __init__(
         self,
         collection_name: str,
         host: str,
-        db_name: str = None,
-        dimension: int = None,
-        metric_type: str = None,
+        db_name: str = "default",
+        dimension: int = 5,
+        metric_type: str = "COSINE",
         id_type: str = None,
         auto_id: str = None,
         primary_field_name: str = None,
         vector_field_name: str = None,
         schema: Schema = None,
-        index_params: List[CollectionRequestIndexParams] = None,
-        params: CollectionRequestParams = None,
+        index_params: List[CollectionIndexParams] = None,
+        params: CollectionParams = None,
     ):
         if db_name is not None:
             self.db_name = db_name
@@ -291,10 +291,8 @@ class CollectionRequest(BaseModel):
         if schema is not None:
             self.schema = self._define_object(schema, Schema)
         if index_params is not None:
-            self.index_params = self._define_list(
-                index_params, CollectionRequestIndexParams
-            )
+            self.index_params = self._define_list(index_params, CollectionIndexParams)
         if params is not None:
-            self.params = self._define_object(params, CollectionRequestParams)
+            self.params = self._define_object(params, CollectionParams)
         if host is not None:
             self.host = host

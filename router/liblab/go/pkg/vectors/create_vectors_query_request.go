@@ -2,7 +2,7 @@
 
 package vectors
 
-type CreateVectorsQueryRequest struct {
+type VectorsQueryRequest struct {
 	DbName         *string  `json:"dbName,omitempty"`
 	CollectionName *string  `json:"collectionName,omitempty" required:"true"`
 	PartitionNames []string `json:"partitionNames,omitempty"`
@@ -10,55 +10,55 @@ type CreateVectorsQueryRequest struct {
 	OutputFields   []string `json:"outputFields,omitempty"`
 }
 
-func (c *CreateVectorsQueryRequest) SetDbName(dbName string) {
+func (c *VectorsQueryRequest) SetDbName(dbName string) {
 	c.DbName = &dbName
 }
 
-func (c *CreateVectorsQueryRequest) GetDbName() *string {
+func (c *VectorsQueryRequest) GetDbName() *string {
 	if c == nil {
 		return nil
 	}
 	return c.DbName
 }
 
-func (c *CreateVectorsQueryRequest) SetCollectionName(collectionName string) {
+func (c *VectorsQueryRequest) SetCollectionName(collectionName string) {
 	c.CollectionName = &collectionName
 }
 
-func (c *CreateVectorsQueryRequest) GetCollectionName() *string {
+func (c *VectorsQueryRequest) GetCollectionName() *string {
 	if c == nil {
 		return nil
 	}
 	return c.CollectionName
 }
 
-func (c *CreateVectorsQueryRequest) SetPartitionNames(partitionNames []string) {
+func (c *VectorsQueryRequest) SetPartitionNames(partitionNames []string) {
 	c.PartitionNames = partitionNames
 }
 
-func (c *CreateVectorsQueryRequest) GetPartitionNames() []string {
+func (c *VectorsQueryRequest) GetPartitionNames() []string {
 	if c == nil {
 		return nil
 	}
 	return c.PartitionNames
 }
 
-func (c *CreateVectorsQueryRequest) SetFilter(filter string) {
+func (c *VectorsQueryRequest) SetFilter(filter string) {
 	c.Filter = &filter
 }
 
-func (c *CreateVectorsQueryRequest) GetFilter() *string {
+func (c *VectorsQueryRequest) GetFilter() *string {
 	if c == nil {
 		return nil
 	}
 	return c.Filter
 }
 
-func (c *CreateVectorsQueryRequest) SetOutputFields(outputFields []string) {
+func (c *VectorsQueryRequest) SetOutputFields(outputFields []string) {
 	c.OutputFields = outputFields
 }
 
-func (c *CreateVectorsQueryRequest) GetOutputFields() []string {
+func (c *VectorsQueryRequest) GetOutputFields() []string {
 	if c == nil {
 		return nil
 	}

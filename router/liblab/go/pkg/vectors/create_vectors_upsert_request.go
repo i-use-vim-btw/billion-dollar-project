@@ -8,58 +8,58 @@ import (
 	"github.com/swagger-api/swagger-petstore/internal/utils"
 )
 
-type CreateVectorsUpsertRequest struct {
-	DbName         *string                                    `json:"dbName,omitempty"`
-	CollectionName *string                                    `json:"collectionName,omitempty" required:"true"`
-	PartitionName  *string                                    `json:"partitionName,omitempty"`
-	Data           map[string]*CreateVectorsUpsertRequestData `json:"data,omitempty"`
+type VectorsUpsertRequest struct {
+	DbName         *string                              `json:"dbName,omitempty"`
+	CollectionName *string                              `json:"collectionName,omitempty" required:"true"`
+	PartitionName  *string                              `json:"partitionName,omitempty"`
+	Data           map[string]*VectorsUpsertRequestData `json:"data,omitempty"`
 }
 
-func (c *CreateVectorsUpsertRequest) SetDbName(dbName string) {
+func (c *VectorsUpsertRequest) SetDbName(dbName string) {
 	c.DbName = &dbName
 }
 
-func (c *CreateVectorsUpsertRequest) GetDbName() *string {
+func (c *VectorsUpsertRequest) GetDbName() *string {
 	if c == nil {
 		return nil
 	}
 	return c.DbName
 }
 
-func (c *CreateVectorsUpsertRequest) SetCollectionName(collectionName string) {
+func (c *VectorsUpsertRequest) SetCollectionName(collectionName string) {
 	c.CollectionName = &collectionName
 }
 
-func (c *CreateVectorsUpsertRequest) GetCollectionName() *string {
+func (c *VectorsUpsertRequest) GetCollectionName() *string {
 	if c == nil {
 		return nil
 	}
 	return c.CollectionName
 }
 
-func (c *CreateVectorsUpsertRequest) SetPartitionName(partitionName string) {
+func (c *VectorsUpsertRequest) SetPartitionName(partitionName string) {
 	c.PartitionName = &partitionName
 }
 
-func (c *CreateVectorsUpsertRequest) GetPartitionName() *string {
+func (c *VectorsUpsertRequest) GetPartitionName() *string {
 	if c == nil {
 		return nil
 	}
 	return c.PartitionName
 }
 
-func (c *CreateVectorsUpsertRequest) SetData(data map[string]*CreateVectorsUpsertRequestData) {
+func (c *VectorsUpsertRequest) SetData(data map[string]*VectorsUpsertRequestData) {
 	c.Data = utils.CloneMap(data)
 }
 
-func (c *CreateVectorsUpsertRequest) GetData() map[string]*CreateVectorsUpsertRequestData {
+func (c *VectorsUpsertRequest) GetData() map[string]*VectorsUpsertRequestData {
 	if c == nil {
 		return nil
 	}
 	return c.Data
 }
 
-type CreateVectorsUpsertRequestData struct {
+type VectorsUpsertRequestData struct {
 	StringValue       *string
 	IntegerValue      *int64
 	NumberValue       *float64
@@ -70,98 +70,98 @@ type CreateVectorsUpsertRequestData struct {
 	BooleanArrayValue []bool
 }
 
-func (c *CreateVectorsUpsertRequestData) SetStringValue(stringValue string) {
+func (c *VectorsUpsertRequestData) SetStringValue(stringValue string) {
 	c.StringValue = &stringValue
 }
 
-func (c *CreateVectorsUpsertRequestData) GetStringValue() *string {
+func (c *VectorsUpsertRequestData) GetStringValue() *string {
 	if c == nil {
 		return nil
 	}
 	return c.StringValue
 }
 
-func (c *CreateVectorsUpsertRequestData) SetIntegerValue(integerValue int64) {
+func (c *VectorsUpsertRequestData) SetIntegerValue(integerValue int64) {
 	c.IntegerValue = &integerValue
 }
 
-func (c *CreateVectorsUpsertRequestData) GetIntegerValue() *int64 {
+func (c *VectorsUpsertRequestData) GetIntegerValue() *int64 {
 	if c == nil {
 		return nil
 	}
 	return c.IntegerValue
 }
 
-func (c *CreateVectorsUpsertRequestData) SetNumberValue(numberValue float64) {
+func (c *VectorsUpsertRequestData) SetNumberValue(numberValue float64) {
 	c.NumberValue = &numberValue
 }
 
-func (c *CreateVectorsUpsertRequestData) GetNumberValue() *float64 {
+func (c *VectorsUpsertRequestData) GetNumberValue() *float64 {
 	if c == nil {
 		return nil
 	}
 	return c.NumberValue
 }
 
-func (c *CreateVectorsUpsertRequestData) SetBooleanValue(booleanValue bool) {
+func (c *VectorsUpsertRequestData) SetBooleanValue(booleanValue bool) {
 	c.BooleanValue = &booleanValue
 }
 
-func (c *CreateVectorsUpsertRequestData) GetBooleanValue() *bool {
+func (c *VectorsUpsertRequestData) GetBooleanValue() *bool {
 	if c == nil {
 		return nil
 	}
 	return c.BooleanValue
 }
 
-func (c *CreateVectorsUpsertRequestData) SetStringArrayValue(stringArrayValue []string) {
+func (c *VectorsUpsertRequestData) SetStringArrayValue(stringArrayValue []string) {
 	c.StringArrayValue = stringArrayValue
 }
 
-func (c *CreateVectorsUpsertRequestData) GetStringArrayValue() []string {
+func (c *VectorsUpsertRequestData) GetStringArrayValue() []string {
 	if c == nil {
 		return nil
 	}
 	return c.StringArrayValue
 }
 
-func (c *CreateVectorsUpsertRequestData) SetIntegerArrayValue(integerArrayValue []int64) {
+func (c *VectorsUpsertRequestData) SetIntegerArrayValue(integerArrayValue []int64) {
 	c.IntegerArrayValue = integerArrayValue
 }
 
-func (c *CreateVectorsUpsertRequestData) GetIntegerArrayValue() []int64 {
+func (c *VectorsUpsertRequestData) GetIntegerArrayValue() []int64 {
 	if c == nil {
 		return nil
 	}
 	return c.IntegerArrayValue
 }
 
-func (c *CreateVectorsUpsertRequestData) SetNumberArrayValue(numberArrayValue []float64) {
+func (c *VectorsUpsertRequestData) SetNumberArrayValue(numberArrayValue []float64) {
 	c.NumberArrayValue = numberArrayValue
 }
 
-func (c *CreateVectorsUpsertRequestData) GetNumberArrayValue() []float64 {
+func (c *VectorsUpsertRequestData) GetNumberArrayValue() []float64 {
 	if c == nil {
 		return nil
 	}
 	return c.NumberArrayValue
 }
 
-func (c *CreateVectorsUpsertRequestData) SetBooleanArrayValue(booleanArrayValue []bool) {
+func (c *VectorsUpsertRequestData) SetBooleanArrayValue(booleanArrayValue []bool) {
 	c.BooleanArrayValue = booleanArrayValue
 }
 
-func (c *CreateVectorsUpsertRequestData) GetBooleanArrayValue() []bool {
+func (c *VectorsUpsertRequestData) GetBooleanArrayValue() []bool {
 	if c == nil {
 		return nil
 	}
 	return c.BooleanArrayValue
 }
 
-func (c CreateVectorsUpsertRequestData) MarshalJSON() ([]byte, error) {
+func (c VectorsUpsertRequestData) MarshalJSON() ([]byte, error) {
 	return marshal.FromComplexObject(c)
 }
 
-func (c *CreateVectorsUpsertRequestData) UnmarshalJSON(data []byte) error {
-	return unmarshal.ToComplexObject[CreateVectorsUpsertRequestData](data, c)
+func (c *VectorsUpsertRequestData) UnmarshalJSON(data []byte) error {
+	return unmarshal.ToComplexObject[VectorsUpsertRequestData](data, c)
 }

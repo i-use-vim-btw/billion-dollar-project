@@ -11,10 +11,10 @@ from .base import BaseModel
         "new_collection_name": "newCollectionName",
     }
 )
-class CreateCollectionsRenameRequest(BaseModel):
-    """CreateCollectionsRenameRequest
+class CollectionRenameRequest(BaseModel):
+    """CollectionRenameRequest
 
-    :param db_name: db_name, defaults to None
+    :param db_name: db_name, defaults to "default"
     :type db_name: str, optional
     :param collection_name: collection_name
     :type collection_name: str
@@ -23,9 +23,14 @@ class CreateCollectionsRenameRequest(BaseModel):
     """
 
     def __init__(
-        self, collection_name: str, new_collection_name: str, db_name: str = None
+        self,
+        collection_name: str,
+        new_collection_name: str,
+        host: str,
+        db_name: str = "default",
     ):
         if db_name is not None:
             self.db_name = db_name
         self.collection_name = collection_name
         self.new_collection_name = new_collection_name
+        self.host = host

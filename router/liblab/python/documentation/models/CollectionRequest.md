@@ -1,4 +1,4 @@
-# CollectionRequest
+# Collection
 
 **Properties**
 
@@ -13,8 +13,8 @@
 | primary_field_name | str                                | ❌       |             |
 | vector_field_name  | str                                | ❌       |             |
 | schema             | Schema                             | ❌       |             |
-| index_params       | List[CollectionRequestIndexParams] | ❌       |             |
-| params             | CollectionRequestParams            | ❌       |             |
+| index_params       | List[CollectionIndexParams] | ❌       |             |
+| params             | CollectionParams            | ❌       |             |
 
 # Schema
 
@@ -49,7 +49,7 @@
 | dim          | int  | ❌       |             |
 | max_capacity | int  | ❌       |             |
 
-# CollectionRequestIndexParams
+# CollectionIndexParams
 
 **Properties**
 
@@ -58,7 +58,7 @@
 | metric_type | str                | ❌       |             |
 | field_name  | str                | ❌       |             |
 | index_name  | str                | ❌       |             |
-| params      | IndexParamsParams1 | ❌       |             |
+| params      | IndexParams | ❌       |             |
 
 # IndexParamsParams_1
 
@@ -71,7 +71,7 @@
 | ef_construction | int  | ❌       |             |
 | nlist           | int  | ❌       |             |
 
-# CollectionRequestParams
+# CollectionParams
 
 **Properties**
 

@@ -1,13 +1,13 @@
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CollectionRequest
+from gandi.models import Collection
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CollectionRequest(
+request_body = Collection(
     db_name="dbName",
     collection_name="collectionName",
     dimension=8,
@@ -57,7 +57,7 @@ request_body = CollectionRequest(
     }
 )
 
-result = sdk.collections.create_collections_create(request_body=request_body)
+result = sdk.collections.create(request_body=request_body)
 
 print(result)
 

@@ -2,27 +2,27 @@
 
 package indexes
 
-type CreateIndexesListRequest struct {
+type IndexListRequest struct {
 	DbName         *string `json:"dbName,omitempty"`
 	CollectionName *string `json:"collectionName,omitempty" required:"true"`
 }
 
-func (c *CreateIndexesListRequest) SetDbName(dbName string) {
+func (c *IndexListRequest) SetDbName(dbName string) {
 	c.DbName = &dbName
 }
 
-func (c *CreateIndexesListRequest) GetDbName() *string {
+func (c *IndexListRequest) GetDbName() *string {
 	if c == nil {
 		return nil
 	}
 	return c.DbName
 }
 
-func (c *CreateIndexesListRequest) SetCollectionName(collectionName string) {
+func (c *IndexListRequest) SetCollectionName(collectionName string) {
 	c.CollectionName = &collectionName
 }
 
-func (c *CreateIndexesListRequest) GetCollectionName() *string {
+func (c *IndexListRequest) GetCollectionName() *string {
 	if c == nil {
 		return nil
 	}

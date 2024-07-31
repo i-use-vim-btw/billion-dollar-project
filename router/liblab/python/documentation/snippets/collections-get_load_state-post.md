@@ -1,19 +1,19 @@
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CreateCollectionsGetLoadStateRequest
+from gandi.models import CollectionGetLoadStateRequest
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CreateCollectionsGetLoadStateRequest(
+request_body = CollectionGetLoadStateRequest(
     db_name="dbName",
     collection_name="collectionName",
     partition_names="partitionNames"
 )
 
-result = sdk.collections.create_collections_get_load_state(request_body=request_body)
+result = sdk.collections.get_load_state(request_body=request_body)
 
 print(result)
 

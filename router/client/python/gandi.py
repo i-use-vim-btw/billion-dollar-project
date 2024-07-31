@@ -7,7 +7,7 @@ class GandiClient:
         self.__URI = uri
         self.header = {"Content-Type": "application/json", "Api_key": api_key}
 
-    def create_collection(
+    def collection(
         self, collection_name="default", dim=128, id="localhost:8080"
     ) -> None:
 
@@ -23,7 +23,7 @@ class GandiClient:
         print(res)
 
     # Not finished, do not use
-    def create_index(
+    def index(
         self,
         collection_name="default",
         field_name="vector",
@@ -132,7 +132,7 @@ collName = "test68"
 
 client.get_stats(collection_name=collName)
 
-client.create_collection(collection_name=collName, dim=5)
+client.collection(collection_name=collName, dim=5)
 
 
 client.insert(

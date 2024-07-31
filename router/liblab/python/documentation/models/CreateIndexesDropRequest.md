@@ -1,4 +1,4 @@
-# CreateIndexesDropRequest
+# IndexDropRequest
 
 **Properties**
 

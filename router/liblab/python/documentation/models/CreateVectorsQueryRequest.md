@@ -1,4 +1,4 @@
-# CreateVectorsQueryRequest
+# VectorsQueryRequest
 
 **Properties**
 

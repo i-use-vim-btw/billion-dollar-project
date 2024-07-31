@@ -6,21 +6,21 @@ package io.gandi.models;
 @lombok.EqualsAndHashCode(callSuper = false)
 @lombok.ToString
 @com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(builder = CollectionRequest.Builder.class)
-public class CollectionRequest extends io.gandi.models.BaseModel {
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(builder = Collection.Builder.class)
+public class Collection extends io.gandi.models.BaseModel {
 
   @lombok.Getter
   @lombok.EqualsAndHashCode(callSuper = false)
   @lombok.ToString
   @com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-  @com.fasterxml.jackson.databind.annotation.JsonDeserialize(builder = CollectionRequest.Schema.Builder.class)
+  @com.fasterxml.jackson.databind.annotation.JsonDeserialize(builder = Collection.Schema.Builder.class)
   public static class Schema extends io.gandi.models.BaseModel {
 
     @lombok.Getter
     @lombok.EqualsAndHashCode(callSuper = false)
     @lombok.ToString
     @com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-    @com.fasterxml.jackson.databind.annotation.JsonDeserialize(builder = CollectionRequest.Schema.Fields.Builder.class)
+    @com.fasterxml.jackson.databind.annotation.JsonDeserialize(builder = Collection.Schema.Fields.Builder.class)
     public static class Fields extends io.gandi.models.BaseModel {
 
       @lombok.Getter
@@ -28,7 +28,7 @@ public class CollectionRequest extends io.gandi.models.BaseModel {
       @lombok.ToString
       @com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
       @com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-        builder = CollectionRequest.Schema.Fields.ElementTypeParams.Builder.class
+        builder = Collection.Schema.Fields.ElementTypeParams.Builder.class
       )
       public static class ElementTypeParams extends io.gandi.models.BaseModel {
 
@@ -70,7 +70,7 @@ public class CollectionRequest extends io.gandi.models.BaseModel {
             super(validationType);
           }
 
-          public CollectionRequest.Schema.Fields.ElementTypeParams build() {
+          public Collection.Schema.Fields.ElementTypeParams build() {
             String validateMsg = validate();
 
             if (validateMsg != null) {
@@ -80,8 +80,8 @@ public class CollectionRequest extends io.gandi.models.BaseModel {
             return buildWithoutValidation();
           }
 
-          public CollectionRequest.Schema.Fields.ElementTypeParams buildWithoutValidation() {
-            return new CollectionRequest.Schema.Fields.ElementTypeParams(this);
+          public Collection.Schema.Fields.ElementTypeParams buildWithoutValidation() {
+            return new Collection.Schema.Fields.ElementTypeParams(this);
           }
 
           @Override
@@ -158,7 +158,7 @@ public class CollectionRequest extends io.gandi.models.BaseModel {
         private java.lang.String elementDataType;
 
         @com.fasterxml.jackson.annotation.JsonProperty("elementTypeParams")
-        private CollectionRequest.Schema.Fields.ElementTypeParams elementTypeParams;
+        private Collection.Schema.Fields.ElementTypeParams elementTypeParams;
 
         @com.fasterxml.jackson.annotation.JsonProperty("fieldName")
         private java.lang.String fieldName;
@@ -177,7 +177,7 @@ public class CollectionRequest extends io.gandi.models.BaseModel {
           super(validationType);
         }
 
-        public CollectionRequest.Schema.Fields build() {
+        public Collection.Schema.Fields build() {
           String validateMsg = validate();
 
           if (validateMsg != null) {
@@ -187,8 +187,8 @@ public class CollectionRequest extends io.gandi.models.BaseModel {
           return buildWithoutValidation();
         }
 
-        public CollectionRequest.Schema.Fields buildWithoutValidation() {
-          return new CollectionRequest.Schema.Fields(this);
+        public Collection.Schema.Fields buildWithoutValidation() {
+          return new Collection.Schema.Fields(this);
         }
 
         @Override
@@ -227,7 +227,7 @@ public class CollectionRequest extends io.gandi.models.BaseModel {
       private final java.lang.String elementDataType;
 
       @com.fasterxml.jackson.annotation.JsonProperty("elementTypeParams")
-      private final CollectionRequest.Schema.Fields.ElementTypeParams elementTypeParams;
+      private final Collection.Schema.Fields.ElementTypeParams elementTypeParams;
 
       @com.fasterxml.jackson.annotation.JsonProperty("fieldName")
       private final java.lang.String fieldName;
@@ -277,7 +277,7 @@ public class CollectionRequest extends io.gandi.models.BaseModel {
       private java.lang.String enableDynamicField;
 
       @com.fasterxml.jackson.annotation.JsonProperty("fields")
-      private java.util.List<CollectionRequest.Schema.Fields> fields;
+      private java.util.List<Collection.Schema.Fields> fields;
 
       public Builder() {
         super(ValidationType.ALL_OF);
@@ -287,7 +287,7 @@ public class CollectionRequest extends io.gandi.models.BaseModel {
         super(validationType);
       }
 
-      public CollectionRequest.Schema build() {
+      public Collection.Schema build() {
         String validateMsg = validate();
 
         if (validateMsg != null) {
@@ -297,8 +297,8 @@ public class CollectionRequest extends io.gandi.models.BaseModel {
         return buildWithoutValidation();
       }
 
-      public CollectionRequest.Schema buildWithoutValidation() {
-        return new CollectionRequest.Schema(this);
+      public Collection.Schema buildWithoutValidation() {
+        return new Collection.Schema(this);
       }
 
       @Override
@@ -337,7 +337,7 @@ public class CollectionRequest extends io.gandi.models.BaseModel {
     private final java.lang.String enableDynamicField;
 
     @com.fasterxml.jackson.annotation.JsonProperty("fields")
-    private final java.util.List<CollectionRequest.Schema.Fields> fields;
+    private final java.util.List<Collection.Schema.Fields> fields;
 
     Schema(Builder builder) {
       super(builder);
@@ -351,7 +351,7 @@ public class CollectionRequest extends io.gandi.models.BaseModel {
   @lombok.EqualsAndHashCode(callSuper = false)
   @lombok.ToString
   @com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-  @com.fasterxml.jackson.databind.annotation.JsonDeserialize(builder = CollectionRequest.IndexParams.Builder.class)
+  @com.fasterxml.jackson.databind.annotation.JsonDeserialize(builder = Collection.IndexParams.Builder.class)
   public static class IndexParams extends io.gandi.models.BaseModel {
 
     @lombok.Getter
@@ -359,7 +359,7 @@ public class CollectionRequest extends io.gandi.models.BaseModel {
     @lombok.ToString
     @com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
     @com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-      builder = CollectionRequest.IndexParams.Params.Builder.class
+      builder = Collection.IndexParams.Params.Builder.class
     )
     public static class Params extends io.gandi.models.BaseModel {
 
@@ -404,7 +404,7 @@ public class CollectionRequest extends io.gandi.models.BaseModel {
           super(validationType);
         }
 
-        public CollectionRequest.IndexParams.Params build() {
+        public Collection.IndexParams.Params build() {
           String validateMsg = validate();
 
           if (validateMsg != null) {
@@ -414,8 +414,8 @@ public class CollectionRequest extends io.gandi.models.BaseModel {
           return buildWithoutValidation();
         }
 
-        public CollectionRequest.IndexParams.Params buildWithoutValidation() {
-          return new CollectionRequest.IndexParams.Params(this);
+        public Collection.IndexParams.Params buildWithoutValidation() {
+          return new Collection.IndexParams.Params(this);
         }
 
         @Override
@@ -499,7 +499,7 @@ public class CollectionRequest extends io.gandi.models.BaseModel {
       private java.lang.String metricType;
 
       @com.fasterxml.jackson.annotation.JsonProperty("params")
-      private CollectionRequest.IndexParams.Params params;
+      private Collection.IndexParams.Params params;
 
       public Builder() {
         super(ValidationType.ALL_OF);
@@ -509,7 +509,7 @@ public class CollectionRequest extends io.gandi.models.BaseModel {
         super(validationType);
       }
 
-      public CollectionRequest.IndexParams build() {
+      public Collection.IndexParams build() {
         String validateMsg = validate();
 
         if (validateMsg != null) {
@@ -519,8 +519,8 @@ public class CollectionRequest extends io.gandi.models.BaseModel {
         return buildWithoutValidation();
       }
 
-      public CollectionRequest.IndexParams buildWithoutValidation() {
-        return new CollectionRequest.IndexParams(this);
+      public Collection.IndexParams buildWithoutValidation() {
+        return new Collection.IndexParams(this);
       }
 
       @Override
@@ -562,7 +562,7 @@ public class CollectionRequest extends io.gandi.models.BaseModel {
     private final java.lang.String metricType;
 
     @com.fasterxml.jackson.annotation.JsonProperty("params")
-    private final CollectionRequest.IndexParams.Params params;
+    private final Collection.IndexParams.Params params;
 
     IndexParams(Builder builder) {
       super(builder);
@@ -577,7 +577,7 @@ public class CollectionRequest extends io.gandi.models.BaseModel {
   @lombok.EqualsAndHashCode(callSuper = false)
   @lombok.ToString
   @com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-  @com.fasterxml.jackson.databind.annotation.JsonDeserialize(builder = CollectionRequest.Params.Builder.class)
+  @com.fasterxml.jackson.databind.annotation.JsonDeserialize(builder = Collection.Params.Builder.class)
   public static class Params extends io.gandi.models.BaseModel {
 
     @lombok.Getter
@@ -627,7 +627,7 @@ public class CollectionRequest extends io.gandi.models.BaseModel {
         super(validationType);
       }
 
-      public CollectionRequest.Params build() {
+      public Collection.Params build() {
         String validateMsg = validate();
 
         if (validateMsg != null) {
@@ -637,8 +637,8 @@ public class CollectionRequest extends io.gandi.models.BaseModel {
         return buildWithoutValidation();
       }
 
-      public CollectionRequest.Params buildWithoutValidation() {
-        return new CollectionRequest.Params(this);
+      public Collection.Params buildWithoutValidation() {
+        return new Collection.Params(this);
       }
 
       @Override
@@ -738,19 +738,19 @@ public class CollectionRequest extends io.gandi.models.BaseModel {
     private java.lang.String idType;
 
     @com.fasterxml.jackson.annotation.JsonProperty("indexParams")
-    private java.util.List<CollectionRequest.IndexParams> indexParams;
+    private java.util.List<Collection.IndexParams> indexParams;
 
     @com.fasterxml.jackson.annotation.JsonProperty("metricType")
     private java.lang.String metricType;
 
     @com.fasterxml.jackson.annotation.JsonProperty("params")
-    private CollectionRequest.Params params;
+    private Collection.Params params;
 
     @com.fasterxml.jackson.annotation.JsonProperty("primaryFieldName")
     private java.lang.String primaryFieldName;
 
     @com.fasterxml.jackson.annotation.JsonProperty("schema")
-    private CollectionRequest.Schema schema;
+    private Collection.Schema schema;
 
     @com.fasterxml.jackson.annotation.JsonProperty("vectorFieldName")
     private java.lang.String vectorFieldName;
@@ -763,7 +763,7 @@ public class CollectionRequest extends io.gandi.models.BaseModel {
       super(validationType);
     }
 
-    public CollectionRequest build() {
+    public Collection build() {
       String validateMsg = validate();
 
       if (validateMsg != null) {
@@ -773,8 +773,8 @@ public class CollectionRequest extends io.gandi.models.BaseModel {
       return buildWithoutValidation();
     }
 
-    public CollectionRequest buildWithoutValidation() {
-      return new CollectionRequest(this);
+    public Collection buildWithoutValidation() {
+      return new Collection(this);
     }
 
     @Override
@@ -821,24 +821,24 @@ public class CollectionRequest extends io.gandi.models.BaseModel {
   private final java.lang.String idType;
 
   @com.fasterxml.jackson.annotation.JsonProperty("indexParams")
-  private final java.util.List<CollectionRequest.IndexParams> indexParams;
+  private final java.util.List<Collection.IndexParams> indexParams;
 
   @com.fasterxml.jackson.annotation.JsonProperty("metricType")
   private final java.lang.String metricType;
 
   @com.fasterxml.jackson.annotation.JsonProperty("params")
-  private final CollectionRequest.Params params;
+  private final Collection.Params params;
 
   @com.fasterxml.jackson.annotation.JsonProperty("primaryFieldName")
   private final java.lang.String primaryFieldName;
 
   @com.fasterxml.jackson.annotation.JsonProperty("schema")
-  private final CollectionRequest.Schema schema;
+  private final Collection.Schema schema;
 
   @com.fasterxml.jackson.annotation.JsonProperty("vectorFieldName")
   private final java.lang.String vectorFieldName;
 
-  CollectionRequest(Builder builder) {
+  Collection(Builder builder) {
     super(builder);
     this.autoId = builder.getAutoId();
     this.collectionName = builder.getCollectionName();

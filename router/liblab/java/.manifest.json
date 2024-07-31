@@ -104,7 +104,7 @@
     "src/main/java/io/gandi/http/util/HttpHeaders.java",
     "src/main/java/io/gandi/http/util/HttpUrl.java",
     "src/main/java/io/gandi/models/BaseModel.java",
-    "src/main/java/io/gandi/models/CollectionRequest.java",
+    "src/main/java/io/gandi/models/Collection.java",
     "src/main/java/io/gandi/models/Create10Request.java",
     "src/main/java/io/gandi/models/Create12Request.java",
     "src/main/java/io/gandi/models/Create13Request.java",

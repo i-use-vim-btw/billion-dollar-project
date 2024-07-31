@@ -2,39 +2,39 @@
 
 package collections
 
-type CreateCollectionsRenameRequest struct {
+type CollectionRenameRequest struct {
 	DbName            *string `json:"dbName,omitempty"`
 	CollectionName    *string `json:"collectionName,omitempty" required:"true"`
 	NewCollectionName *string `json:"newCollectionName,omitempty" required:"true"`
 }
 
-func (c *CreateCollectionsRenameRequest) SetDbName(dbName string) {
+func (c *CollectionRenameRequest) SetDbName(dbName string) {
 	c.DbName = &dbName
 }
 
-func (c *CreateCollectionsRenameRequest) GetDbName() *string {
+func (c *CollectionRenameRequest) GetDbName() *string {
 	if c == nil {
 		return nil
 	}
 	return c.DbName
 }
 
-func (c *CreateCollectionsRenameRequest) SetCollectionName(collectionName string) {
+func (c *CollectionRenameRequest) SetCollectionName(collectionName string) {
 	c.CollectionName = &collectionName
 }
 
-func (c *CreateCollectionsRenameRequest) GetCollectionName() *string {
+func (c *CollectionRenameRequest) GetCollectionName() *string {
 	if c == nil {
 		return nil
 	}
 	return c.CollectionName
 }
 
-func (c *CreateCollectionsRenameRequest) SetNewCollectionName(newCollectionName string) {
+func (c *CollectionRenameRequest) SetNewCollectionName(newCollectionName string) {
 	c.NewCollectionName = &newCollectionName
 }
 
-func (c *CreateCollectionsRenameRequest) GetNewCollectionName() *string {
+func (c *CollectionRenameRequest) GetNewCollectionName() *string {
 	if c == nil {
 		return nil
 	}

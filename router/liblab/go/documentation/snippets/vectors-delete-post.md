@@ -11,11 +11,11 @@ config := gandiconfig.NewConfig()
 client := gandi.NewGandi(config)
 
 
-request := vectors.CreateVectorsDeleteRequest{}
+request := vectors.VectorsDeleteRequest{}
 request.SetCollectionName("CollectionName")
 request.SetFilter("Filter")
 
-response, err := client.Vectors.CreateVectorsDelete(context.Background(), request)
+response, err := client.Vectors.VectorsDelete(context.Background(), request)
 if err != nil {
   panic(err)
 }

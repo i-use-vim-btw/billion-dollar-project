@@ -2,39 +2,39 @@
 
 package collections
 
-type CreateCollectionsGetLoadStateRequest struct {
+type CollectionGetLoadStateRequest struct {
 	DbName         *string `json:"dbName,omitempty"`
 	CollectionName *string `json:"collectionName,omitempty" required:"true"`
 	PartitionNames *string `json:"partitionNames,omitempty"`
 }
 
-func (c *CreateCollectionsGetLoadStateRequest) SetDbName(dbName string) {
+func (c *CollectionGetLoadStateRequest) SetDbName(dbName string) {
 	c.DbName = &dbName
 }
 
-func (c *CreateCollectionsGetLoadStateRequest) GetDbName() *string {
+func (c *CollectionGetLoadStateRequest) GetDbName() *string {
 	if c == nil {
 		return nil
 	}
 	return c.DbName
 }
 
-func (c *CreateCollectionsGetLoadStateRequest) SetCollectionName(collectionName string) {
+func (c *CollectionGetLoadStateRequest) SetCollectionName(collectionName string) {
 	c.CollectionName = &collectionName
 }
 
-func (c *CreateCollectionsGetLoadStateRequest) GetCollectionName() *string {
+func (c *CollectionGetLoadStateRequest) GetCollectionName() *string {
 	if c == nil {
 		return nil
 	}
 	return c.CollectionName
 }
 
-func (c *CreateCollectionsGetLoadStateRequest) SetPartitionNames(partitionNames string) {
+func (c *CollectionGetLoadStateRequest) SetPartitionNames(partitionNames string) {
 	c.PartitionNames = &partitionNames
 }
 
-func (c *CreateCollectionsGetLoadStateRequest) GetPartitionNames() *string {
+func (c *CollectionGetLoadStateRequest) GetPartitionNames() *string {
 	if c == nil {
 		return nil
 	}

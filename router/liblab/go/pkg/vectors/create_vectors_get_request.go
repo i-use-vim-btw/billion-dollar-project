@@ -7,7 +7,7 @@ import (
 	"github.com/swagger-api/swagger-petstore/internal/unmarshal"
 )
 
-type CreateVectorsGetRequest struct {
+type VectorsGetRequest struct {
 	DbName         *string  `json:"dbName,omitempty"`
 	CollectionName *string  `json:"collectionName,omitempty" required:"true"`
 	Id             *Id      `json:"id,omitempty"`
@@ -15,55 +15,55 @@ type CreateVectorsGetRequest struct {
 	OutputFields   []string `json:"outputFields,omitempty"`
 }
 
-func (c *CreateVectorsGetRequest) SetDbName(dbName string) {
+func (c *VectorsGetRequest) SetDbName(dbName string) {
 	c.DbName = &dbName
 }
 
-func (c *CreateVectorsGetRequest) GetDbName() *string {
+func (c *VectorsGetRequest) GetDbName() *string {
 	if c == nil {
 		return nil
 	}
 	return c.DbName
 }
 
-func (c *CreateVectorsGetRequest) SetCollectionName(collectionName string) {
+func (c *VectorsGetRequest) SetCollectionName(collectionName string) {
 	c.CollectionName = &collectionName
 }
 
-func (c *CreateVectorsGetRequest) GetCollectionName() *string {
+func (c *VectorsGetRequest) GetCollectionName() *string {
 	if c == nil {
 		return nil
 	}
 	return c.CollectionName
 }
 
-func (c *CreateVectorsGetRequest) SetId(id Id) {
+func (c *VectorsGetRequest) SetId(id Id) {
 	c.Id = &id
 }
 
-func (c *CreateVectorsGetRequest) GetId() *Id {
+func (c *VectorsGetRequest) GetId() *Id {
 	if c == nil {
 		return nil
 	}
 	return c.Id
 }
 
-func (c *CreateVectorsGetRequest) SetPartitionNames(partitionNames []string) {
+func (c *VectorsGetRequest) SetPartitionNames(partitionNames []string) {
 	c.PartitionNames = partitionNames
 }
 
-func (c *CreateVectorsGetRequest) GetPartitionNames() []string {
+func (c *VectorsGetRequest) GetPartitionNames() []string {
 	if c == nil {
 		return nil
 	}
 	return c.PartitionNames
 }
 
-func (c *CreateVectorsGetRequest) SetOutputFields(outputFields []string) {
+func (c *VectorsGetRequest) SetOutputFields(outputFields []string) {
 	c.OutputFields = outputFields
 }
 
-func (c *CreateVectorsGetRequest) GetOutputFields() []string {
+func (c *VectorsGetRequest) GetOutputFields() []string {
 	if c == nil {
 		return nil
 	}

@@ -1,13 +1,13 @@
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CreateVectorsGetRequest
+from gandi.models import VectorsGetRequest
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CreateVectorsGetRequest(
+request_body = VectorsGetRequest(
     db_name="dbName",
     collection_name="collectionName",
     id_="veniam lab",
@@ -19,7 +19,7 @@ request_body = CreateVectorsGetRequest(
     ]
 )
 
-result = sdk.vectors.create_vectors_get(request_body=request_body)
+result = sdk.vectors.get(request_body=request_body)
 
 print(result)
 

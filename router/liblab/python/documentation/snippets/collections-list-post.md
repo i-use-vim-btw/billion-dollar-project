@@ -1,17 +1,17 @@
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CreateCollectionsListRequest
+from gandi.models import CollectionListRequest
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CreateCollectionsListRequest(
+request_body = CollectionListRequest(
     db_name="dbName"
 )
 
-result = sdk.collections.create_collections_list(request_body=request_body)
+result = sdk.collections.list(request_body=request_body)
 
 print(result)
 

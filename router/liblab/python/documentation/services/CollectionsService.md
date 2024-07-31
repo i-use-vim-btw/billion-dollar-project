@@ -4,18 +4,18 @@ A list of all methods in the `CollectionsService` service. Click on the method n
 
 | Methods                                                                 | Description                                                                                          |
 | :---------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------- |
-| [create_collections_create](#create_collections_create)                 | This operation creates a collection in a specified cluster.                                          |
-| [create_collections_describe](#create_collections_describe)             | Returns the details of a collection.                                                                 |
-| [create_collections_drop](#create_collections_drop)                     | This operation drops the current collection and all data within the collection.                      |
-| [create_collections_get_load_state](#create_collections_get_load_state) | Returns the load state of a specific collection.                                                     |
-| [create_collections_get_stats](#create_collections_get_stats)           | This operation gets the number of entities in a collection.                                          |
-| [create_collections_has](#create_collections_has)                       | Checks if a collection exists in the database.                                                       |
-| [create_collections_list](#create_collections_list)                     | Returns a list of all collections in the specified database.                                         |
-| [create_collections_load](#create_collections_load)                     | Loads a collection into memory.                                                                      |
-| [create_collections_release](#create_collections_release)               | Releases a collection from memory.                                                                   |
-| [create_collections_rename](#create_collections_rename)                 | This operation renames an existing collection and optionally moves the collection to a new database. |
+| [create](#create)                 | This operation creates a collection in a specified cluster.                                          |
+| [describe](#describe)             | Returns the details of a collection.                                                                 |
+| [drop](#drop)                     | This operation drops the current collection and all data within the collection.                      |
+| [get_load_state](#get_load_state) | Returns the load state of a specific collection.                                                     |
+| [get_stats](#get_stats)           | This operation gets the number of entities in a collection.                                          |
+| [has](#has)                       | Checks if a collection exists in the database.                                                       |
+| [list](#list)                     | Returns a list of all collections in the specified database.                                         |
+| [load](#load)                     | Loads a collection into memory.                                                                      |
+| [release](#release)               | Releases a collection from memory.                                                                   |
+| [rename](#rename)                 | This operation renames an existing collection and optionally moves the collection to a new database. |
 
-## create_collections_create
+## create
 
 This operation creates a collection in a specified cluster.
 
@@ -26,20 +26,20 @@ This operation creates a collection in a specified cluster.
 
 | Name         | Type                                                | Required | Description       |
 | :----------- | :-------------------------------------------------- | :------- | :---------------- |
-| request_body | [CollectionRequest](../models/CollectionRequest.md) | ✅       | The request body. |
+| request_body | [Collection](../models/Collection.md) | ✅       | The request body. |
 
 **Example Usage Code Snippet**
 
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CollectionRequest
+from gandi.models import Collection
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CollectionRequest(
+request_body = Collection(
     db_name="dbName",
     collection_name="collectionName",
     dimension=8,
@@ -89,12 +89,12 @@ request_body = CollectionRequest(
     }
 )
 
-result = sdk.collections.create_collections_create(request_body=request_body)
+result = sdk.collections.create(request_body=request_body)
 
 print(result)
 ```
 
-## create_collections_describe
+## describe
 
 Returns the details of a collection.
 
@@ -105,30 +105,30 @@ Returns the details of a collection.
 
 | Name         | Type                                                                              | Required | Description       |
 | :----------- | :-------------------------------------------------------------------------------- | :------- | :---------------- |
-| request_body | [CreateCollectionsDescribeRequest](../models/CreateCollectionsDescribeRequest.md) | ✅       | The request body. |
+| request_body | [CollectionDescribeRequest](../models/CollectionDescribeRequest.md) | ✅       | The request body. |
 
 **Example Usage Code Snippet**
 
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CreateCollectionsDescribeRequest
+from gandi.models import CollectionDescribeRequest
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CreateCollectionsDescribeRequest(
+request_body = CollectionDescribeRequest(
     db_name="dbName",
     collection_name="collectionName"
 )
 
-result = sdk.collections.create_collections_describe(request_body=request_body)
+result = sdk.collections.describe(request_body=request_body)
 
 print(result)
 ```
 
-## create_collections_drop
+## drop
 
 This operation drops the current collection and all data within the collection.
 
@@ -139,30 +139,30 @@ This operation drops the current collection and all data within the collection.
 
 | Name         | Type                                                                      | Required | Description       |
 | :----------- | :------------------------------------------------------------------------ | :------- | :---------------- |
-| request_body | [CreateCollectionsDropRequest](../models/CreateCollectionsDropRequest.md) | ✅       | The request body. |
+| request_body | [CollectionDropRequest](../models/CollectionDropRequest.md) | ✅       | The request body. |
 
 **Example Usage Code Snippet**
 
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CreateCollectionsDropRequest
+from gandi.models import CollectionDropRequest
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CreateCollectionsDropRequest(
+request_body = CollectionDropRequest(
     db_name="dbName",
     collection_name="collectionName"
 )
 
-result = sdk.collections.create_collections_drop(request_body=request_body)
+result = sdk.collections.drop(request_body=request_body)
 
 print(result)
 ```
 
-## create_collections_get_load_state
+## get_load_state
 
 Returns the load state of a specific collection.
 
@@ -173,31 +173,31 @@ Returns the load state of a specific collection.
 
 | Name         | Type                                                                                      | Required | Description       |
 | :----------- | :---------------------------------------------------------------------------------------- | :------- | :---------------- |
-| request_body | [CreateCollectionsGetLoadStateRequest](../models/CreateCollectionsGetLoadStateRequest.md) | ✅       | The request body. |
+| request_body | [CollectionGetLoadStateRequest](../models/CollectionGetLoadStateRequest.md) | ✅       | The request body. |
 
 **Example Usage Code Snippet**
 
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CreateCollectionsGetLoadStateRequest
+from gandi.models import CollectionGetLoadStateRequest
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CreateCollectionsGetLoadStateRequest(
+request_body = CollectionGetLoadStateRequest(
     db_name="dbName",
     collection_name="collectionName",
     partition_names="partitionNames"
 )
 
-result = sdk.collections.create_collections_get_load_state(request_body=request_body)
+result = sdk.collections.get_load_state(request_body=request_body)
 
 print(result)
 ```
 
-## create_collections_get_stats
+## get_stats
 
 This operation gets the number of entities in a collection.
 
@@ -208,30 +208,30 @@ This operation gets the number of entities in a collection.
 
 | Name         | Type                                                                              | Required | Description       |
 | :----------- | :-------------------------------------------------------------------------------- | :------- | :---------------- |
-| request_body | [CreateCollectionsGetStatsRequest](../models/CreateCollectionsGetStatsRequest.md) | ✅       | The request body. |
+| request_body | [CollectionGetStatsRequest](../models/CollectionGetStatsRequest.md) | ✅       | The request body. |
 
 **Example Usage Code Snippet**
 
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CreateCollectionsGetStatsRequest
+from gandi.models import CollectionGetStatsRequest
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CreateCollectionsGetStatsRequest(
+request_body = CollectionGetStatsRequest(
     db_name="dbName",
     collection_name="collectionName"
 )
 
-result = sdk.collections.create_collections_get_stats(request_body=request_body)
+result = sdk.collections.get_stats(request_body=request_body)
 
 print(result)
 ```
 
-## create_collections_has
+## has
 
 Checks if a collection exists in the database.
 
@@ -242,30 +242,30 @@ Checks if a collection exists in the database.
 
 | Name         | Type                                                                    | Required | Description       |
 | :----------- | :---------------------------------------------------------------------- | :------- | :---------------- |
-| request_body | [CreateCollectionsHasRequest](../models/CreateCollectionsHasRequest.md) | ✅       | The request body. |
+| request_body | [CollectionHasRequest](../models/CollectionHasRequest.md) | ✅       | The request body. |
 
 **Example Usage Code Snippet**
 
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CreateCollectionsHasRequest
+from gandi.models import CollectionHasRequest
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CreateCollectionsHasRequest(
+request_body = CollectionHasRequest(
     db_name="dbName",
     collection_name="collectionName"
 )
 
-result = sdk.collections.create_collections_has(request_body=request_body)
+result = sdk.collections.has(request_body=request_body)
 
 print(result)
 ```
 
-## create_collections_list
+## list
 
 Returns a list of all collections in the specified database.
 
@@ -276,29 +276,29 @@ Returns a list of all collections in the specified database.
 
 | Name         | Type                                                                      | Required | Description       |
 | :----------- | :------------------------------------------------------------------------ | :------- | :---------------- |
-| request_body | [CreateCollectionsListRequest](../models/CreateCollectionsListRequest.md) | ✅       | The request body. |
+| request_body | [CollectionListRequest](../models/CollectionListRequest.md) | ✅       | The request body. |
 
 **Example Usage Code Snippet**
 
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CreateCollectionsListRequest
+from gandi.models import CollectionListRequest
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CreateCollectionsListRequest(
+request_body = CollectionListRequest(
     db_name="dbName"
 )
 
-result = sdk.collections.create_collections_list(request_body=request_body)
+result = sdk.collections.list(request_body=request_body)
 
 print(result)
 ```
 
-## create_collections_load
+## load
 
 Loads a collection into memory.
 
@@ -309,30 +309,30 @@ Loads a collection into memory.
 
 | Name         | Type                                                                      | Required | Description       |
 | :----------- | :------------------------------------------------------------------------ | :------- | :---------------- |
-| request_body | [CreateCollectionsLoadRequest](../models/CreateCollectionsLoadRequest.md) | ✅       | The request body. |
+| request_body | [CollectionLoadRequest](../models/CollectionLoadRequest.md) | ✅       | The request body. |
 
 **Example Usage Code Snippet**
 
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CreateCollectionsLoadRequest
+from gandi.models import CollectionLoadRequest
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CreateCollectionsLoadRequest(
+request_body = CollectionLoadRequest(
     db_name="dbName",
     collection_name="collectionName"
 )
 
-result = sdk.collections.create_collections_load(request_body=request_body)
+result = sdk.collections.load(request_body=request_body)
 
 print(result)
 ```
 
-## create_collections_release
+## release
 
 Releases a collection from memory.
 
@@ -343,30 +343,30 @@ Releases a collection from memory.
 
 | Name         | Type                                                                            | Required | Description       |
 | :----------- | :------------------------------------------------------------------------------ | :------- | :---------------- |
-| request_body | [CreateCollectionsReleaseRequest](../models/CreateCollectionsReleaseRequest.md) | ✅       | The request body. |
+| request_body | [CollectionReleaseRequest](../models/CollectionReleaseRequest.md) | ✅       | The request body. |
 
 **Example Usage Code Snippet**
 
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CreateCollectionsReleaseRequest
+from gandi.models import CollectionReleaseRequest
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CreateCollectionsReleaseRequest(
+request_body = CollectionReleaseRequest(
     db_name="dbName",
     collection_name="collectionName"
 )
 
-result = sdk.collections.create_collections_release(request_body=request_body)
+result = sdk.collections.release(request_body=request_body)
 
 print(result)
 ```
 
-## create_collections_rename
+## rename
 
 This operation renames an existing collection and optionally moves the collection to a new database.
 
@@ -377,26 +377,26 @@ This operation renames an existing collection and optionally moves the collectio
 
 | Name         | Type                                                                          | Required | Description       |
 | :----------- | :---------------------------------------------------------------------------- | :------- | :---------------- |
-| request_body | [CreateCollectionsRenameRequest](../models/CreateCollectionsRenameRequest.md) | ✅       | The request body. |
+| request_body | [CollectionRenameRequest](../models/CollectionRenameRequest.md) | ✅       | The request body. |
 
 **Example Usage Code Snippet**
 
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CreateCollectionsRenameRequest
+from gandi.models import CollectionRenameRequest
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CreateCollectionsRenameRequest(
+request_body = CollectionRenameRequest(
     db_name="dbName",
     collection_name="collectionName",
     new_collection_name="newCollectionName"
 )
 
-result = sdk.collections.create_collections_rename(request_body=request_body)
+result = sdk.collections.rename(request_body=request_body)
 
 print(result)
 ```

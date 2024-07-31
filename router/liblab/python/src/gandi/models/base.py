@@ -100,7 +100,7 @@ class BaseModel:
         result: List[T] = []
         for item in input_data:
             if hasattr(list_class, "__args__") and len(list_class.__args__) > 0:
-                class_list = self.__create_class_map(list_class)
+                class_list = self.__class_map(list_class)
                 OneOfBaseModel.class_list = class_list
                 result.append(OneOfBaseModel.return_one_of(item))
             elif issubclass(list_class, Enum):
@@ -115,7 +115,7 @@ class BaseModel:
                 result.append(list_class(item))
         return result
 
-    def __create_class_map(self, union_type):
+    def __class_map(self, union_type):
         """
         Create a dictionary that maps class names to the actual classes in a Union type.
 

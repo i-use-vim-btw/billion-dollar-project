@@ -14,7 +14,7 @@ client := gandi.NewGandi(config)
 request := indexes.IndexRequest{}
 request.SetCollectionName("CollectionName")
 
-response, err := client.Indexes.CreateIndexesCreate(context.Background(), request)
+response, err := client.Indexes.IndexCreate(context.Background(), request)
 if err != nil {
   panic(err)
 }

@@ -1,4 +1,4 @@
-# CreateVectorsDeleteRequest
+# VectorsDeleteRequest
 
 **Properties**
 

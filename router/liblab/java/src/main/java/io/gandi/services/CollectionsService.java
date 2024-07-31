@@ -26,7 +26,7 @@ public class CollectionsService extends BaseService implements CollectionsClient
   /**
    * @summary Create a new collection
    */
-  public String create(io.gandi.models.CollectionRequest input) throws ApiException {
+  public String create(io.gandi.models.Collection input) throws ApiException {
     String url = HttpUrl.builder(this.serverUrl).addPathParameter("collections").addPathParameter("create").build();
     RequestBody requestBody = RequestBody.create(
       Objects.requireNonNull(ModelConverter.modelToJson(input)),

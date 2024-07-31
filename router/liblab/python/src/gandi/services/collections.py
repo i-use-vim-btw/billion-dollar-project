@@ -4,38 +4,38 @@ from .utils.validator import Validator
 from .utils.base_service import BaseService
 from ..net.transport.serializer import Serializer
 from ..models.utils.cast_models import cast_models
-from ..models.create_collections_rename_request import CreateCollectionsRenameRequest
-from ..models.create_collections_release_request import CreateCollectionsReleaseRequest
-from ..models.create_collections_load_request import CreateCollectionsLoadRequest
-from ..models.create_collections_list_request import CreateCollectionsListRequest
-from ..models.create_collections_has_request import CreateCollectionsHasRequest
-from ..models.create_collections_get_stats_request import (
-    CreateCollectionsGetStatsRequest,
+from ..models.collections_rename_request import CollectionRenameRequest
+from ..models.collections_release_request import CollectionReleaseRequest
+from ..models.collections_load_request import CollectionLoadRequest
+from ..models.collections_list_request import CollectionListRequest
+from ..models.collections_has_request import CollectionHasRequest
+from ..models.collections_get_stats_request import (
+    CollectionGetStatsRequest,
 )
-from ..models.create_collections_get_load_state_request import (
-    CreateCollectionsGetLoadStateRequest,
+from ..models.collections_get_load_state_request import (
+    CollectionGetLoadStateRequest,
 )
-from ..models.create_collections_drop_request import CreateCollectionsDropRequest
-from ..models.create_collections_describe_request import (
-    CreateCollectionsDescribeRequest,
+from ..models.collections_drop_request import CollectionDropRequest
+from ..models.collection_describe_request import (
+    CollectionDescribeRequest,
 )
-from ..models.collection_request import CollectionRequest
+from ..models.collection import Collection
 
 
 class CollectionsService(BaseService):
 
     @cast_models
-    def create_collections_create(self, request_body: CollectionRequest):
+    def create(self, request_body: Collection):
         """This operation creates a collection in a specified cluster.
 
         :param request_body: The request body.
-        :type request_body: CollectionRequest
+        :type request_body: Collection
         ...
         :raises RequestError: Raised when a request fails, with optional HTTP status code and details.
         ...
         """
 
-        Validator(CollectionRequest).validate(request_body)
+        Validator(Collection).validate(request_body)
 
         serialized_request = (
             Serializer(
@@ -51,19 +51,17 @@ class CollectionsService(BaseService):
         return response
 
     @cast_models
-    def create_collections_describe(
-        self, request_body: CreateCollectionsDescribeRequest
-    ):
+    def describe(self, request_body: CollectionDescribeRequest):
         """Returns the details of a collection.
 
         :param request_body: The request body.
-        :type request_body: CreateCollectionsDescribeRequest
+        :type request_body: CollectionDescribeRequest
         ...
         :raises RequestError: Raised when a request fails, with optional HTTP status code and details.
         ...
         """
 
-        Validator(CreateCollectionsDescribeRequest).validate(request_body)
+        Validator(CollectionDescribeRequest).validate(request_body)
 
         serialized_request = (
             Serializer(
@@ -79,17 +77,17 @@ class CollectionsService(BaseService):
         return response
 
     @cast_models
-    def create_collections_drop(self, request_body: CreateCollectionsDropRequest):
+    def drop(self, request_body: CollectionDropRequest):
         """This operation drops the current collection and all data within the collection.
 
         :param request_body: The request body.
-        :type request_body: CreateCollectionsDropRequest
+        :type request_body: CollectionDropRequest
         ...
         :raises RequestError: Raised when a request fails, with optional HTTP status code and details.
         ...
         """
 
-        Validator(CreateCollectionsDropRequest).validate(request_body)
+        Validator(CollectionDropRequest).validate(request_body)
 
         serialized_request = (
             Serializer(f"{self.base_url}/collections/drop", self.get_default_headers())
@@ -103,19 +101,17 @@ class CollectionsService(BaseService):
         return response
 
     @cast_models
-    def create_collections_get_load_state(
-        self, request_body: CreateCollectionsGetLoadStateRequest
-    ):
+    def get_load_state(self, request_body: CollectionGetLoadStateRequest):
         """Returns the load state of a specific collection.
 
         :param request_body: The request body.
-        :type request_body: CreateCollectionsGetLoadStateRequest
+        :type request_body: CollectionGetLoadStateRequest
         ...
         :raises RequestError: Raised when a request fails, with optional HTTP status code and details.
         ...
         """
 
-        Validator(CreateCollectionsGetLoadStateRequest).validate(request_body)
+        Validator(CollectionGetLoadStateRequest).validate(request_body)
 
         serialized_request = (
             Serializer(
@@ -132,19 +128,17 @@ class CollectionsService(BaseService):
         return response
 
     @cast_models
-    def create_collections_get_stats(
-        self, request_body: CreateCollectionsGetStatsRequest
-    ):
+    def get_stats(self, request_body: CollectionGetStatsRequest):
         """This operation gets the number of entities in a collection.
 
         :param request_body: The request body.
-        :type request_body: CreateCollectionsGetStatsRequest
+        :type request_body: CollectionGetStatsRequest
         ...
         :raises RequestError: Raised when a request fails, with optional HTTP status code and details.
         ...
         """
 
-        Validator(CreateCollectionsGetStatsRequest).validate(request_body)
+        Validator(CollectionGetStatsRequest).validate(request_body)
 
         serialized_request = (
             Serializer(
@@ -160,17 +154,17 @@ class CollectionsService(BaseService):
         return response
 
     @cast_models
-    def create_collections_has(self, request_body: CreateCollectionsHasRequest):
+    def has(self, request_body: CollectionHasRequest):
         """Checks if a collection exists in the database.
 
         :param request_body: The request body.
-        :type request_body: CreateCollectionsHasRequest
+        :type request_body: CollectionHasRequest
         ...
         :raises RequestError: Raised when a request fails, with optional HTTP status code and details.
         ...
         """
 
-        Validator(CreateCollectionsHasRequest).validate(request_body)
+        Validator(CollectionHasRequest).validate(request_body)
 
         serialized_request = (
             Serializer(f"{self.base_url}/collections/has", self.get_default_headers())
@@ -184,17 +178,17 @@ class CollectionsService(BaseService):
         return response
 
     @cast_models
-    def create_collections_list(self, request_body: CreateCollectionsListRequest):
+    def list(self, request_body: CollectionListRequest):
         """Returns a list of all collections in the specified database.
 
         :param request_body: The request body.
-        :type request_body: CreateCollectionsListRequest
+        :type request_body: CollectionListRequest
         ...
         :raises RequestError: Raised when a request fails, with optional HTTP status code and details.
         ...
         """
 
-        Validator(CreateCollectionsListRequest).validate(request_body)
+        Validator(CollectionListRequest).validate(request_body)
 
         serialized_request = (
             Serializer(f"{self.base_url}/collections/list", self.get_default_headers())
@@ -208,17 +202,17 @@ class CollectionsService(BaseService):
         return response
 
     @cast_models
-    def create_collections_load(self, request_body: CreateCollectionsLoadRequest):
+    def load(self, request_body: CollectionLoadRequest):
         """Loads a collection into memory.
 
         :param request_body: The request body.
-        :type request_body: CreateCollectionsLoadRequest
+        :type request_body: CollectionLoadRequest
         ...
         :raises RequestError: Raised when a request fails, with optional HTTP status code and details.
         ...
         """
 
-        Validator(CreateCollectionsLoadRequest).validate(request_body)
+        Validator(CollectionLoadRequest).validate(request_body)
 
         serialized_request = (
             Serializer(f"{self.base_url}/collections/load", self.get_default_headers())
@@ -232,17 +226,17 @@ class CollectionsService(BaseService):
         return response
 
     @cast_models
-    def create_collections_release(self, request_body: CreateCollectionsReleaseRequest):
+    def release(self, request_body: CollectionReleaseRequest):
         """Releases a collection from memory.
 
         :param request_body: The request body.
-        :type request_body: CreateCollectionsReleaseRequest
+        :type request_body: CollectionReleaseRequest
         ...
         :raises RequestError: Raised when a request fails, with optional HTTP status code and details.
         ...
         """
 
-        Validator(CreateCollectionsReleaseRequest).validate(request_body)
+        Validator(CollectionReleaseRequest).validate(request_body)
 
         serialized_request = (
             Serializer(
@@ -258,17 +252,17 @@ class CollectionsService(BaseService):
         return response
 
     @cast_models
-    def create_collections_rename(self, request_body: CreateCollectionsRenameRequest):
+    def rename(self, request_body: CollectionRenameRequest):
         """This operation renames an existing collection and optionally moves the collection to a new database.
 
         :param request_body: The request body.
-        :type request_body: CreateCollectionsRenameRequest
+        :type request_body: CollectionRenameRequest
         ...
         :raises RequestError: Raised when a request fails, with optional HTTP status code and details.
         ...
         """
 
-        Validator(CreateCollectionsRenameRequest).validate(request_body)
+        Validator(CollectionRenameRequest).validate(request_body)
 
         serialized_request = (
             Serializer(

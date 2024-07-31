@@ -1,18 +1,18 @@
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CreateCollectionsGetStatsRequest
+from gandi.models import CollectionGetStatsRequest
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CreateCollectionsGetStatsRequest(
+request_body = CollectionGetStatsRequest(
     db_name="dbName",
     collection_name="collectionName"
 )
 
-result = sdk.collections.create_collections_get_stats(request_body=request_body)
+result = sdk.collections.get_stats(request_body=request_body)
 
 print(result)
 

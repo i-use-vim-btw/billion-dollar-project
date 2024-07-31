@@ -2,15 +2,15 @@
 
 package collections
 
-type CreateCollectionsListRequest struct {
+type CollectionListRequest struct {
 	DbName *string `json:"dbName,omitempty" required:"true"`
 }
 
-func (c *CreateCollectionsListRequest) SetDbName(dbName string) {
+func (c *CollectionListRequest) SetDbName(dbName string) {
 	c.DbName = &dbName
 }
 
-func (c *CreateCollectionsListRequest) GetDbName() *string {
+func (c *CollectionListRequest) GetDbName() *string {
 	if c == nil {
 		return nil
 	}

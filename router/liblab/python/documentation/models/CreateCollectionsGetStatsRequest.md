@@ -1,4 +1,4 @@
-# CreateCollectionsGetStatsRequest
+# CollectionGetStatsRequest
 
 **Properties**
 

@@ -1,18 +1,18 @@
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CreateCollectionsHasRequest
+from gandi.models import CollectionHasRequest
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CreateCollectionsHasRequest(
+request_body = CollectionHasRequest(
     db_name="dbName",
     collection_name="collectionName"
 )
 
-result = sdk.collections.create_collections_has(request_body=request_body)
+result = sdk.collections.has(request_body=request_body)
 
 print(result)
 

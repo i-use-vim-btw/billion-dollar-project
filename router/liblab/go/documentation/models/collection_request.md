@@ -1,4 +1,4 @@
-# CollectionRequest
+# Collection
 
 **Properties**
 
@@ -13,8 +13,8 @@
 | PrimaryFieldName | string                                     | ❌       |             |
 | VectorFieldName  | string                                     | ❌       |             |
 | Schema           | collections.Schema                         | ❌       |             |
-| IndexParams      | []collections.CollectionRequestIndexParams | ❌       |             |
-| Params           | collections.CollectionRequestParams        | ❌       |             |
+| IndexParams      | []collections.CollectionIndexParams | ❌       |             |
+| Params           | collections.CollectionParams        | ❌       |             |
 
 # Schema
 
@@ -49,7 +49,7 @@
 | Dim         | int64 | ❌       |             |
 | MaxCapacity | int64 | ❌       |             |
 
-# CollectionRequestIndexParams
+# CollectionIndexParams
 
 **Properties**
 
@@ -58,9 +58,9 @@
 | MetricType | string                         | ❌       |             |
 | FieldName  | string                         | ❌       |             |
 | IndexName  | string                         | ❌       |             |
-| Params     | collections.IndexParamsParams1 | ❌       |             |
+| Params     | collections.IndexParams | ❌       |             |
 
-# IndexParamsParams1
+# IndexParams
 
 **Properties**
 
@@ -71,7 +71,7 @@
 | EfConstruction | int64  | ❌       |             |
 | Nlist          | int64  | ❌       |             |
 
-# CollectionRequestParams
+# CollectionParams
 
 **Properties**
 

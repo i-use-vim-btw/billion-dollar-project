@@ -2,27 +2,27 @@
 
 package collections
 
-type CreateCollectionsLoadRequest struct {
+type CollectionLoadRequest struct {
 	DbName         *string `json:"dbName,omitempty"`
 	CollectionName *string `json:"collectionName,omitempty" required:"true"`
 }
 
-func (c *CreateCollectionsLoadRequest) SetDbName(dbName string) {
+func (c *CollectionLoadRequest) SetDbName(dbName string) {
 	c.DbName = &dbName
 }
 
-func (c *CreateCollectionsLoadRequest) GetDbName() *string {
+func (c *CollectionLoadRequest) GetDbName() *string {
 	if c == nil {
 		return nil
 	}
 	return c.DbName
 }
 
-func (c *CreateCollectionsLoadRequest) SetCollectionName(collectionName string) {
+func (c *CollectionLoadRequest) SetCollectionName(collectionName string) {
 	c.CollectionName = &collectionName
 }
 
-func (c *CreateCollectionsLoadRequest) GetCollectionName() *string {
+func (c *CollectionLoadRequest) GetCollectionName() *string {
 	if c == nil {
 		return nil
 	}

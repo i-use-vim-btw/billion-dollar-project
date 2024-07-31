@@ -20,7 +20,7 @@ A list of all models.
 - [Create18Request](#create18request)
 - [Create19Request](#create19request)
 - [Create20Request](#create20request)
-- [CollectionRequest](#collectionrequest)
+- [Collection](#Collection)
 - [IndexRequest](#indexrequest)
 
 ## Create2Request
@@ -59,7 +59,7 @@ A list of all models.
 
 ## Create20Request
 
-## CollectionRequest
+## Collection
 
 ## IndexRequest
 

@@ -11,10 +11,10 @@ from .base import BaseModel
         "index_name": "indexName",
     }
 )
-class CreateIndexesDescribeRequest(BaseModel):
-    """CreateIndexesDescribeRequest
+class IndexDescribeRequest(BaseModel):
+    """IndexDescribeRequest
 
-    :param db_name: db_name, defaults to None
+    :param db_name: db_name, defaults to "default"
     :type db_name: str, optional
     :param collection_name: collection_name
     :type collection_name: str
@@ -22,7 +22,7 @@ class CreateIndexesDescribeRequest(BaseModel):
     :type index_name: str
     """
 
-    def __init__(self, collection_name: str, index_name: str, db_name: str = None):
+    def __init__(self, collection_name: str, index_name: str, db_name: str = "default"):
         if db_name is not None:
             self.db_name = db_name
         self.collection_name = collection_name

@@ -1,13 +1,13 @@
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CreateVectorsSearchRequest
+from gandi.models import VectorsSearchRequest
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CreateVectorsSearchRequest(
+request_body = VectorsSearchRequest(
     db_name="dbName",
     collection_name="collectionName",
     partition_names=[
@@ -30,7 +30,7 @@ request_body = CreateVectorsSearchRequest(
     }
 )
 
-result = sdk.vectors.create_vectors_search(request_body=request_body)
+result = sdk.vectors.search(request_body=request_body)
 
 print(result)
 

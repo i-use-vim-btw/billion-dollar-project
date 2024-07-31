@@ -4,14 +4,14 @@ A list of all methods in the `VectorsService` service. Click on the method name 
 
 | Methods                                         | Description                                                                |
 | :---------------------------------------------- | :------------------------------------------------------------------------- |
-| [create_vectors_delete](#create_vectors_delete) | This operation deletes entities by their IDs or with a boolean expression. |
-| [create_vectors_get](#create_vectors_get)       | This operation gets vectors by their IDs.                                  |
-| [create_vectors_insert](#create_vectors_insert) | This operation inserts vectors into a specified collection.                |
-| [create_vectors_query](#create_vectors_query)   | This operation queries vectors in a specified collection.                  |
-| [create_vectors_search](#create_vectors_search) | This operation searches vectors in a specified collection.                 |
-| [create_vectors_upsert](#create_vectors_upsert) | This operation upserts vectors into a specified collection.                |
+| [delete](#delete) | This operation deletes entities by their IDs or with a boolean expression. |
+| [get](#get)       | This operation gets vectors by their IDs.                                  |
+| [insert](#insert) | This operation inserts vectors into a specified collection.                |
+| [query](#query)   | This operation queries vectors in a specified collection.                  |
+| [search](#search) | This operation searches vectors in a specified collection.                 |
+| [upsert](#upsert) | This operation upserts vectors into a specified collection.                |
 
-## create_vectors_delete
+## delete
 
 This operation deletes entities by their IDs or with a boolean expression.
 
@@ -22,32 +22,32 @@ This operation deletes entities by their IDs or with a boolean expression.
 
 | Name         | Type                                                                  | Required | Description       |
 | :----------- | :-------------------------------------------------------------------- | :------- | :---------------- |
-| request_body | [CreateVectorsDeleteRequest](../models/CreateVectorsDeleteRequest.md) | ✅       | The request body. |
+| request_body | [VectorsDeleteRequest](../models/VectorsDeleteRequest.md) | ✅       | The request body. |
 
 **Example Usage Code Snippet**
 
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CreateVectorsDeleteRequest
+from gandi.models import VectorsDeleteRequest
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CreateVectorsDeleteRequest(
+request_body = VectorsDeleteRequest(
     db_name="dbName",
     collection_name="collectionName",
     filter="filter",
     partition_name="partitionName"
 )
 
-result = sdk.vectors.create_vectors_delete(request_body=request_body)
+result = sdk.vectors.delete(request_body=request_body)
 
 print(result)
 ```
 
-## create_vectors_get
+## get
 
 This operation gets vectors by their IDs.
 
@@ -58,20 +58,20 @@ This operation gets vectors by their IDs.
 
 | Name         | Type                                                            | Required | Description       |
 | :----------- | :-------------------------------------------------------------- | :------- | :---------------- |
-| request_body | [CreateVectorsGetRequest](../models/CreateVectorsGetRequest.md) | ✅       | The request body. |
+| request_body | [VectorsGetRequest](../models/VectorsGetRequest.md) | ✅       | The request body. |
 
 **Example Usage Code Snippet**
 
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CreateVectorsGetRequest
+from gandi.models import VectorsGetRequest
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CreateVectorsGetRequest(
+request_body = VectorsGetRequest(
     db_name="dbName",
     collection_name="collectionName",
     id_="veniam lab",
@@ -83,12 +83,12 @@ request_body = CreateVectorsGetRequest(
     ]
 )
 
-result = sdk.vectors.create_vectors_get(request_body=request_body)
+result = sdk.vectors.get(request_body=request_body)
 
 print(result)
 ```
 
-## create_vectors_insert
+## insert
 
 This operation inserts vectors into a specified collection.
 
@@ -99,32 +99,32 @@ This operation inserts vectors into a specified collection.
 
 | Name         | Type                                                                  | Required | Description       |
 | :----------- | :-------------------------------------------------------------------- | :------- | :---------------- |
-| request_body | [CreateVectorsInsertRequest](../models/CreateVectorsInsertRequest.md) | ✅       | The request body. |
+| request_body | [VectorsInsertRequest](../models/VectorsInsertRequest.md) | ✅       | The request body. |
 
 **Example Usage Code Snippet**
 
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CreateVectorsInsertRequest
+from gandi.models import VectorsInsertRequest
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CreateVectorsInsertRequest(
+request_body = VectorsInsertRequest(
     db_name="dbName",
     collection_name="collectionName",
     partition_name="partitionName",
     data={}
 )
 
-result = sdk.vectors.create_vectors_insert(request_body=request_body)
+result = sdk.vectors.insert(request_body=request_body)
 
 print(result)
 ```
 
-## create_vectors_query
+## query
 
 This operation queries vectors in a specified collection.
 
@@ -135,20 +135,20 @@ This operation queries vectors in a specified collection.
 
 | Name         | Type                                                                | Required | Description       |
 | :----------- | :------------------------------------------------------------------ | :------- | :---------------- |
-| request_body | [CreateVectorsQueryRequest](../models/CreateVectorsQueryRequest.md) | ✅       | The request body. |
+| request_body | [VectorsQueryRequest](../models/VectorsQueryRequest.md) | ✅       | The request body. |
 
 **Example Usage Code Snippet**
 
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CreateVectorsQueryRequest
+from gandi.models import VectorsQueryRequest
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CreateVectorsQueryRequest(
+request_body = VectorsQueryRequest(
     db_name="dbName",
     collection_name="collectionName",
     partition_names=[
@@ -160,12 +160,12 @@ request_body = CreateVectorsQueryRequest(
     ]
 )
 
-result = sdk.vectors.create_vectors_query(request_body=request_body)
+result = sdk.vectors.query(request_body=request_body)
 
 print(result)
 ```
 
-## create_vectors_search
+## search
 
 This operation searches vectors in a specified collection.
 
@@ -176,20 +176,20 @@ This operation searches vectors in a specified collection.
 
 | Name         | Type                                                                  | Required | Description       |
 | :----------- | :-------------------------------------------------------------------- | :------- | :---------------- |
-| request_body | [CreateVectorsSearchRequest](../models/CreateVectorsSearchRequest.md) | ✅       | The request body. |
+| request_body | [VectorsSearchRequest](../models/VectorsSearchRequest.md) | ✅       | The request body. |
 
 **Example Usage Code Snippet**
 
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CreateVectorsSearchRequest
+from gandi.models import VectorsSearchRequest
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CreateVectorsSearchRequest(
+request_body = VectorsSearchRequest(
     db_name="dbName",
     collection_name="collectionName",
     partition_names=[
@@ -212,12 +212,12 @@ request_body = CreateVectorsSearchRequest(
     }
 )
 
-result = sdk.vectors.create_vectors_search(request_body=request_body)
+result = sdk.vectors.search(request_body=request_body)
 
 print(result)
 ```
 
-## create_vectors_upsert
+## upsert
 
 This operation upserts vectors into a specified collection.
 
@@ -228,27 +228,27 @@ This operation upserts vectors into a specified collection.
 
 | Name         | Type                                                                  | Required | Description       |
 | :----------- | :-------------------------------------------------------------------- | :------- | :---------------- |
-| request_body | [CreateVectorsUpsertRequest](../models/CreateVectorsUpsertRequest.md) | ✅       | The request body. |
+| request_body | [VectorsUpsertRequest](../models/VectorsUpsertRequest.md) | ✅       | The request body. |
 
 **Example Usage Code Snippet**
 
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CreateVectorsUpsertRequest
+from gandi.models import VectorsUpsertRequest
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CreateVectorsUpsertRequest(
+request_body = VectorsUpsertRequest(
     db_name="dbName",
     collection_name="collectionName",
     partition_name="partitionName",
     data={}
 )
 
-result = sdk.vectors.create_vectors_upsert(request_body=request_body)
+result = sdk.vectors.upsert(request_body=request_body)
 
 print(result)
 ```

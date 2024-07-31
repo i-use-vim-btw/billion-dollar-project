@@ -11,10 +11,10 @@ config := gandiconfig.NewConfig()
 client := gandi.NewGandi(config)
 
 
-request := collections.CreateCollectionsReleaseRequest{}
+request := collections.CollectionReleaseRequest{}
 request.SetCollectionName("CollectionName")
 
-response, err := client.Collections.CreateCollectionsRelease(context.Background(), request)
+response, err := client.Collections.CollectionRelease(context.Background(), request)
 if err != nil {
   panic(err)
 }

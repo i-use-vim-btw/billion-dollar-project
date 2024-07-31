@@ -2,51 +2,51 @@
 
 package vectors
 
-type CreateVectorsDeleteRequest struct {
+type VectorsDeleteRequest struct {
 	DbName         *string `json:"dbName,omitempty"`
 	CollectionName *string `json:"collectionName,omitempty" required:"true"`
 	Filter         *string `json:"filter,omitempty" required:"true"`
 	PartitionName  *string `json:"partitionName,omitempty"`
 }
 
-func (c *CreateVectorsDeleteRequest) SetDbName(dbName string) {
+func (c *VectorsDeleteRequest) SetDbName(dbName string) {
 	c.DbName = &dbName
 }
 
-func (c *CreateVectorsDeleteRequest) GetDbName() *string {
+func (c *VectorsDeleteRequest) GetDbName() *string {
 	if c == nil {
 		return nil
 	}
 	return c.DbName
 }
 
-func (c *CreateVectorsDeleteRequest) SetCollectionName(collectionName string) {
+func (c *VectorsDeleteRequest) SetCollectionName(collectionName string) {
 	c.CollectionName = &collectionName
 }
 
-func (c *CreateVectorsDeleteRequest) GetCollectionName() *string {
+func (c *VectorsDeleteRequest) GetCollectionName() *string {
 	if c == nil {
 		return nil
 	}
 	return c.CollectionName
 }
 
-func (c *CreateVectorsDeleteRequest) SetFilter(filter string) {
+func (c *VectorsDeleteRequest) SetFilter(filter string) {
 	c.Filter = &filter
 }
 
-func (c *CreateVectorsDeleteRequest) GetFilter() *string {
+func (c *VectorsDeleteRequest) GetFilter() *string {
 	if c == nil {
 		return nil
 	}
 	return c.Filter
 }
 
-func (c *CreateVectorsDeleteRequest) SetPartitionName(partitionName string) {
+func (c *VectorsDeleteRequest) SetPartitionName(partitionName string) {
 	c.PartitionName = &partitionName
 }
 
-func (c *CreateVectorsDeleteRequest) GetPartitionName() *string {
+func (c *VectorsDeleteRequest) GetPartitionName() *string {
 	if c == nil {
 		return nil
 	}

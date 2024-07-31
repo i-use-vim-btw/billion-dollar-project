@@ -6,7 +6,7 @@ import io.gandi.exceptions.ApiException;
 import java.util.List;
 
 public interface CollectionsClient {
-  String create(io.gandi.models.CollectionRequest input) throws ApiException;
+  String create(io.gandi.models.Collection input) throws ApiException;
   String create2(io.gandi.models.Create2Request input) throws ApiException;
   String create3(io.gandi.models.Create3Request input) throws ApiException;
   String create4(io.gandi.models.Create4Request input) throws ApiException;

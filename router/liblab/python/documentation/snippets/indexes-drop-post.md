@@ -1,19 +1,19 @@
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CreateIndexesDropRequest
+from gandi.models import IndexDropRequest
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CreateIndexesDropRequest(
+request_body = IndexDropRequest(
     db_name="dbName",
     collection_name="collectionName",
     index_name="indexName"
 )
 
-result = sdk.indexes.create_indexes_drop(request_body=request_body)
+result = sdk.indexes.drop(request_body=request_body)
 
 print(result)
 

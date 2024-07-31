@@ -1,18 +1,18 @@
 ```python
 from gandi import Gandi, Environment
-from gandi.models import CreateCollectionsDropRequest
+from gandi.models import CollectionDropRequest
 
 sdk = Gandi(
     access_token="YOUR_ACCESS_TOKEN",
     base_url=Environment.DEFAULT.value
 )
 
-request_body = CreateCollectionsDropRequest(
+request_body = CollectionDropRequest(
     db_name="dbName",
     collection_name="collectionName"
 )
 
-result = sdk.collections.create_collections_drop(request_body=request_body)
+result = sdk.collections.drop(request_body=request_body)
 
 print(result)
 

@@ -11,10 +11,10 @@ config := gandiconfig.NewConfig()
 client := gandi.NewGandi(config)
 
 
-request := vectors.CreateVectorsGetRequest{}
+request := vectors.VectorsGetRequest{}
 request.SetCollectionName("CollectionName")
 
-response, err := client.Vectors.CreateVectorsGet(context.Background(), request)
+response, err := client.Vectors.VectorsGet(context.Background(), request)
 if err != nil {
   panic(err)
 }

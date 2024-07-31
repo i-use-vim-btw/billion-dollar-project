@@ -1,4 +1,4 @@
-# CreateCollectionsListRequest
+# CollectionListRequest
 
 **Properties**
 

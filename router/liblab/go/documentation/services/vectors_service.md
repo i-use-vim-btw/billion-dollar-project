@@ -4,14 +4,14 @@ A list of all methods in the `VectorsService` service. Click on the method name 
 
 | Methods                                     | Description                                                                |
 | :------------------------------------------ | :------------------------------------------------------------------------- |
-| [CreateVectorsDelete](#createvectorsdelete) | This operation deletes entities by their IDs or with a boolean expression. |
-| [CreateVectorsGet](#createvectorsget)       | This operation gets vectors by their IDs.                                  |
-| [CreateVectorsInsert](#createvectorsinsert) | This operation inserts vectors into a specified collection.                |
-| [CreateVectorsQuery](#createvectorsquery)   | This operation queries vectors in a specified collection.                  |
-| [CreateVectorsSearch](#createvectorssearch) | This operation searches vectors in a specified collection.                 |
-| [CreateVectorsUpsert](#createvectorsupsert) | This operation upserts vectors into a specified collection.                |
+| [VectorsDelete](#createvectorsdelete) | This operation deletes entities by their IDs or with a boolean expression. |
+| [VectorsGet](#createvectorsget)       | This operation gets vectors by their IDs.                                  |
+| [VectorsInsert](#createvectorsinsert) | This operation inserts vectors into a specified collection.                |
+| [VectorsQuery](#createvectorsquery)   | This operation queries vectors in a specified collection.                  |
+| [VectorsSearch](#createvectorssearch) | This operation searches vectors in a specified collection.                 |
+| [VectorsUpsert](#createvectorsupsert) | This operation upserts vectors into a specified collection.                |
 
-## CreateVectorsDelete
+## VectorsDelete
 
 This operation deletes entities by their IDs or with a boolean expression.
 
@@ -23,7 +23,7 @@ This operation deletes entities by their IDs or with a boolean expression.
 | Name                       | Type                       | Required | Description                             |
 | :------------------------- | :------------------------- | :------- | :-------------------------------------- |
 | ctx                        | Context                    | ✅       | Default go language context             |
-| createVectorsDeleteRequest | CreateVectorsDeleteRequest | ✅       | Vectors object that needs to be deleted |
+| createVectorsDeleteRequest | VectorsDeleteRequest | ✅       | Vectors object that needs to be deleted |
 
 **Return Type**
 
@@ -44,11 +44,11 @@ config := gandiconfig.NewConfig()
 client := gandi.NewGandi(config)
 
 
-request := vectors.CreateVectorsDeleteRequest{}
+request := vectors.VectorsDeleteRequest{}
 request.SetCollectionName("CollectionName")
 request.SetFilter("Filter")
 
-response, err := client.Vectors.CreateVectorsDelete(context.Background(), request)
+response, err := client.Vectors.VectorsDelete(context.Background(), request)
 if err != nil {
   panic(err)
 }
@@ -56,7 +56,7 @@ if err != nil {
 fmt.Print(response)
 ```
 
-## CreateVectorsGet
+## VectorsGet
 
 This operation gets vectors by their IDs.
 
@@ -68,7 +68,7 @@ This operation gets vectors by their IDs.
 | Name                    | Type                    | Required | Description                               |
 | :---------------------- | :---------------------- | :------- | :---------------------------------------- |
 | ctx                     | Context                 | ✅       | Default go language context               |
-| createVectorsGetRequest | CreateVectorsGetRequest | ✅       | Vectors object that needs to be retrieved |
+| createVectorsGetRequest | VectorsGetRequest | ✅       | Vectors object that needs to be retrieved |
 
 **Return Type**
 
@@ -89,10 +89,10 @@ config := gandiconfig.NewConfig()
 client := gandi.NewGandi(config)
 
 
-request := vectors.CreateVectorsGetRequest{}
+request := vectors.VectorsGetRequest{}
 request.SetCollectionName("CollectionName")
 
-response, err := client.Vectors.CreateVectorsGet(context.Background(), request)
+response, err := client.Vectors.VectorsGet(context.Background(), request)
 if err != nil {
   panic(err)
 }
@@ -100,7 +100,7 @@ if err != nil {
 fmt.Print(response)
 ```
 
-## CreateVectorsInsert
+## VectorsInsert
 
 This operation inserts vectors into a specified collection.
 
@@ -112,7 +112,7 @@ This operation inserts vectors into a specified collection.
 | Name                       | Type                       | Required | Description                              |
 | :------------------------- | :------------------------- | :------- | :--------------------------------------- |
 | ctx                        | Context                    | ✅       | Default go language context              |
-| createVectorsInsertRequest | CreateVectorsInsertRequest | ✅       | Vectors object that needs to be inserted |
+| createVectorsInsertRequest | VectorsInsertRequest | ✅       | Vectors object that needs to be inserted |
 
 **Return Type**
 
@@ -133,10 +133,10 @@ config := gandiconfig.NewConfig()
 client := gandi.NewGandi(config)
 
 
-request := vectors.CreateVectorsInsertRequest{}
+request := vectors.VectorsInsertRequest{}
 request.SetCollectionName("CollectionName")
 
-response, err := client.Vectors.CreateVectorsInsert(context.Background(), request)
+response, err := client.Vectors.VectorsInsert(context.Background(), request)
 if err != nil {
   panic(err)
 }
@@ -144,7 +144,7 @@ if err != nil {
 fmt.Print(response)
 ```
 
-## CreateVectorsQuery
+## VectorsQuery
 
 This operation queries vectors in a specified collection.
 
@@ -156,7 +156,7 @@ This operation queries vectors in a specified collection.
 | Name                      | Type                      | Required | Description                             |
 | :------------------------ | :------------------------ | :------- | :-------------------------------------- |
 | ctx                       | Context                   | ✅       | Default go language context             |
-| createVectorsQueryRequest | CreateVectorsQueryRequest | ✅       | Vectors object that needs to be queried |
+| createVectorsQueryRequest | VectorsQueryRequest | ✅       | Vectors object that needs to be queried |
 
 **Return Type**
 
@@ -177,11 +177,11 @@ config := gandiconfig.NewConfig()
 client := gandi.NewGandi(config)
 
 
-request := vectors.CreateVectorsQueryRequest{}
+request := vectors.VectorsQueryRequest{}
 request.SetCollectionName("CollectionName")
 request.SetFilter("Filter")
 
-response, err := client.Vectors.CreateVectorsQuery(context.Background(), request)
+response, err := client.Vectors.VectorsQuery(context.Background(), request)
 if err != nil {
   panic(err)
 }
@@ -189,7 +189,7 @@ if err != nil {
 fmt.Print(response)
 ```
 
-## CreateVectorsSearch
+## VectorsSearch
 
 This operation searches vectors in a specified collection.
 
@@ -201,7 +201,7 @@ This operation searches vectors in a specified collection.
 | Name                       | Type                       | Required | Description                              |
 | :------------------------- | :------------------------- | :------- | :--------------------------------------- |
 | ctx                        | Context                    | ✅       | Default go language context              |
-| createVectorsSearchRequest | CreateVectorsSearchRequest | ✅       | Vectors object that needs to be searched |
+| createVectorsSearchRequest | VectorsSearchRequest | ✅       | Vectors object that needs to be searched |
 
 **Return Type**
 
@@ -222,10 +222,10 @@ config := gandiconfig.NewConfig()
 client := gandi.NewGandi(config)
 
 
-request := vectors.CreateVectorsSearchRequest{}
+request := vectors.VectorsSearchRequest{}
 request.SetCollectionName("CollectionName")
 
-response, err := client.Vectors.CreateVectorsSearch(context.Background(), request)
+response, err := client.Vectors.VectorsSearch(context.Background(), request)
 if err != nil {
   panic(err)
 }
@@ -233,7 +233,7 @@ if err != nil {
 fmt.Print(response)
 ```
 
-## CreateVectorsUpsert
+## VectorsUpsert
 
 This operation upserts vectors into a specified collection.
 
@@ -245,7 +245,7 @@ This operation upserts vectors into a specified collection.
 | Name                       | Type                       | Required | Description                              |
 | :------------------------- | :------------------------- | :------- | :--------------------------------------- |
 | ctx                        | Context                    | ✅       | Default go language context              |
-| createVectorsUpsertRequest | CreateVectorsUpsertRequest | ✅       | Vectors object that needs to be upserted |
+| createVectorsUpsertRequest | VectorsUpsertRequest | ✅       | Vectors object that needs to be upserted |
 
 **Return Type**
 
@@ -266,10 +266,10 @@ config := gandiconfig.NewConfig()
 client := gandi.NewGandi(config)
 
 
-request := vectors.CreateVectorsUpsertRequest{}
+request := vectors.VectorsUpsertRequest{}
 request.SetCollectionName("CollectionName")
 
-response, err := client.Vectors.CreateVectorsUpsert(context.Background(), request)
+response, err := client.Vectors.VectorsUpsert(context.Background(), request)
 if err != nil {
   panic(err)
 }

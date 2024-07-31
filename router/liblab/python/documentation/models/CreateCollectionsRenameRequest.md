@@ -1,4 +1,4 @@
-# CreateCollectionsRenameRequest
+# CollectionRenameRequest
 
 **Properties**
 

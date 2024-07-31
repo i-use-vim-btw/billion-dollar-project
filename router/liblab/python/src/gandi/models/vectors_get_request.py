@@ -28,10 +28,10 @@ Id = Union[str, List[str], int, List[int]]
         "output_fields": "outputFields",
     }
 )
-class CreateVectorsGetRequest(BaseModel):
-    """CreateVectorsGetRequest
+class VectorsGetRequest(BaseModel):
+    """VectorsGetRequest
 
-    :param db_name: db_name, defaults to None
+    :param db_name: db_name, defaults to "default"
     :type db_name: str, optional
     :param collection_name: collection_name
     :type collection_name: str
@@ -46,7 +46,7 @@ class CreateVectorsGetRequest(BaseModel):
     def __init__(
         self,
         collection_name: str,
-        db_name: str = None,
+        db_name: str = "default",
         id_: Id = None,
         host: str = "",
         partition_names: List[str] = None,

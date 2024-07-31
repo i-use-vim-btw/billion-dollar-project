@@ -11,11 +11,11 @@ config := gandiconfig.NewConfig()
 client := gandi.NewGandi(config)
 
 
-request := collections.CreateCollectionsRenameRequest{}
+request := collections.CollectionRenameRequest{}
 request.SetCollectionName("CollectionName")
 request.SetNewCollectionName("NewCollectionName")
 
-response, err := client.Collections.CreateCollectionsRename(context.Background(), request)
+response, err := client.Collections.CollectionRename(context.Background(), request)
 if err != nil {
   panic(err)
 }
