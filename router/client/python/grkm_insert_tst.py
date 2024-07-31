@@ -4,7 +4,11 @@ from gandi import GandiClient as gc
 client = gc("localhost:8080")
 collectionName = "my_collection1"
 
+<<<<<<< HEAD
 client.collection(collectionName, dim=5, id="http://127.0.0.1:34779")
+=======
+client.create_collection(collectionName, dim=5, id="http://127.0.0.1:44179")
+>>>>>>> 317190beddfb519617e41b0a0a752e0d7ef46051
 
 client.insert(
     collectionName,
