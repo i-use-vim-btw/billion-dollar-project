@@ -35,5 +35,11 @@ func main() {
 	router.POST("/indexes/describe", control.DescribeIndex)
 	router.POST("/indexes/list", control.ListIndexes)
 
+	// For testing purposes. Remove in production
+	router.GET("/ping", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"message": "pong",
+		})
+	})
 	router.Run("localhost:8080")
 }
