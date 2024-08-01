@@ -5,6 +5,10 @@ package main
 	curl -X POST "http://localhost:8080/deploy" -H "Content-Type: application/json" -d '{
     "namespace": "user1",
     "storage": "10Gi"
+
+
+	example deletion command:
+	curl -X DELETE http://localhost:8080/uninstall/your-release-name
 }'
 
 
@@ -26,17 +30,6 @@ import (
 type DeployRequest struct {
 	Namespace string `json:"namespace"`
 	Storage   string `json:"storage"`
-}
-
-func initHelmConfig(namespace string) (*action.Configuration, error) {
-	actionConfig := new(action.Configuration)
-	settings := cli.New()
-
-	if err := actionConfig.Init(settings.RESTClientGetter(), namespace, os.Getenv("HELM_DRIVER"), log.Printf); err != nil {
-		return nil, fmt.Errorf("failed to initialize Helm action configuration: %w", err)
-	}
-
-	return actionConfig, nil
 }
 
 func helmInstall(chartPath, releaseName, namespace string, values map[string]interface{}) (*release.Release, error) {
@@ -72,7 +65,7 @@ func deployHandler(c *gin.Context) {
 	}
 
 	namespace := req.Namespace
-	releaseName := fmt.Sprintf("rel-%s", namespace)
+	releaseName := namespace
 	chartPath := "../user_manager_chart/"
 
 	values := map[string]interface{}{
@@ -90,8 +83,28 @@ func deployHandler(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"message": "Deployed successfully."})
 }
 
+func uninstallHandler(c *gin.Context) {
+	releaseName := c.Param("releaseName")
+	settings := cli.New()
+	actionConfig := new(action.Configuration)
+	if err := actionConfig.Init(settings.RESTClientGetter(), settings.Namespace(), os.Getenv("HELM_DRIVER"), log.Printf); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	client := action.NewUninstall(actionConfig)
+	resp, err := client.Run(releaseName)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"status": "uninstalled", "release": resp.Release.Name})
+}
+
 func main() {
 	r := gin.Default()
 	r.POST("/deploy", deployHandler)
+	r.DELETE("/uninstall/:releaseName", uninstallHandler)
 	r.Run(":8080") // Run on port 8080
 }
