@@ -1,5 +1,5 @@
 # Use the official Golang image with the specified version as the base image
-FROM golang:1.22.5 
+FROM golang:1.22.4-alpine
 
 # Set the Current Working Directory inside the container
 WORKDIR /app
@@ -17,13 +17,13 @@ COPY . .
 RUN rm -rf kube liblab.config.json
 
 # Build the Go app
-RUN CGO_ENABLED=0 GOOS=linux go build -o /main
+RUN go build -o /main
 
 
 # Expose port 8080 to the outside world
 EXPOSE 8080
 
 # Command to run the executable
-CMD ["/main"]
+CMD ["./main"]
 
 

@@ -1,6 +1,6 @@
 module billion-dollar-project/router/server
 
-go 1.22.5
+go 1.22.4
 
 require (
 	github.com/bytedance/sonic v1.11.9 // indirect
