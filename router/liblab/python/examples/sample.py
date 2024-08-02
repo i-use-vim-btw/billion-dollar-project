@@ -9,8 +9,8 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "s
 from gandi import Gandi
 from gandi.models import *
 
-coll_name = "test110"
-host = "localhost:19530"
+coll_name = "test121"
+host = "172.17.0.1:19530"
 
 sdk = Gandi(access_token="YOUR_ACCESS_TOKEN", base_url="http://localhost:8080")
 

@@ -10,6 +10,7 @@ from ..models.vectors_query_request import VectorsQueryRequest
 from ..models.vectors_insert_request import VectorsInsertRequest
 from ..models.vectors_get_request import VectorsGetRequest
 from ..models.vectors_delete_request import VectorsDeleteRequest
+from ..models.vectors_hybrid_search_request import VectorsHybridSearchRequest
 
 
 class VectorsService(BaseService):
@@ -125,6 +126,32 @@ class VectorsService(BaseService):
 
         serialized_request = (
             Serializer(f"{self.base_url}/vectors/search", self.get_default_headers())
+            .serialize()
+            .set_method("POST")
+            .set_body(request_body)
+        )
+
+        response = self.send_request(serialized_request)
+
+        return response
+
+    @cast_models
+    def hybrid_search(self, request_body: VectorsHybridSearchRequest):
+        """This operation searches vectors in a specified collection.
+
+        :param request_body: The request body.
+        :type request_body: VectorsHybridSearchRequest
+        ...
+        :raises RequestError: Raised when a request fails, with optional HTTP status code and details.
+        ...
+        """
+
+        Validator(VectorsHybridSearchRequest).validate(request_body)
+
+        serialized_request = (
+            Serializer(
+                f"{self.base_url}/vectors/hybrid_search", self.get_default_headers()
+            )
             .serialize()
             .set_method("POST")
             .set_body(request_body)

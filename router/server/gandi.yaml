@@ -1,7 +1,6 @@
 // Default values for optional fields
 // All requests start with create
 //
-
 openapi: 3.0.0
 info:
   title: Gandi API

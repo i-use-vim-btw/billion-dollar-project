@@ -5,6 +5,7 @@ from typing import List
 from .utils.json_map import JsonMap
 from .base import BaseModel
 from .base import OneOfBaseModel
+import pandas as pd
 
 
 class VectorsInsertRequestDataGuard(OneOfBaseModel):
@@ -50,7 +51,7 @@ class VectorsInsertRequest(BaseModel):
         collection_name: str,
         db_name: str = "default",
         partition_name: str = None,
-        data: List[dict] = None,
+        data=None,
         host: str = None,
     ):
         if db_name is not None:
@@ -59,6 +60,8 @@ class VectorsInsertRequest(BaseModel):
         if partition_name is not None:
             self.partition_name = partition_name
         if data is not None:
+            if isinstance(data, pd.DataFrame):
+                self.data = data.to_dict(orient="records")
             self.data = data
         if host is not None:
             self.host = host

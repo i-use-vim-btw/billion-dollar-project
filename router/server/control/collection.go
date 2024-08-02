@@ -13,7 +13,7 @@ import (
 func CreateCollection(c *gin.Context) {
 	var newData map[string]interface{}
 
-	if err := c.BindJSON(&newData); err != nil {
+	if err := c.ShouldBindJSON(&newData); err != nil {
 		fmt.Println("Could not bind data")
 		c.JSON(http.StatusNotAcceptable, gin.H{
 			"code": http.StatusNotAcceptable,
@@ -21,9 +21,9 @@ func CreateCollection(c *gin.Context) {
 		return
 	}
 	fmt.Println(newData)
-	// Do something with api key and id
+	// Do something with api key and host
 	// api_key := newData["api_key"].(string)
-	id := newData["host"]
+	host := newData["host"]
 
 	delete(newData, "api_key")
 	delete(newData, "host")
@@ -37,7 +37,7 @@ func CreateCollection(c *gin.Context) {
 		return
 	}
 
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/collections/create", id), "application/json", bytes.NewReader(sendData))
+	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/collections/create", host), "application/json", bytes.NewReader(sendData))
 
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, gin.H{
@@ -79,9 +79,9 @@ func DescribeCollection(c *gin.Context) {
 		return
 	}
 
-	// Do something with api key and id
+	// Do something with api key and host
 	// api_key := newData["api_key"].(string)
-	id := newData["host"]
+	host := newData["host"]
 
 	delete(newData, "api_key")
 	delete(newData, "host")
@@ -95,7 +95,7 @@ func DescribeCollection(c *gin.Context) {
 		return
 	}
 
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/collections/describe", id), "application/json", bytes.NewReader(sendData))
+	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/collections/describe", host), "application/json", bytes.NewReader(sendData))
 
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, gin.H{
@@ -137,9 +137,9 @@ func DropCollection(c *gin.Context) {
 		return
 	}
 
-	// Do something with api key and id
+	// Do something with api key and host
 	// api_key := newData["api_key"].(string)
-	id := newData["host"]
+	host := newData["host"]
 
 	delete(newData, "api_key")
 	delete(newData, "host")
@@ -153,7 +153,7 @@ func DropCollection(c *gin.Context) {
 		return
 	}
 
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/collections/drop", id), "application/json", bytes.NewReader(sendData))
+	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/collections/drop", host), "application/json", bytes.NewReader(sendData))
 
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, gin.H{
@@ -195,9 +195,9 @@ func GetLoadState(c *gin.Context) {
 		return
 	}
 
-	// Do something with api key and id
+	// Do something with api key and host
 	// api_key := newData["api_key"].(string)
-	id := newData["host"]
+	host := newData["host"]
 
 	delete(newData, "api_key")
 	delete(newData, "host")
@@ -211,7 +211,7 @@ func GetLoadState(c *gin.Context) {
 		return
 	}
 
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/collections/get_load_state", id), "application/json", bytes.NewReader(sendData))
+	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/collections/get_load_state", host), "application/json", bytes.NewReader(sendData))
 
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, gin.H{
@@ -253,9 +253,9 @@ func GetStats(c *gin.Context) {
 		return
 	}
 
-	// Do something with api key and id
+	// Do something with api key and host
 	// api_key := newData["api_key"].(string)
-	id := newData["host"]
+	host := newData["host"]
 
 	delete(newData, "api_key")
 	delete(newData, "host")
@@ -269,7 +269,7 @@ func GetStats(c *gin.Context) {
 		return
 	}
 
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/collections/get_stats", id), "application/json", bytes.NewReader(sendData))
+	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/collections/get_stats", host), "application/json", bytes.NewReader(sendData))
 
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, gin.H{
@@ -311,9 +311,9 @@ func HasCollection(c *gin.Context) {
 		return
 	}
 
-	// Do something with api key and id
+	// Do something with api key and host
 	// api_key := newData["api_key"].(string)
-	id := newData["host"]
+	host := newData["host"]
 
 	delete(newData, "api_key")
 	delete(newData, "host")
@@ -327,7 +327,7 @@ func HasCollection(c *gin.Context) {
 		return
 	}
 
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/collections/has", id), "application/json", bytes.NewReader(sendData))
+	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/collections/has", host), "application/json", bytes.NewReader(sendData))
 
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, gin.H{
@@ -369,9 +369,9 @@ func ListCollections(c *gin.Context) {
 		return
 	}
 
-	// Do something with api key and id
+	// Do something with api key and host
 	// api_key := newData["api_key"].(string)
-	id := newData["host"]
+	host := newData["host"]
 
 	delete(newData, "api_key")
 	delete(newData, "host")
@@ -385,7 +385,7 @@ func ListCollections(c *gin.Context) {
 		return
 	}
 
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/collections/list", id), "application/json", bytes.NewReader(sendData))
+	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/collections/list", host), "application/json", bytes.NewReader(sendData))
 
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, gin.H{
@@ -427,9 +427,9 @@ func LoadCollection(c *gin.Context) {
 		return
 	}
 
-	// Do something with api key and id
+	// Do something with api key and host
 	// api_key := newData["api_key"].(string)
-	id := newData["host"]
+	host := newData["host"]
 
 	delete(newData, "api_key")
 	delete(newData, "host")
@@ -443,7 +443,7 @@ func LoadCollection(c *gin.Context) {
 		return
 	}
 
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/collections/load", id), "application/json", bytes.NewReader(sendData))
+	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/collections/load", host), "application/json", bytes.NewReader(sendData))
 
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, gin.H{
@@ -485,9 +485,9 @@ func ReleaseCollection(c *gin.Context) {
 		return
 	}
 
-	// Do something with api key and id
+	// Do something with api key and host
 	// api_key := newData["api_key"].(string)
-	id := newData["host"]
+	host := newData["host"]
 
 	delete(newData, "api_key")
 	delete(newData, "host")
@@ -501,7 +501,7 @@ func ReleaseCollection(c *gin.Context) {
 		return
 	}
 
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/collections/release", id), "application/json", bytes.NewReader(sendData))
+	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/collections/release", host), "application/json", bytes.NewReader(sendData))
 
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, gin.H{
@@ -543,9 +543,9 @@ func RenameCollection(c *gin.Context) {
 		return
 	}
 
-	// Do something with api key and id
+	// Do something with api key and host
 	// api_key := newData["api_key"].(string)
-	id := newData["host"]
+	host := newData["host"]
 
 	delete(newData, "api_key")
 	delete(newData, "host")
@@ -559,7 +559,7 @@ func RenameCollection(c *gin.Context) {
 		return
 	}
 
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/collections/rename", id), "application/json", bytes.NewReader(sendData))
+	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/collections/rename", host), "application/json", bytes.NewReader(sendData))
 
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, gin.H{

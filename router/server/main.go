@@ -28,6 +28,7 @@ func main() {
 	router.POST("/vectors/upsert", data.UpsertVectors)
 	router.POST("/vectors/search", data.Search)
 	router.POST("/vectors/query", data.Query)
+	router.POST("/vectors/hybrid_search", data.HybridSearch)
 
 	// Indexes
 	router.POST("/indexes/create", control.CreateIndex)

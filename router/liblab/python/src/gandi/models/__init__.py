@@ -22,3 +22,4 @@ from .vectors_insert_request import VectorsInsertRequest
 from .vectors_query_request import VectorsQueryRequest
 from .vectors_search_request import VectorsSearchRequest
 from .vectors_upsert_request import VectorsUpsertRequest
+from .vectors_hybrid_search_request import VectorsHybridSearchRequest
