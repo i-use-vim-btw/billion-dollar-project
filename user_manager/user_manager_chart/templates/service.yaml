@@ -19,4 +19,4 @@ spec:
     app: milvus
     tier: db
     release: {{ .Release.Name }}
-  type: NodePort
+  type: ClusterIP
