@@ -13,7 +13,7 @@
 | PrimaryFieldName | string                                     | ❌       |             |
 | VectorFieldName  | string                                     | ❌       |             |
 | Schema           | collections.Schema                         | ❌       |             |
-| IndexParams      | []collections.CollectionIndexParams | ❌       |             |
+| IndexConfig      | []collections.IndexParams | ❌       |             |
 | Params           | collections.CollectionParams        | ❌       |             |
 
 # Schema
@@ -24,9 +24,9 @@
 | :----------------- | :------------------- | :------- | :---------- |
 | AutoId             | string               | ❌       |             |
 | EnableDynamicField | string               | ❌       |             |
-| Fields             | []collections.Fields | ❌       |             |
+| Field             | []collections.Field | ❌       |             |
 
-# Fields
+# Field
 
 **Properties**
 
@@ -49,7 +49,7 @@
 | Dim         | int64 | ❌       |             |
 | MaxCapacity | int64 | ❌       |             |
 
-# CollectionIndexParams
+# IndexParams
 
 **Properties**
 
@@ -58,9 +58,9 @@
 | MetricType | string                         | ❌       |             |
 | FieldName  | string                         | ❌       |             |
 | IndexName  | string                         | ❌       |             |
-| Params     | collections.IndexParams | ❌       |             |
+| Params     | collections.IndexConfig | ❌       |             |
 
-# IndexParams
+# IndexConfig
 
 **Properties**
 

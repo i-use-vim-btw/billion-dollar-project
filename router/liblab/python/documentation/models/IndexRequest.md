@@ -6,9 +6,9 @@
 | :-------------- | :---------------------------- | :------- | :---------- |
 | collection_name | str                           | ✅       |             |
 | db_name         | str                           | ❌       |             |
-| index_params    | List[IndexRequestIndexParams] | ❌       |             |
+| index_params    | List[IndexParams] | ❌       |             |
 
-# IndexRequestIndexParams
+# IndexParams
 
 **Properties**
 
@@ -17,7 +17,7 @@
 | metric_type | str                | ❌       |             |
 | field_name  | str                | ❌       |             |
 | index_name  | str                | ❌       |             |
-| params      | IndexParamsParams2 | ❌       |             |
+| params      | IndexConfig | ❌       |             |
 
 # IndexParamsParams_2
 

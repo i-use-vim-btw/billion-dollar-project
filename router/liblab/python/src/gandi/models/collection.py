@@ -38,8 +38,8 @@ class ElementTypeParams(BaseModel):
         "element_type_params": "elementTypeParams",
     }
 )
-class Fields(BaseModel):
-    """Fields
+class Field(BaseModel):
+    """Field
 
     :param field_name: field_name, defaults to None
     :type field_name: str, optional
@@ -89,26 +89,26 @@ class Schema(BaseModel):
     :param enable_dynamic_field: enable_dynamic_field, defaults to None
     :type enable_dynamic_field: str, optional
     :param fields: fields, defaults to None
-    :type fields: List[Fields], optional
+    :type fields: List[Field], optional
     """
 
     def __init__(
         self,
         auto_id: str = None,
         enable_dynamic_field: str = None,
-        fields: List[Fields] = None,
+        fields: List[Field] = None,
     ):
         if auto_id is not None:
             self.auto_id = auto_id
         if enable_dynamic_field is not None:
             self.enable_dynamic_field = enable_dynamic_field
         if fields is not None:
-            self.fields = self._define_list(fields, Fields)
+            self.fields = self._define_list(fields, Field)
 
 
 @JsonMap({"m": "M", "ef_construction": "efConstruction"})
-class IndexParams(BaseModel):
-    """IndexParams
+class IndexConfig(BaseModel):
+    """IndexConfig
 
     :param index_type: index_type, defaults to None
     :type index_type: str, optional
@@ -140,8 +140,8 @@ class IndexParams(BaseModel):
 @JsonMap(
     {"metric_type": "metricType", "field_name": "fieldName", "index_name": "indexName"}
 )
-class CollectionIndexParams(BaseModel):
-    """CollectionIndexParams
+class IndexParams(BaseModel):
+    """IndexParams
 
     :param metric_type: metric_type, defaults to "COSINE"
     :type metric_type: str, optional
@@ -150,7 +150,7 @@ class CollectionIndexParams(BaseModel):
     :param index_name: index_name, defaults to None
     :type index_name: str, optional
     :param params: params, defaults to None
-    :type params: IndexParams, optional
+    :type params: IndexConfig, optional
     """
 
     def __init__(
@@ -158,7 +158,7 @@ class CollectionIndexParams(BaseModel):
         metric_type: str = "COSINE",
         field_name: str = None,
         index_name: str = None,
-        params: IndexParams = None,
+        params: IndexConfig = None,
     ):
         if metric_type is not None:
             self.metric_type = metric_type
@@ -167,7 +167,7 @@ class CollectionIndexParams(BaseModel):
         if index_name is not None:
             self.index_name = index_name
         if params is not None:
-            self.params = self._define_object(params, IndexParams)
+            self.params = self._define_object(params, IndexConfig)
 
 
 @JsonMap(
@@ -253,7 +253,7 @@ class Collection(BaseModel):
     :param schema: schema, defaults to None
     :type schema: Schema, optional
     :param index_params: index_params, defaults to None
-    :type index_params: List[CollectionIndexParams], optional
+    :type index_params: List[IndexParams], optional
     :param params: params, defaults to None
     :type params: CollectionParams, optional
     """
@@ -270,7 +270,7 @@ class Collection(BaseModel):
         primary_field_name: str = None,
         vector_field_name: str = None,
         schema: Schema = None,
-        index_params: List[CollectionIndexParams] = None,
+        index_params: List[IndexParams] = None,
         params: CollectionParams = None,
     ):
         if db_name is not None:
@@ -291,7 +291,7 @@ class Collection(BaseModel):
         if schema is not None:
             self.schema = self._define_object(schema, Schema)
         if index_params is not None:
-            self.index_params = self._define_list(index_params, CollectionIndexParams)
+            self.index_params = self._define_list(index_params, IndexParams)
         if params is not None:
             self.params = self._define_object(params, CollectionParams)
         if host is not None:

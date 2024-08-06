@@ -6,9 +6,9 @@
 | :------------- | :-------------------------------- | :------- | :---------- |
 | CollectionName | string                            | ✅       |             |
 | DbName         | string                            | ❌       |             |
-| IndexParams    | []indexes.IndexRequestIndexParams | ❌       |             |
+| IndexConfig    | []indexes.IndexParams | ❌       |             |
 
-# IndexRequestIndexParams
+# IndexParams
 
 **Properties**
 
@@ -17,9 +17,9 @@
 | MetricType | string                     | ❌       |             |
 | FieldName  | string                     | ❌       |             |
 | IndexName  | string                     | ❌       |             |
-| Params     | indexes.IndexParamsParams2 | ❌       |             |
+| Params     | indexes.IndexConfig | ❌       |             |
 
-# IndexParamsParams2
+# IndexConfig
 
 **Properties**
 

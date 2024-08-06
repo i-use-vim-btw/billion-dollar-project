@@ -13,14 +13,14 @@ public class IndexRequest extends io.gandi.models.BaseModel {
   @lombok.EqualsAndHashCode(callSuper = false)
   @lombok.ToString
   @com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-  @com.fasterxml.jackson.databind.annotation.JsonDeserialize(builder = IndexRequest.IndexParams.Builder.class)
-  public static class IndexParams extends io.gandi.models.BaseModel {
+  @com.fasterxml.jackson.databind.annotation.JsonDeserialize(builder = IndexRequest.IndexConfig.Builder.class)
+  public static class IndexConfig extends io.gandi.models.BaseModel {
 
     @lombok.Getter
     @lombok.EqualsAndHashCode(callSuper = false)
     @lombok.ToString
     @com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-    @com.fasterxml.jackson.databind.annotation.JsonDeserialize(builder = IndexRequest.IndexParams.Params.Builder.class)
+    @com.fasterxml.jackson.databind.annotation.JsonDeserialize(builder = IndexRequest.IndexConfig.Params.Builder.class)
     public static class Params extends io.gandi.models.BaseModel {
 
       @lombok.Getter
@@ -64,7 +64,7 @@ public class IndexRequest extends io.gandi.models.BaseModel {
           super(validationType);
         }
 
-        public IndexRequest.IndexParams.Params build() {
+        public IndexRequest.IndexConfig.Params build() {
           String validateMsg = validate();
 
           if (validateMsg != null) {
@@ -74,8 +74,8 @@ public class IndexRequest extends io.gandi.models.BaseModel {
           return buildWithoutValidation();
         }
 
-        public IndexRequest.IndexParams.Params buildWithoutValidation() {
-          return new IndexRequest.IndexParams.Params(this);
+        public IndexRequest.IndexConfig.Params buildWithoutValidation() {
+          return new IndexRequest.IndexConfig.Params(this);
         }
 
         @Override
@@ -159,7 +159,7 @@ public class IndexRequest extends io.gandi.models.BaseModel {
       private java.lang.String metricType;
 
       @com.fasterxml.jackson.annotation.JsonProperty("params")
-      private IndexRequest.IndexParams.Params params;
+      private IndexRequest.IndexConfig.Params params;
 
       public Builder() {
         super(ValidationType.ALL_OF);
@@ -169,7 +169,7 @@ public class IndexRequest extends io.gandi.models.BaseModel {
         super(validationType);
       }
 
-      public IndexRequest.IndexParams build() {
+      public IndexRequest.IndexConfig build() {
         String validateMsg = validate();
 
         if (validateMsg != null) {
@@ -179,8 +179,8 @@ public class IndexRequest extends io.gandi.models.BaseModel {
         return buildWithoutValidation();
       }
 
-      public IndexRequest.IndexParams buildWithoutValidation() {
-        return new IndexRequest.IndexParams(this);
+      public IndexRequest.IndexConfig buildWithoutValidation() {
+        return new IndexRequest.IndexConfig(this);
       }
 
       @Override
@@ -222,9 +222,9 @@ public class IndexRequest extends io.gandi.models.BaseModel {
     private final java.lang.String metricType;
 
     @com.fasterxml.jackson.annotation.JsonProperty("params")
-    private final IndexRequest.IndexParams.Params params;
+    private final IndexRequest.IndexConfig.Params params;
 
-    IndexParams(Builder builder) {
+    IndexConfig(Builder builder) {
       super(builder);
       this.fieldName = builder.getFieldName();
       this.indexName = builder.getIndexName();
@@ -263,7 +263,7 @@ public class IndexRequest extends io.gandi.models.BaseModel {
     private java.lang.String dbName;
 
     @com.fasterxml.jackson.annotation.JsonProperty("indexParams")
-    private java.util.List<IndexRequest.IndexParams> indexParams;
+    private java.util.List<IndexRequest.IndexConfig> indexParams;
 
     public Builder() {
       super(ValidationType.ALL_OF);
@@ -322,7 +322,7 @@ public class IndexRequest extends io.gandi.models.BaseModel {
   private final java.lang.String dbName;
 
   @com.fasterxml.jackson.annotation.JsonProperty("indexParams")
-  private final java.util.List<IndexRequest.IndexParams> indexParams;
+  private final java.util.List<IndexRequest.IndexConfig> indexParams;
 
   IndexRequest(Builder builder) {
     super(builder);

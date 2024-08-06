@@ -1,5 +1,7 @@
 # Collection
 
+Collection object for creating a collection.
+
 **Properties**
 
 | Name               | Type                               | Required | Description |
@@ -13,10 +15,10 @@
 | primary_field_name | str                                | ❌       |             |
 | vector_field_name  | str                                | ❌       |             |
 | schema             | Schema                             | ❌       |             |
-| index_params       | List[CollectionIndexParams] | ❌       |             |
+| index_params       | List[IndexParams] | ❌       |             |
 | params             | CollectionParams            | ❌       |             |
 
-# Schema
+## Schema
 
 **Properties**
 
@@ -24,9 +26,9 @@
 | :------------------- | :----------- | :------- | :---------- |
 | auto_id              | str          | ❌       |             |
 | enable_dynamic_field | str          | ❌       |             |
-| fields               | List[Fields] | ❌       |             |
+| fields               | List[Field] | ❌       |             |
 
-# Fields
+## Field
 
 **Properties**
 
@@ -39,7 +41,7 @@
 | is_partition_key    | bool              | ❌       |             |
 | element_type_params | ElementTypeParams | ❌       |             |
 
-# ElementTypeParams
+## ElementTypeParams
 
 **Properties**
 
@@ -49,7 +51,7 @@
 | dim          | int  | ❌       |             |
 | max_capacity | int  | ❌       |             |
 
-# CollectionIndexParams
+## IndexParams
 
 **Properties**
 
@@ -58,9 +60,9 @@
 | metric_type | str                | ❌       |             |
 | field_name  | str                | ❌       |             |
 | index_name  | str                | ❌       |             |
-| params      | IndexParams | ❌       |             |
+| params      | IndexConfig | ❌       |             |
 
-# IndexParamsParams_1
+## IndexConfig
 
 **Properties**
 
@@ -71,7 +73,7 @@
 | ef_construction | int  | ❌       |             |
 | nlist           | int  | ❌       |             |
 
-# CollectionParams
+## CollectionParams
 
 **Properties**
 

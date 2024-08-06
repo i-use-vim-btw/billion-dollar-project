@@ -12,7 +12,7 @@ type Collection struct {
 	PrimaryFieldName *string                 `json:"primaryFieldName,omitempty"`
 	VectorFieldName  *string                 `json:"vectorFieldName,omitempty"`
 	Schema           *Schema                 `json:"schema,omitempty"`
-	IndexParams      []CollectionIndexParams `json:"indexParams,omitempty"`
+	IndexConfig      []IndexParams `json:"indexParams,omitempty"`
 	Params           *CollectionParams       `json:"params,omitempty"`
 }
 
@@ -115,15 +115,15 @@ func (c *Collection) GetSchema() *Schema {
 	return c.Schema
 }
 
-func (c *Collection) SetIndexParams(indexParams []CollectionIndexParams) {
-	c.IndexParams = indexParams
+func (c *Collection) SetIndexParams(indexParams []IndexParams) {
+	c.IndexConfig = indexParams
 }
 
-func (c *Collection) GetIndexParams() []CollectionIndexParams {
+func (c *Collection) GetIndexParams() []IndexParams {
 	if c == nil {
 		return nil
 	}
-	return c.IndexParams
+	return c.IndexConfig
 }
 
 func (c *Collection) SetParams(params CollectionParams) {
@@ -140,7 +140,7 @@ func (c *Collection) GetParams() *CollectionParams {
 type Schema struct {
 	AutoId             *string  `json:"autoID,omitempty"`
 	EnableDynamicField *string  `json:"enableDynamicField,omitempty"`
-	Fields             []Fields `json:"fields,omitempty"`
+	Field             []Field `json:"fields,omitempty"`
 }
 
 func (s *Schema) SetAutoId(autoId string) {
@@ -165,18 +165,18 @@ func (s *Schema) GetEnableDynamicField() *string {
 	return s.EnableDynamicField
 }
 
-func (s *Schema) SetFields(fields []Fields) {
-	s.Fields = fields
+func (s *Schema) SetFields(fields []Field) {
+	s.Field = fields
 }
 
-func (s *Schema) GetFields() []Fields {
+func (s *Schema) GetFields() []Field {
 	if s == nil {
 		return nil
 	}
-	return s.Fields
+	return s.Field
 }
 
-type Fields struct {
+type Field struct {
 	FieldName         *string            `json:"fieldName,omitempty"`
 	DataType          *string            `json:"dataType,omitempty"`
 	ElementDataType   *string            `json:"elementDataType,omitempty"`
@@ -185,66 +185,66 @@ type Fields struct {
 	ElementTypeParams *ElementTypeParams `json:"elementTypeParams,omitempty"`
 }
 
-func (f *Fields) SetFieldName(fieldName string) {
+func (f *Field) SetFieldName(fieldName string) {
 	f.FieldName = &fieldName
 }
 
-func (f *Fields) GetFieldName() *string {
+func (f *Field) GetFieldName() *string {
 	if f == nil {
 		return nil
 	}
 	return f.FieldName
 }
 
-func (f *Fields) SetDataType(dataType string) {
+func (f *Field) SetDataType(dataType string) {
 	f.DataType = &dataType
 }
 
-func (f *Fields) GetDataType() *string {
+func (f *Field) GetDataType() *string {
 	if f == nil {
 		return nil
 	}
 	return f.DataType
 }
 
-func (f *Fields) SetElementDataType(elementDataType string) {
+func (f *Field) SetElementDataType(elementDataType string) {
 	f.ElementDataType = &elementDataType
 }
 
-func (f *Fields) GetElementDataType() *string {
+func (f *Field) GetElementDataType() *string {
 	if f == nil {
 		return nil
 	}
 	return f.ElementDataType
 }
 
-func (f *Fields) SetIsPrimary(isPrimary bool) {
+func (f *Field) SetIsPrimary(isPrimary bool) {
 	f.IsPrimary = &isPrimary
 }
 
-func (f *Fields) GetIsPrimary() *bool {
+func (f *Field) GetIsPrimary() *bool {
 	if f == nil {
 		return nil
 	}
 	return f.IsPrimary
 }
 
-func (f *Fields) SetIsPartitionKey(isPartitionKey bool) {
+func (f *Field) SetIsPartitionKey(isPartitionKey bool) {
 	f.IsPartitionKey = &isPartitionKey
 }
 
-func (f *Fields) GetIsPartitionKey() *bool {
+func (f *Field) GetIsPartitionKey() *bool {
 	if f == nil {
 		return nil
 	}
 	return f.IsPartitionKey
 }
 
-func (f *Fields) SetElementTypeParams(elementTypeParams ElementTypeParams) {
+func (f *Field) SetElementTypeParams(elementTypeParams ElementTypeParams) {
 	f.ElementTypeParams = &elementTypeParams
 }
 
-func (f *Fields) GetElementTypeParams() *ElementTypeParams {
+func (f *Field) GetElementTypeParams() *ElementTypeParams {
 	if f == nil {
 		return nil
 	}
@@ -290,102 +290,102 @@ func (e *ElementTypeParams) GetMaxCapacity() *int64 {
 	return e.MaxCapacity
 }
 
-type CollectionIndexParams struct {
+type IndexParams struct {
 	MetricType *string      `json:"metricType,omitempty"`
 	FieldName  *string      `json:"fieldName,omitempty"`
 	IndexName  *string      `json:"indexName,omitempty"`
-	Params     *IndexParams `json:"params,omitempty"`
+	Params     *IndexConfig `json:"params,omitempty"`
 }
 
-func (c *CollectionIndexParams) SetMetricType(metricType string) {
+func (c *IndexParams) SetMetricType(metricType string) {
 	c.MetricType = &metricType
 }
 
-func (c *CollectionIndexParams) GetMetricType() *string {
+func (c *IndexParams) GetMetricType() *string {
 	if c == nil {
 		return nil
 	}
 	return c.MetricType
 }
 
-func (c *CollectionIndexParams) SetFieldName(fieldName string) {
+func (c *IndexParams) SetFieldName(fieldName string) {
 	c.FieldName = &fieldName
 }
 
-func (c *CollectionIndexParams) GetFieldName() *string {
+func (c *IndexParams) GetFieldName() *string {
 	if c == nil {
 		return nil
 	}
 	return c.FieldName
 }
 
-func (c *CollectionIndexParams) SetIndexName(indexName string) {
+func (c *IndexParams) SetIndexName(indexName string) {
 	c.IndexName = &indexName
 }
 
-func (c *CollectionIndexParams) GetIndexName() *string {
+func (c *IndexParams) GetIndexName() *string {
 	if c == nil {
 		return nil
 	}
 	return c.IndexName
 }
 
-func (c *CollectionIndexParams) SetParams(params IndexParams) {
+func (c *IndexParams) SetParams(params IndexConfig) {
 	c.Params = &params
 }
 
-func (c *CollectionIndexParams) GetParams() *IndexParams {
+func (c *IndexParams) GetParams() *IndexConfig {
 	if c == nil {
 		return nil
 	}
 	return c.Params
 }
 
-type IndexParams struct {
+type IndexConfig struct {
 	IndexType      *string `json:"index_type,omitempty"`
 	M              *int64  `json:"M,omitempty"`
 	EfConstruction *int64  `json:"efConstruction,omitempty"`
 	Nlist          *int64  `json:"nlist,omitempty"`
 }
 
-func (i *IndexParams) SetIndexType(indexType string) {
+func (i *IndexConfig) SetIndexType(indexType string) {
 	i.IndexType = &indexType
 }
 
-func (i *IndexParams) GetIndexType() *string {
+func (i *IndexConfig) GetIndexType() *string {
 	if i == nil {
 		return nil
 	}
 	return i.IndexType
 }
 
-func (i *IndexParams) SetM(m int64) {
+func (i *IndexConfig) SetM(m int64) {
 	i.M = &m
 }
 
-func (i *IndexParams) GetM() *int64 {
+func (i *IndexConfig) GetM() *int64 {
 	if i == nil {
 		return nil
 	}
 	return i.M
 }
 
-func (i *IndexParams) SetEfConstruction(efConstruction int64) {
+func (i *IndexConfig) SetEfConstruction(efConstruction int64) {
 	i.EfConstruction = &efConstruction
 }
 
-func (i *IndexParams) GetEfConstruction() *int64 {
+func (i *IndexConfig) GetEfConstruction() *int64 {
 	if i == nil {
 		return nil
 	}
 	return i.EfConstruction
 }
 
-func (i *IndexParams) SetNlist(nlist int64) {
+func (i *IndexConfig) SetNlist(nlist int64) {
 	i.Nlist = &nlist
 }
 
-func (i *IndexParams) GetNlist() *int64 {
+func (i *IndexConfig) GetNlist() *int64 {
 	if i == nil {
 		return nil
 	}

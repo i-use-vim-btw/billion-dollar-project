@@ -6,8 +6,8 @@ from .base import BaseModel
 
 
 @JsonMap({"m": "M", "ef_construction": "efConstruction"})
-class IndexParamsParams2(BaseModel):
-    """IndexParamsParams2
+class IndexConfig(BaseModel):
+    """IndexConfig
 
     :param index_type: index_type, defaults to None
     :type index_type: str, optional
@@ -39,8 +39,8 @@ class IndexParamsParams2(BaseModel):
 @JsonMap(
     {"metric_type": "metricType", "field_name": "fieldName", "index_name": "indexName"}
 )
-class IndexRequestIndexParams(BaseModel):
-    """IndexRequestIndexParams
+class IndexParams(BaseModel):
+    """IndexParams
 
     :param metric_type: metric_type, defaults to None
     :type metric_type: str, optional
@@ -49,7 +49,7 @@ class IndexRequestIndexParams(BaseModel):
     :param index_name: index_name, defaults to None
     :type index_name: str, optional
     :param params: params, defaults to None
-    :type params: IndexParamsParams2, optional
+    :type params: IndexConfig, optional
     """
 
     def __init__(
@@ -57,7 +57,7 @@ class IndexRequestIndexParams(BaseModel):
         metric_type: str = None,
         field_name: str = None,
         index_name: str = None,
-        params: IndexParamsParams2 = None,
+        params: IndexConfig = None,
     ):
         if metric_type is not None:
             self.metric_type = metric_type
@@ -66,7 +66,7 @@ class IndexRequestIndexParams(BaseModel):
         if index_name is not None:
             self.index_name = index_name
         if params is not None:
-            self.params = self._define_object(params, IndexParamsParams2)
+            self.params = self._define_object(params, IndexConfig)
 
 
 @JsonMap(
@@ -84,17 +84,17 @@ class IndexRequest(BaseModel):
     :param collection_name: collection_name
     :type collection_name: str
     :param index_params: index_params, defaults to None
-    :type index_params: List[IndexRequestIndexParams], optional
+    :type index_params: List[IndexParams], optional
     """
 
     def __init__(
         self,
         collection_name: str,
         db_name: str = "default",
-        index_params: List[IndexRequestIndexParams] = None,
+        index_params: List[IndexParams] = None,
     ):
         if db_name is not None:
             self.db_name = db_name
         self.collection_name = collection_name
         if index_params is not None:
-            self.index_params = self._define_list(index_params, IndexRequestIndexParams)
+            self.index_params = self._define_list(index_params, IndexParams)

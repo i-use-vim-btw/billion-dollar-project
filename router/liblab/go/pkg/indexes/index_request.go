@@ -5,7 +5,7 @@ package indexes
 type IndexRequest struct {
 	DbName         *string                   `json:"dbName,omitempty"`
 	CollectionName *string                   `json:"collectionName,omitempty" required:"true"`
-	IndexParams    []IndexRequestIndexParams `json:"indexParams,omitempty"`
+	IndexConfig    []IndexParams `json:"indexParams,omitempty"`
 }
 
 func (i *IndexRequest) SetDbName(dbName string) {
@@ -30,113 +30,113 @@ func (i *IndexRequest) GetCollectionName() *string {
 	return i.CollectionName
 }
 
-func (i *IndexRequest) SetIndexParams(indexParams []IndexRequestIndexParams) {
-	i.IndexParams = indexParams
+func (i *IndexRequest) SetIndexParams(indexParams []IndexParams) {
+	i.IndexConfig = indexParams
 }
 
-func (i *IndexRequest) GetIndexParams() []IndexRequestIndexParams {
+func (i *IndexRequest) GetIndexParams() []IndexParams {
 	if i == nil {
 		return nil
 	}
-	return i.IndexParams
+	return i.IndexConfig
 }
 
-type IndexRequestIndexParams struct {
+type IndexParams struct {
 	MetricType *string             `json:"metricType,omitempty"`
 	FieldName  *string             `json:"fieldName,omitempty"`
 	IndexName  *string             `json:"indexName,omitempty"`
-	Params     *IndexParamsParams2 `json:"params,omitempty"`
+	Params     *IndexConfig `json:"params,omitempty"`
 }
 
-func (i *IndexRequestIndexParams) SetMetricType(metricType string) {
+func (i *IndexParams) SetMetricType(metricType string) {
 	i.MetricType = &metricType
 }
 
-func (i *IndexRequestIndexParams) GetMetricType() *string {
+func (i *IndexParams) GetMetricType() *string {
 	if i == nil {
 		return nil
 	}
 	return i.MetricType
 }
 
-func (i *IndexRequestIndexParams) SetFieldName(fieldName string) {
+func (i *IndexParams) SetFieldName(fieldName string) {
 	i.FieldName = &fieldName
 }
 
-func (i *IndexRequestIndexParams) GetFieldName() *string {
+func (i *IndexParams) GetFieldName() *string {
 	if i == nil {
 		return nil
 	}
 	return i.FieldName
 }
 
-func (i *IndexRequestIndexParams) SetIndexName(indexName string) {
+func (i *IndexParams) SetIndexName(indexName string) {
 	i.IndexName = &indexName
 }
 
-func (i *IndexRequestIndexParams) GetIndexName() *string {
+func (i *IndexParams) GetIndexName() *string {
 	if i == nil {
 		return nil
 	}
 	return i.IndexName
 }
 
-func (i *IndexRequestIndexParams) SetParams(params IndexParamsParams2) {
+func (i *IndexParams) SetParams(params IndexConfig) {
 	i.Params = &params
 }
 
-func (i *IndexRequestIndexParams) GetParams() *IndexParamsParams2 {
+func (i *IndexParams) GetParams() *IndexConfig {
 	if i == nil {
 		return nil
 	}
 	return i.Params
 }
 
-type IndexParamsParams2 struct {
+type IndexConfig struct {
 	IndexType      *string `json:"index_type,omitempty"`
 	M              *int64  `json:"M,omitempty"`
 	EfConstruction *int64  `json:"efConstruction,omitempty"`
 	Nlist          *int64  `json:"nlist,omitempty"`
 }
 
-func (i *IndexParamsParams2) SetIndexType(indexType string) {
+func (i *IndexConfig) SetIndexType(indexType string) {
 	i.IndexType = &indexType
 }
 
-func (i *IndexParamsParams2) GetIndexType() *string {
+func (i *IndexConfig) GetIndexType() *string {
 	if i == nil {
 		return nil
 	}
 	return i.IndexType
 }
 
-func (i *IndexParamsParams2) SetM(m int64) {
+func (i *IndexConfig) SetM(m int64) {
 	i.M = &m
 }
 
-func (i *IndexParamsParams2) GetM() *int64 {
+func (i *IndexConfig) GetM() *int64 {
 	if i == nil {
 		return nil
 	}
 	return i.M
 }
 
-func (i *IndexParamsParams2) SetEfConstruction(efConstruction int64) {
+func (i *IndexConfig) SetEfConstruction(efConstruction int64) {
 	i.EfConstruction = &efConstruction
 }
 
-func (i *IndexParamsParams2) GetEfConstruction() *int64 {
+func (i *IndexConfig) GetEfConstruction() *int64 {
 	if i == nil {
 		return nil
 	}
 	return i.EfConstruction
 }
 
-func (i *IndexParamsParams2) SetNlist(nlist int64) {
+func (i *IndexConfig) SetNlist(nlist int64) {
 	i.Nlist = &nlist
 }
 
-func (i *IndexParamsParams2) GetNlist() *int64 {
+func (i *IndexConfig) GetNlist() *int64 {
 	if i == nil {
 		return nil
 	}
