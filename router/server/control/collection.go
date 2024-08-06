@@ -11,7 +11,7 @@ import (
 )
 
 func CreateCollection(c *gin.Context) {
-	var newData map[string]interface{}
+	var newData map[string]any
 
 	if err := c.ShouldBindJSON(&newData); err != nil {
 		fmt.Println("Could not bind data")
@@ -69,7 +69,7 @@ func CreateCollection(c *gin.Context) {
 }
 
 func DescribeCollection(c *gin.Context) {
-	var newData map[string]interface{}
+	var newData map[string]any
 
 	if err := c.BindJSON(&newData); err != nil {
 		fmt.Println("Could not bind data")
@@ -113,7 +113,7 @@ func DescribeCollection(c *gin.Context) {
 		return
 	}
 
-	var result map[string]interface{}
+	var result map[string]any
 	err = json.Unmarshal(buf, &result)
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, gin.H{
@@ -127,7 +127,7 @@ func DescribeCollection(c *gin.Context) {
 }
 
 func DropCollection(c *gin.Context) {
-	var newData map[string]interface{}
+	var newData map[string]any
 
 	if err := c.BindJSON(&newData); err != nil {
 		fmt.Println("Could not bind data")
@@ -171,7 +171,7 @@ func DropCollection(c *gin.Context) {
 		return
 	}
 
-	var result map[string]interface{}
+	var result map[string]any
 	err = json.Unmarshal(buf, &result)
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, gin.H{
@@ -185,7 +185,7 @@ func DropCollection(c *gin.Context) {
 }
 
 func GetLoadState(c *gin.Context) {
-	var newData map[string]interface{}
+	var newData map[string]any
 
 	if err := c.BindJSON(&newData); err != nil {
 		fmt.Println("Could not bind data")
@@ -229,7 +229,7 @@ func GetLoadState(c *gin.Context) {
 		return
 	}
 
-	var result map[string]interface{}
+	var result map[string]any
 	err = json.Unmarshal(buf, &result)
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, gin.H{
@@ -243,7 +243,7 @@ func GetLoadState(c *gin.Context) {
 }
 
 func GetStats(c *gin.Context) {
-	var newData map[string]interface{}
+	var newData map[string]any
 
 	if err := c.BindJSON(&newData); err != nil {
 		fmt.Println("Could not bind data")
@@ -287,7 +287,7 @@ func GetStats(c *gin.Context) {
 		return
 	}
 
-	var result map[string]interface{}
+	var result map[string]any
 	err = json.Unmarshal(buf, &result)
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, gin.H{
@@ -301,7 +301,7 @@ func GetStats(c *gin.Context) {
 }
 
 func HasCollection(c *gin.Context) {
-	var newData map[string]interface{}
+	var newData map[string]any
 
 	if err := c.BindJSON(&newData); err != nil {
 		fmt.Println("Could not bind data")
@@ -345,7 +345,7 @@ func HasCollection(c *gin.Context) {
 		return
 	}
 
-	var result map[string]interface{}
+	var result map[string]any
 	err = json.Unmarshal(buf, &result)
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, gin.H{
@@ -359,7 +359,7 @@ func HasCollection(c *gin.Context) {
 }
 
 func ListCollections(c *gin.Context) {
-	var newData map[string]interface{}
+	var newData map[string]any
 
 	if err := c.BindJSON(&newData); err != nil {
 		fmt.Println("Could not bind data")
@@ -403,7 +403,7 @@ func ListCollections(c *gin.Context) {
 		return
 	}
 
-	var result map[string]interface{}
+	var result map[string]any
 	err = json.Unmarshal(buf, &result)
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, gin.H{
@@ -417,7 +417,7 @@ func ListCollections(c *gin.Context) {
 }
 
 func LoadCollection(c *gin.Context) {
-	var newData map[string]interface{}
+	var newData map[string]any
 
 	if err := c.BindJSON(&newData); err != nil {
 		fmt.Println("Could not bind data")
@@ -461,7 +461,7 @@ func LoadCollection(c *gin.Context) {
 		return
 	}
 
-	var result map[string]interface{}
+	var result map[string]any
 	err = json.Unmarshal(buf, &result)
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, gin.H{
@@ -475,7 +475,7 @@ func LoadCollection(c *gin.Context) {
 }
 
 func ReleaseCollection(c *gin.Context) {
-	var newData map[string]interface{}
+	var newData map[string]any
 
 	if err := c.BindJSON(&newData); err != nil {
 		fmt.Println("Could not bind data")
@@ -519,7 +519,7 @@ func ReleaseCollection(c *gin.Context) {
 		return
 	}
 
-	var result map[string]interface{}
+	var result map[string]any
 	err = json.Unmarshal(buf, &result)
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, gin.H{
@@ -533,7 +533,7 @@ func ReleaseCollection(c *gin.Context) {
 }
 
 func RenameCollection(c *gin.Context) {
-	var newData map[string]interface{}
+	var newData map[string]any
 
 	if err := c.BindJSON(&newData); err != nil {
 		fmt.Println("Could not bind data")
@@ -577,7 +577,7 @@ func RenameCollection(c *gin.Context) {
 		return
 	}
 
-	var result map[string]interface{}
+	var result map[string]any
 	err = json.Unmarshal(buf, &result)
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, gin.H{

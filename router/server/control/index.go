@@ -11,7 +11,7 @@ import (
 )
 
 func CreateIndex(c *gin.Context) {
-	var newData map[string]interface{}
+	var newData map[string]any
 
 	if err := c.BindJSON(&newData); err != nil {
 		fmt.Println("Could not bind data")
@@ -69,7 +69,7 @@ func CreateIndex(c *gin.Context) {
 }
 
 func DescribeIndex(c *gin.Context) {
-	var newData map[string]interface{}
+	var newData map[string]any
 
 	if err := c.BindJSON(&newData); err != nil {
 		fmt.Println("Could not bind data")
@@ -127,7 +127,7 @@ func DescribeIndex(c *gin.Context) {
 }
 
 func DropIndex(c *gin.Context) {
-	var newData map[string]interface{}
+	var newData map[string]any
 
 	if err := c.BindJSON(&newData); err != nil {
 		fmt.Println("Could not bind data")
@@ -171,7 +171,7 @@ func DropIndex(c *gin.Context) {
 		return
 	}
 
-	var result map[string]interface{}
+	var result map[string]any
 	err = json.Unmarshal(buf, &result)
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, gin.H{
@@ -185,7 +185,7 @@ func DropIndex(c *gin.Context) {
 }
 
 func ListIndexes(c *gin.Context) {
-	var newData map[string]interface{}
+	var newData map[string]any
 
 	if err := c.BindJSON(&newData); err != nil {
 		fmt.Println("Could not bind data")
@@ -229,7 +229,7 @@ func ListIndexes(c *gin.Context) {
 		return
 	}
 
-	var result map[string]interface{}
+	var result map[string]any
 	err = json.Unmarshal(buf, &result)
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, gin.H{
