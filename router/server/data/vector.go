@@ -11,7 +11,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func GetWithID(c *gin.Context) {
+func Vector(c *gin.Context, method string) {
 	var newData map[string]any
 
 	if err := c.BindJSON(&newData); err != nil {
@@ -27,8 +27,11 @@ func GetWithID(c *gin.Context) {
 	// api_key := newData["api_key"].(string)
 	host := newData["host"]
 
-	delete(newData, "api_key")
-	delete(newData, "host")
+	if host != nil {
+		delete(newData, "host")
+	} else {
+		host = "localhost:8080"
+	}
 
 	sendData, err := json.Marshal(newData)
 
@@ -41,7 +44,9 @@ func GetWithID(c *gin.Context) {
 		return
 	}
 	log.Println("Data marshalling successfull, sending request")
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/entities/get", host), "application/json", bytes.NewReader(sendData))
+
+	// host cannot be empty, router crashes.
+	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/entities/%s", host, method), "application/json", bytes.NewReader(sendData))
 
 	if err != nil {
 		log.Println("Request failed, " + err.Error())
@@ -66,7 +71,12 @@ func GetWithID(c *gin.Context) {
 	var result map[string]any
 	err = json.Unmarshal(buf, &result)
 	if err != nil {
-		log.Println("Could not unmarshal response, " + err.Error())
+		str := string(buf[:])
+		if str == "404 page not found" {
+			c.JSON(404, str)
+			return
+		}
+		log.Println("Could not unmarshal response, " + err.Error() + string(buf[:]))
 		c.JSON(http.StatusNotAcceptable, gin.H{
 			"code":    http.StatusNotAcceptable,
 			"message": "Response could not be binded to JSON",
@@ -74,359 +84,35 @@ func GetWithID(c *gin.Context) {
 		return
 	}
 	log.Println("Response unmarshalling successfull, sending response")
-	code := int(result["code"].(float64))
-	delete(result, "code")
-	if code < 200 {
-		code += 1000
-	}
-	c.JSON(code, result)
+
+	c.JSON(200, result)
 	resp.Body.Close()
+}
+
+func GetWithID(c *gin.Context) {
+	Vector(c, "get")
 }
 
 func InsertVectors(c *gin.Context) {
-	var newData map[string]any
-
-	if err := c.BindJSON(&newData); err != nil {
-		fmt.Println("Could not bind data")
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	// Do something with api key and host
-	// api_key := newData["api_key"].(string)
-	host := newData["host"]
-
-	delete(newData, "api_key")
-	delete(newData, "host")
-
-	sendData, err := json.Marshal(newData)
-
-	if err != nil {
-		c.JSON(http.StatusNoContent, gin.H{
-			"code": http.StatusNoContent,
-		})
-		return
-	}
-
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/entities/insert", host), "application/json", bytes.NewReader(sendData))
-	fmt.Println(resp.StatusCode)
-	if err != nil {
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	buf, err := io.ReadAll(resp.Body)
-
-	if err != nil {
-		c.JSON(http.StatusNoContent, gin.H{
-			"code": http.StatusNoContent,
-		})
-		return
-	}
-
-	var result map[string]any
-	err = json.Unmarshal(buf, &result)
-	if err != nil {
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	c.JSON(resp.StatusCode, result)
-	resp.Body.Close()
+	Vector(c, "insert")
 }
 
 func DeleteVectors(c *gin.Context) {
-	var newData map[string]any
-
-	if err := c.BindJSON(&newData); err != nil {
-		fmt.Println("Could not bind data")
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	// Do something with api key and host
-	// api_key := newData["api_key"].(string)
-	host := newData["host"]
-
-	delete(newData, "api_key")
-	delete(newData, "host")
-
-	sendData, err := json.Marshal(newData)
-
-	if err != nil {
-		c.JSON(http.StatusNoContent, gin.H{
-			"code": http.StatusNoContent,
-		})
-		return
-	}
-
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/entities/delete", host), "application/json", bytes.NewReader(sendData))
-
-	if err != nil {
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	buf, err := io.ReadAll(resp.Body)
-
-	if err != nil {
-		c.JSON(http.StatusNoContent, gin.H{
-			"code": http.StatusNoContent,
-		})
-		return
-	}
-
-	var result map[string]any
-	err = json.Unmarshal(buf, &result)
-	if err != nil {
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	c.JSON(resp.StatusCode, result)
-	resp.Body.Close()
+	Vector(c, "delete")
 }
 
 func UpsertVectors(c *gin.Context) {
-	var newData map[string]any
-
-	if err := c.BindJSON(&newData); err != nil {
-		fmt.Println("Could not bind data")
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	// Do something with api key and host
-	// api_key := newData["api_key"].(string)
-	host := newData["host"]
-
-	delete(newData, "api_key")
-	delete(newData, "host")
-
-	sendData, err := json.Marshal(newData)
-
-	if err != nil {
-		c.JSON(http.StatusNoContent, gin.H{
-			"code": http.StatusNoContent,
-		})
-		return
-	}
-
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/entities/upsert", host), "application/json", bytes.NewReader(sendData))
-
-	if err != nil {
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	buf, err := io.ReadAll(resp.Body)
-
-	if err != nil {
-		c.JSON(http.StatusNoContent, gin.H{
-			"code": http.StatusNoContent,
-		})
-		return
-	}
-
-	var result map[string]any
-	err = json.Unmarshal(buf, &result)
-	if err != nil {
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	c.JSON(resp.StatusCode, result)
-	resp.Body.Close()
+	Vector(c, "upsert")
 }
 
 func Query(c *gin.Context) {
-	var newData map[string]any
-
-	if err := c.BindJSON(&newData); err != nil {
-		fmt.Println("Could not bind data")
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	// Do something with api key and host
-	// api_key := newData["api_key"].(string)
-	host := newData["host"]
-
-	delete(newData, "api_key")
-	delete(newData, "host")
-
-	sendData, err := json.Marshal(newData)
-
-	if err != nil {
-		c.JSON(http.StatusNoContent, gin.H{
-			"code": http.StatusNoContent,
-		})
-		return
-	}
-
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/entities/query", host), "application/json", bytes.NewReader(sendData))
-
-	if err != nil {
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	buf, err := io.ReadAll(resp.Body)
-
-	if err != nil {
-		c.JSON(http.StatusNoContent, gin.H{
-			"code": http.StatusNoContent,
-		})
-		return
-	}
-
-	var result map[string]any
-	err = json.Unmarshal(buf, &result)
-	if err != nil {
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	c.JSON(resp.StatusCode, result)
-	resp.Body.Close()
+	Vector(c, "query")
 }
 
 func Search(c *gin.Context) {
-	var newData map[string]any
-
-	if err := c.BindJSON(&newData); err != nil {
-		fmt.Println("Could not bind data")
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	// Do something with api key and host
-	// api_key := newData["api_key"].(string)
-	host := newData["host"]
-
-	delete(newData, "api_key")
-	delete(newData, "host")
-
-	sendData, err := json.Marshal(newData)
-
-	if err != nil {
-		c.JSON(http.StatusNoContent, gin.H{
-			"code": http.StatusNoContent,
-		})
-		return
-	}
-
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/entities/search", host), "application/json", bytes.NewReader(sendData))
-
-	if err != nil {
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	buf, err := io.ReadAll(resp.Body)
-
-	if err != nil {
-		c.JSON(http.StatusNoContent, gin.H{
-			"code": http.StatusNoContent,
-		})
-		return
-	}
-
-	var result map[string]any
-	err = json.Unmarshal(buf, &result)
-	if err != nil {
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	c.JSON(resp.StatusCode, result)
-	resp.Body.Close()
+	Vector(c, "search")
 }
 
 func HybridSearch(c *gin.Context) {
-	var newData map[string]any
-
-	if err := c.BindJSON(&newData); err != nil {
-		fmt.Println("Could not bind data")
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	// Do something with api key and host
-	// api_key := newData["api_key"].(string)
-	host := newData["host"]
-
-	delete(newData, "api_key")
-	delete(newData, "host")
-
-	sendData, err := json.Marshal(newData)
-
-	if err != nil {
-		c.JSON(http.StatusNoContent, gin.H{
-			"code": http.StatusNoContent,
-		})
-		return
-	}
-
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/entities/search", host), "application/json", bytes.NewReader(sendData))
-
-	if err != nil {
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	buf, err := io.ReadAll(resp.Body)
-
-	if err != nil {
-		c.JSON(http.StatusNoContent, gin.H{
-			"code": http.StatusNoContent,
-		})
-		return
-	}
-
-	var result map[string]any
-	err = json.Unmarshal(buf, &result)
-	if err != nil {
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	c.JSON(resp.StatusCode, result)
-	resp.Body.Close()
+	Vector(c, "search")
 }

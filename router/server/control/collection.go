@@ -10,582 +10,120 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func CreateCollection(c *gin.Context) {
+func Collection(c *gin.Context, method string) {
 	var newData map[string]any
 
-	if err := c.ShouldBindJSON(&newData); err != nil {
-		fmt.Println("Could not bind data")
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
+	if err := c.BindJSON(&newData); err != nil {
+		log.Println("Could not bind data, " + err.Error())
+		c.JSON(http.StatusBadRequest, gin.H{
+			"code":    http.StatusBadRequest,
+			"message": "JSON data could not be binded",
 		})
 		return
 	}
-	fmt.Println(newData)
+	log.Println("Data binding successfull, marshalling data")
 	// Do something with api key and host
 	// api_key := newData["api_key"].(string)
 	host := newData["host"]
 
-	delete(newData, "api_key")
-	delete(newData, "host")
+	if host != nil {
+		delete(newData, "host")
+	} else {
+		host = "localhost:8080"
+	}
 
 	sendData, err := json.Marshal(newData)
 
 	if err != nil {
+		log.Println("Could not marshal data, " + err.Error())
 		c.JSON(http.StatusNoContent, gin.H{
-			"code": http.StatusNoContent,
+			"code":    http.StatusNoContent,
+			"message": "Content does not exist",
 		})
 		return
 	}
+	log.Println("Data marshalling successfull, sending request")
 
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/collections/create", host), "application/json", bytes.NewReader(sendData))
+	// host cannot be empty, router crashes.
+	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/collections/%s", host, method), "application/json", bytes.NewReader(sendData))
 
 	if err != nil {
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
+		log.Println("Request failed, " + err.Error())
+		c.JSON(resp.StatusCode, gin.H{
+			"code":    resp.StatusCode,
+			"message": err.Error(),
 		})
 		return
 	}
-
+	log.Println("Request successfull, reading response")
 	buf, err := io.ReadAll(resp.Body)
 
 	if err != nil {
-		c.JSON(http.StatusNoContent, gin.H{
-			"code": http.StatusNoContent,
+		log.Println("Could not read response, " + err.Error())
+		c.JSON(http.StatusBadRequest, gin.H{
+			"code":    http.StatusBadRequest,
+			"message": "Response could not be read",
 		})
 		return
 	}
-
+	log.Println("Response read successfull, unmarshalling response")
 	var result map[string]any
 	err = json.Unmarshal(buf, &result)
 	if err != nil {
+		str := string(buf[:])
+		if str == "404 page not found" {
+			c.JSON(404, str)
+			return
+		}
+		log.Println("Could not unmarshal response, " + err.Error() + string(buf[:]))
 		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
+			"code":    http.StatusNotAcceptable,
+			"message": "Response could not be binded to JSON",
 		})
 		return
 	}
+	log.Println("Response unmarshalling successfull, sending response")
 
-	c.JSON(resp.StatusCode, result)
+	c.JSON(200, result)
 	resp.Body.Close()
+}
+
+func CreateCollection(c *gin.Context) {
+	Collection(c, "create")
 }
 
 func DescribeCollection(c *gin.Context) {
-	var newData map[string]any
-
-	if err := c.BindJSON(&newData); err != nil {
-		fmt.Println("Could not bind data")
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	// Do something with api key and host
-	// api_key := newData["api_key"].(string)
-	host := newData["host"]
-
-	delete(newData, "api_key")
-	delete(newData, "host")
-
-	sendData, err := json.Marshal(newData)
-
-	if err != nil {
-		c.JSON(http.StatusNoContent, gin.H{
-			"code": http.StatusNoContent,
-		})
-		return
-	}
-
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/collections/describe", host), "application/json", bytes.NewReader(sendData))
-
-	if err != nil {
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	buf, err := io.ReadAll(resp.Body)
-
-	if err != nil {
-		c.JSON(http.StatusNoContent, gin.H{
-			"code": http.StatusNoContent,
-		})
-		return
-	}
-
-	var result map[string]any
-	err = json.Unmarshal(buf, &result)
-	if err != nil {
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	c.JSON(resp.StatusCode, result)
-	resp.Body.Close()
+	Collection(c, "describe")
 }
 
 func DropCollection(c *gin.Context) {
-	var newData map[string]any
-
-	if err := c.BindJSON(&newData); err != nil {
-		fmt.Println("Could not bind data")
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	// Do something with api key and host
-	// api_key := newData["api_key"].(string)
-	host := newData["host"]
-
-	delete(newData, "api_key")
-	delete(newData, "host")
-
-	sendData, err := json.Marshal(newData)
-
-	if err != nil {
-		c.JSON(http.StatusNoContent, gin.H{
-			"code": http.StatusNoContent,
-		})
-		return
-	}
-
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/collections/drop", host), "application/json", bytes.NewReader(sendData))
-
-	if err != nil {
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	buf, err := io.ReadAll(resp.Body)
-
-	if err != nil {
-		c.JSON(http.StatusNoContent, gin.H{
-			"code": http.StatusNoContent,
-		})
-		return
-	}
-
-	var result map[string]any
-	err = json.Unmarshal(buf, &result)
-	if err != nil {
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	c.JSON(resp.StatusCode, result)
-	resp.Body.Close()
+	Collection(c, "drop")
 }
 
 func GetLoadState(c *gin.Context) {
-	var newData map[string]any
-
-	if err := c.BindJSON(&newData); err != nil {
-		fmt.Println("Could not bind data")
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	// Do something with api key and host
-	// api_key := newData["api_key"].(string)
-	host := newData["host"]
-
-	delete(newData, "api_key")
-	delete(newData, "host")
-
-	sendData, err := json.Marshal(newData)
-
-	if err != nil {
-		c.JSON(http.StatusNoContent, gin.H{
-			"code": http.StatusNoContent,
-		})
-		return
-	}
-
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/collections/get_load_state", host), "application/json", bytes.NewReader(sendData))
-
-	if err != nil {
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	buf, err := io.ReadAll(resp.Body)
-
-	if err != nil {
-		c.JSON(http.StatusNoContent, gin.H{
-			"code": http.StatusNoContent,
-		})
-		return
-	}
-
-	var result map[string]any
-	err = json.Unmarshal(buf, &result)
-	if err != nil {
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	c.JSON(resp.StatusCode, result)
-	resp.Body.Close()
+	Collection(c, "get_load_state")
 }
 
 func GetStats(c *gin.Context) {
-	var newData map[string]any
-
-	if err := c.BindJSON(&newData); err != nil {
-		fmt.Println("Could not bind data")
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	// Do something with api key and host
-	// api_key := newData["api_key"].(string)
-	host := newData["host"]
-
-	delete(newData, "api_key")
-	delete(newData, "host")
-
-	sendData, err := json.Marshal(newData)
-
-	if err != nil {
-		c.JSON(http.StatusNoContent, gin.H{
-			"code": http.StatusNoContent,
-		})
-		return
-	}
-
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/collections/get_stats", host), "application/json", bytes.NewReader(sendData))
-
-	if err != nil {
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	buf, err := io.ReadAll(resp.Body)
-
-	if err != nil {
-		c.JSON(http.StatusNoContent, gin.H{
-			"code": http.StatusNoContent,
-		})
-		return
-	}
-
-	var result map[string]any
-	err = json.Unmarshal(buf, &result)
-	if err != nil {
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	c.JSON(resp.StatusCode, result)
-	resp.Body.Close()
+	Collection(c, "get_stats")
 }
 
 func HasCollection(c *gin.Context) {
-	var newData map[string]any
-
-	if err := c.BindJSON(&newData); err != nil {
-		fmt.Println("Could not bind data")
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	// Do something with api key and host
-	// api_key := newData["api_key"].(string)
-	host := newData["host"]
-
-	delete(newData, "api_key")
-	delete(newData, "host")
-
-	sendData, err := json.Marshal(newData)
-
-	if err != nil {
-		c.JSON(http.StatusNoContent, gin.H{
-			"code": http.StatusNoContent,
-		})
-		return
-	}
-
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/collections/has", host), "application/json", bytes.NewReader(sendData))
-
-	if err != nil {
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	buf, err := io.ReadAll(resp.Body)
-
-	if err != nil {
-		c.JSON(http.StatusNoContent, gin.H{
-			"code": http.StatusNoContent,
-		})
-		return
-	}
-
-	var result map[string]any
-	err = json.Unmarshal(buf, &result)
-	if err != nil {
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	c.JSON(resp.StatusCode, result)
-	resp.Body.Close()
+	Collection(c, "has")
 }
 
 func ListCollections(c *gin.Context) {
-	var newData map[string]any
-
-	if err := c.BindJSON(&newData); err != nil {
-		fmt.Println("Could not bind data")
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	// Do something with api key and host
-	// api_key := newData["api_key"].(string)
-	host := newData["host"]
-
-	delete(newData, "api_key")
-	delete(newData, "host")
-
-	sendData, err := json.Marshal(newData)
-
-	if err != nil {
-		c.JSON(http.StatusNoContent, gin.H{
-			"code": http.StatusNoContent,
-		})
-		return
-	}
-
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/collections/list", host), "application/json", bytes.NewReader(sendData))
-
-	if err != nil {
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	buf, err := io.ReadAll(resp.Body)
-
-	if err != nil {
-		c.JSON(http.StatusNoContent, gin.H{
-			"code": http.StatusNoContent,
-		})
-		return
-	}
-
-	var result map[string]any
-	err = json.Unmarshal(buf, &result)
-	if err != nil {
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	c.JSON(resp.StatusCode, result)
-	resp.Body.Close()
+	Collection(c, "list")
 }
 
 func LoadCollection(c *gin.Context) {
-	var newData map[string]any
-
-	if err := c.BindJSON(&newData); err != nil {
-		fmt.Println("Could not bind data")
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	// Do something with api key and host
-	// api_key := newData["api_key"].(string)
-	host := newData["host"]
-
-	delete(newData, "api_key")
-	delete(newData, "host")
-
-	sendData, err := json.Marshal(newData)
-
-	if err != nil {
-		c.JSON(http.StatusNoContent, gin.H{
-			"code": http.StatusNoContent,
-		})
-		return
-	}
-
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/collections/load", host), "application/json", bytes.NewReader(sendData))
-
-	if err != nil {
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	buf, err := io.ReadAll(resp.Body)
-
-	if err != nil {
-		c.JSON(http.StatusNoContent, gin.H{
-			"code": http.StatusNoContent,
-		})
-		return
-	}
-
-	var result map[string]any
-	err = json.Unmarshal(buf, &result)
-	if err != nil {
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	c.JSON(resp.StatusCode, result)
-	resp.Body.Close()
+	Collection(c, "load")
 }
 
 func ReleaseCollection(c *gin.Context) {
-	var newData map[string]any
-
-	if err := c.BindJSON(&newData); err != nil {
-		fmt.Println("Could not bind data")
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	// Do something with api key and host
-	// api_key := newData["api_key"].(string)
-	host := newData["host"]
-
-	delete(newData, "api_key")
-	delete(newData, "host")
-
-	sendData, err := json.Marshal(newData)
-
-	if err != nil {
-		c.JSON(http.StatusNoContent, gin.H{
-			"code": http.StatusNoContent,
-		})
-		return
-	}
-
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/collections/release", host), "application/json", bytes.NewReader(sendData))
-
-	if err != nil {
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	buf, err := io.ReadAll(resp.Body)
-
-	if err != nil {
-		c.JSON(http.StatusNoContent, gin.H{
-			"code": http.StatusNoContent,
-		})
-		return
-	}
-
-	var result map[string]any
-	err = json.Unmarshal(buf, &result)
-	if err != nil {
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	c.JSON(resp.StatusCode, result)
-	resp.Body.Close()
+	Collection(c, "release")
 }
 
 func RenameCollection(c *gin.Context) {
-	var newData map[string]any
-
-	if err := c.BindJSON(&newData); err != nil {
-		fmt.Println("Could not bind data")
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	// Do something with api key and host
-	// api_key := newData["api_key"].(string)
-	host := newData["host"]
-
-	delete(newData, "api_key")
-	delete(newData, "host")
-
-	sendData, err := json.Marshal(newData)
-
-	if err != nil {
-		c.JSON(http.StatusNoContent, gin.H{
-			"code": http.StatusNoContent,
-		})
-		return
-	}
-
-	resp, err := http.Post(fmt.Sprintf("http://%s/v2/vectordb/collections/rename", host), "application/json", bytes.NewReader(sendData))
-
-	if err != nil {
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	buf, err := io.ReadAll(resp.Body)
-
-	if err != nil {
-		c.JSON(http.StatusNoContent, gin.H{
-			"code": http.StatusNoContent,
-		})
-		return
-	}
-
-	var result map[string]any
-	err = json.Unmarshal(buf, &result)
-	if err != nil {
-		c.JSON(http.StatusNotAcceptable, gin.H{
-			"code": http.StatusNotAcceptable,
-		})
-		return
-	}
-
-	c.JSON(resp.StatusCode, result)
-	resp.Body.Close()
+	Collection(c, "rename")
 }
